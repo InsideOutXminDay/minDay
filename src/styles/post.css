@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(490px, 1fr));
     grid-auto-flow: row;
+    height: inherit;
 }
 
 .post-card {
@@ -13,11 +14,12 @@
     margin: 25px;
     overflow: hidden;
     box-sizing: border-box;
-    background-clip: padding-box;
-    /* box-shadow: 0 0 20px gray; */
+    background-clip: padding-box;    
 }
 
 .guide-card{
+    width: 500px;
+    max-height: 200px;
     background-color: #E7F998;
     border-radius: 40px;
     padding: 30px;
