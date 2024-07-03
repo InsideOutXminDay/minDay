@@ -1,0 +1,45 @@
+.intro-community {
+  margin-bottom: 20rem;
+  font-family: 'Pretendard-Regular';
+}
+.community-title {
+  background-color: #7dccac;
+  color: white;
+  width: 100%;
+
+  padding: 2.6em 0px;
+
+  box-sizing: border-box;
+}
+.community-title h1 {
+  font-weight: 700;
+  font-size: 3em;
+  margin-bottom: 1em;
+}
+.community-content {
+  display: flex;
+  justify-content: center;
+  margin: 4em 2em;
+  box-sizing: border-box;
+}
+.community-content section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.community-content section span {
+  font-weight: 700;
+  font-size: 3.5em;
+  margin-bottom: 0.3em;
+}
+.community-content section span:nth-child(2) {
+  margin-bottom: 1em;
+}
+.community-content section p {
+  margin-bottom: 0.3em;
+}
+.community-content img {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+}

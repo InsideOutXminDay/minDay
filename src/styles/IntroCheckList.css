@@ -1,0 +1,47 @@
+.intro-checklist {
+  margin-bottom: 20rem;
+
+  font-family: 'Pretendard-Regular';
+}
+.checklist-title {
+  background-color: #eaeaea;
+  color: #3c3b3b;
+  width: 100%;
+
+  padding: 2.6em 0px;
+
+  box-sizing: border-box;
+}
+.checklist-title h1 {
+  font-weight: 700;
+  font-size: 3em;
+  margin-bottom: 1em;
+}
+.checklist-title span {
+  display: block;
+  margin-bottom: 0.2em;
+}
+.check-content {
+  display: flex;
+  justify-content: center;
+  margin: 4em 2em;
+  box-sizing: border-box;
+}
+.check-content section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.check-content section span {
+  font-weight: 700;
+  font-size: 3.2em;
+  margin-bottom: 1em;
+}
+.check-content section p {
+  margin-bottom: 0.2em;
+}
+.check-content img {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+}
