@@ -1,9 +1,11 @@
-import './App.css';
 
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import './App.css';
+import Post from './pages/post';
 import Home from './pages/Home';
 import SettingPage from './pages/SettingPage.js';
+
 
 function App() {
   return (
