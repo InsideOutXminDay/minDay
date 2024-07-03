@@ -23,7 +23,7 @@ function App() {
             {/* <Route path='/category' element={<컨텐츠 카테고리/>}/> */}
             {/* <Route path='/contents' element={<컨텐츠 보기 />}/> */}
             {/* <Route path='/contents/:id' element={<컨텐츠 상세/>}/> */}
-            <SettingPage />
+            <Route path='/setting' element={<SettingPage />}/> 
             {/* <Route path='/mind' element={<커뮤니티-고민/>}/> */}
             {/* <Route path='/post' element={<커뮤니티-일반/>}/> */}
             {/* <Route path='/new/:id' element={<게시글 작성 />}/> */}

@@ -4,6 +4,7 @@ import '../components/SettingAccount.js';
 import '../styles/SettingPage.css';
 
 
+
 const SettingPage = () => {
   return (
     <div className="setting-page">
