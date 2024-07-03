@@ -1,0 +1,43 @@
+.new-bar{
+    display:flex;
+    height: 50px;
+    margin:3% 5% 2% 110px ;
+    border-radius: 15px;
+    background-color: #E7F998;
+    align-items:center;
+}
+
+.new-title-bar{
+    display:flex;
+    height: 70px;
+    margin:0% 5% 2% 110px ;
+    border-radius: 15px;
+    padding-left: 30px;
+    background-color: #E7F998;
+    align-items:center;
+}
+
+#new-back{
+    padding-left: 20px;
+    justify-content: flex-start;
+}
+
+.checkbox-right{
+    padding-right: 30px;
+}
+
+.button-right{
+    margin-left:auto;
+    margin-right: 7%;
+}
+
+.new-title-bar input{
+    border: none;
+    background-color: #E7F998;
+    font-size: 20px;
+    font-weight:normal;
+}
+
+.new-title-bar input:focus{
+    outline: none;
+}
