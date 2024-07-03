@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-
 const SettingAccount = () => {
   const [nickname, setNickname] = useState('오렌지');
   const [email, setEmail] = useState('coco@naver.com');
