@@ -1,3 +1,4 @@
+import '../styles/IntroDiary.css';
 export default function IntroDiary() {
   return (
     <article>

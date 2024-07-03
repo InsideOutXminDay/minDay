@@ -1,3 +1,4 @@
+import '../styles/IntroContents.css';
 export default function IntroContents() {
   return (
     <article>

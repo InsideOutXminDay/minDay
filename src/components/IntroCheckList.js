@@ -1,3 +1,4 @@
+import '../styles/IntroCheckList.css';
 export default function IntroCheckList() {
   return (
     <article>

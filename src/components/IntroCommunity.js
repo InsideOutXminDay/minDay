@@ -1,3 +1,4 @@
+import '../styles/IntroCommunity.css';
 export default function IntroCommunity() {
   return (
     <article>

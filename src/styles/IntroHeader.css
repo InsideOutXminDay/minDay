@@ -1,0 +1,36 @@
+.intro-header {
+  height: 13rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding: 1em;
+
+  position: sticky;
+}
+.intro-header button {
+  background-color: white;
+  border-style: none;
+  border-radius: 25px;
+  width: 5em;
+  height: 3em;
+
+  font-family: 'Pretendard-Regular';
+  font-size: 1.7em;
+  font-weight: 700;
+
+  position: absolute;
+  top: 3em;
+  right: 0.6em;
+}
+.intro-header button:hover {
+  background-color: #7dccac;
+  border-radius: 25px;
+  width: 5em;
+  height: 3em;
+  cursor: pointer;
+
+  color: white;
+}

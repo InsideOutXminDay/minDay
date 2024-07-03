@@ -1,0 +1,24 @@
+.intro-main {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 50px 10px 20px;
+  box-sizing: border-box;
+
+  background-color: #eaeaea;
+}
+.intro-main img {
+  width: 40%;
+  height: 80%;
+  object-fit: cover;
+}
+.intro-text {
+  display: flex;
+  flex-direction: column;
+
+  font-family: 'Pretendard-Regular';
+  font-size: 2em;
+  font-weight: 400;
+}
+.intro-text button:hover {
+  cursor: pointer;
+}
