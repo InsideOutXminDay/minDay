@@ -14,5 +14,18 @@
     overflow: hidden;
     box-sizing: border-box;
     background-clip: padding-box;
-    box-shadow: 0 0 20px gray;
+    /* box-shadow: 0 0 20px gray; */
+}
+
+.guide-card{
+    background-color: #E7F998;
+    border-radius: 40px;
+    padding: 30px;
+    margin: 25px;
+    box-sizing: border-box;
+}
+
+#new-post-create{
+    float: right;
+    margin-right: 15px;
 }
