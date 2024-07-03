@@ -25,13 +25,24 @@
     margin-top: 290px;
 }
 
+/* 안 떠 있는 버전  */
+/* 
 .dropdown-content{
     display : none;
     position : absolute;  
-    z-index : 1; /*다른 요소들보다 앞에 배치*/
+    z-index : 1; 
     font-weight: 500;
     background-color: #7dccac;
-    /* min-width: 300px;  있으면 따로 표시됨 */
+} */
+ /* 떠 있는 버전 */
+.dropdown-content{
+    display : none;
+    border-radius: 30px;
+    position : absolute;  
+    z-index : 1; 
+    font-weight: 500;
+    background-color: #7dccaca2;
+    min-width: 250px; 
 }
 .dropdown-content p{
     display : block;
@@ -40,8 +51,15 @@
     font-size: 13px;
     padding : 12px 20px;
   }
+/* 안 떠 있는 버전  */
+/* 
 .dropdown-content p:hover{
     background-color: #fffafd69;
+} */
+ /* 떠 있는 버전 */
+.dropdown-content p:hover{
+    border-radius: 30px;
+    background-color: #fffafd;
 }
 .mid-icon:hover .dropdown-content{
     display: block;
