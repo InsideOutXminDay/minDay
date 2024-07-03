@@ -31,8 +31,13 @@
     margin-right: 7%;
 }
 
+.new-title-bar p{
+    width: 90%;
+}
+
 .new-title-bar input{
     border: none;
+    width: 75%;
     background-color: #E7F998;
     font-size: 20px;
     font-weight:normal;
@@ -40,4 +45,29 @@
 
 .new-title-bar input:focus{
     outline: none;
+}
+
+.new-textarea textarea{
+    margin: 10px 40px 0 0 ;
+    padding-left: 15px;
+    display:flex;
+    width: 97%;
+    border:none;
+    border-radius: 18px;
+    outline: none;
+    font-size: 19px;
+    overflow: hidden;
+    resize: none;
+    display: block;
+    border-right: 15px;
+}
+
+.new-textarea {
+    display: grid;
+    border: 5px solid #B9ED90;
+    border-radius: 18px;
+    margin:0% 5% 5% 110px;
+    height: 600px;
+    box-sizing: border-box;
+    background-clip: padding-box; 
 }
