@@ -9,57 +9,42 @@
 }
 
 .logo-icon{
-    margin: 40px 0px 40px 0px;
+    margin: 40px 0px;
 }
 .LogoImg{
     width: 70px;
     height: 70px;
 }
 .mid-icon{
-
-    margin: 20px 0px 20px 0px;
-
+    margin: 20px 0px;
 }
 
 .end-icon{
     margin-top: 290px;
 }
 
-/* 안 떠 있는 버전  */
-/* 
 .dropdown-content{
     display : none;
-    position : absolute;  
-    z-index : 1; 
-    font-weight: 500;
-    background-color: #7dccac;
-} */
- /* 떠 있는 버전 */
-.dropdown-content{
-    display : none;
-    border-radius: 30px;
+    margin: -45px 75px;
     position : absolute;  
     z-index : 1; 
     font-weight: 500;
     background-color: #7dccaca2;
-    min-width: 250px; 
+    width: 100px; 
 }
 .dropdown-content p{
     display : block;
+    margin: 0 auto;
+    width: 100px;
     text-decoration : none;
     color : rgb(0, 0, 0);
     font-size: 13px;
-    padding : 12px 20px;
+    padding : 12px 0px;
   }
-/* 안 떠 있는 버전  */
-/* 
+
 .dropdown-content p:hover{
-    background-color: #fffafd69;
-} */
- /* 떠 있는 버전 */
-.dropdown-content p:hover{
-    border-radius: 30px;
-    background-color: #fffafd;
+    width: 100px;
+    background-color: #fffafdb5;
 }
 .mid-icon:hover .dropdown-content{
     display: block;
