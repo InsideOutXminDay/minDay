@@ -1,7 +1,9 @@
 import './App.css';
+
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
+import SettingPage from './pages/SettingPage.js';
 
 function App() {
   return (
@@ -19,7 +21,7 @@ function App() {
             {/* <Route path='/category' element={<컨텐츠 카테고리/>}/> */}
             {/* <Route path='/contents' element={<컨텐츠 보기 />}/> */}
             {/* <Route path='/contents/:id' element={<컨텐츠 상세/>}/> */}
-            {/* <Route path='/setting' element={<설정 상세 />}/> */}
+            <SettingPage />
             {/* <Route path='/mind' element={<커뮤니티-고민/>}/> */}
             {/* <Route path='/post' element={<커뮤니티-일반/>}/> */}
             {/* <Route path='/new/:id' element={<게시글 작성 />}/> */}
