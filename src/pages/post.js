@@ -8,17 +8,105 @@ export default function Post() {
             <div className="post-card">
                 <h2>test</h2>
                 {img}
-                <text>test test test test test test </text>
+                <p>test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test testtest test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                test test test test test test 
+                
+                    
+                </p>
             </div>
             <div className="post-card">
                 <h2>test</h2>
                 {img}
-                <text>test test test test test test </text>
+                <p>test test test test test test </p>
             </div>
             <div className="post-card">
                 <h2>test</h2>
                 {img}
-                <text>test test test test test test </text>
+                <p>test test test test test test </p>
             </div>
         </div>
     )
