@@ -5,17 +5,21 @@ export default function LoginForm() {
     <article className="login-form">
       <img src="/img/logo_full.png"></img>
       <h1>Log In</h1>
-      <form>
-        <label htmlFor="id">ID</label>
-        <input id="id" type="text"></input>
-        <label htmlFor="pw">PW</label>
-        <input id="pw" type="password"></input>
+      <form className="form">
+        <div className="id-input">
+          <label htmlFor="id">ID</label>
+          <input id="id" type="text"></input>
+        </div>
+        <div className="pw-input">
+          <label htmlFor="pw">PW</label>
+          <input id="pw" type="password"></input>
+        </div>
       </form>
       <div className="btns">
-        <button>Log in</button>
-        <button>
+        <button className="login-btn">Log in</button>
+        <button className="kakao-btn">
           Kakao Login
-          <ImBubble />
+          <ImBubble color="#3A1D1D" />
         </button>
       </div>
       <span>회원 정보를 잊으셨나요?</span>
