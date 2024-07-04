@@ -14,9 +14,9 @@ export default function LoginForm() {
           <label htmlFor="pw">PW</label>
           <input id="pw" type="password"></input>
         </div>
+        <button className="login-btn">Log in</button>
       </form>
       <div className="btns">
-        <button className="login-btn">Log in</button>
         <button className="kakao-btn">
           Kakao Login
           <ImBubble color="#3A1D1D" />

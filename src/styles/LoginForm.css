@@ -29,6 +29,8 @@
 
   width: 50%;
   height: 40%;
+
+  position: relative;
 }
 .form label {
   font-size: 1.2em;
@@ -51,8 +53,6 @@
   margin-bottom: 2.2em;
 }
 .btns {
-  display: flex;
-  gap: 5em;
   margin-bottom: 4em;
 }
 .btns button {
@@ -60,13 +60,22 @@
   border-style: none;
   border-radius: 10px;
 }
-.btns button:hover {
+.login-btn,
+.kakao-btn:hover {
   cursor: pointer;
 }
 .login-btn {
   color: white;
   background-color: #7dccac;
   padding: 0.5rem 3.3rem;
+  border-style: none;
+  border-radius: 10px;
+  margin-top: 2.5em;
+  font-size: 1.3em;
+  width: 30%;
+  position: absolute;
+  top: 7em;
+  left: 10em;
 }
 .kakao-btn {
   background-color: #f7e600;
