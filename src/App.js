@@ -6,6 +6,7 @@ import Mind from './pages/mind';
 import New from './pages/new';
 import Home from './pages/Home';
 import Diary from './pages/Diary';
+import NewDiary from './pages/NewDiary.js';
 import SettingPage from './pages/SettingPage.js';
 import Intro from './pages/Intro.js';
 
@@ -22,6 +23,7 @@ function App() {
             {/* <Route path='/ask' element={<설문 />}/> */}
             {/* <Route path='/find' element={<회원정보 찾기 />}/> */}
             <Route path='/diary/:id' element={<Diary />}/>  {/* /diary/:id */}
+            <Route path='/newdiary' element={<NewDiary />}/>  {/* /diary/:id */}
             {/* <Route path='/category' element={<컨텐츠 카테고리/>}/> */}
             {/* <Route path='/contents' element={<컨텐츠 보기 />}/> */}
             {/* <Route path='/contents/:id' element={<컨텐츠 상세/>}/> */}

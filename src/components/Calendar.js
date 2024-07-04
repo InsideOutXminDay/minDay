@@ -5,8 +5,6 @@ import moment from 'moment';
 import { IoPencilOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 
-
-
 export default function CalendarComponent(){
   const [date, setDate] = useState(new Date());
   const [diaryData, setDiaryData] = useState([]);
@@ -53,7 +51,7 @@ export default function CalendarComponent(){
 
   // 수정 버튼 클릭으로 일기 수정 
   const onClickUpdate = () => {
-    const moveTo = nowDiary?`/diary/${nowDiary.id_diary}`:'/new'
+    const moveTo = nowDiary?`/diary/${nowDiary.id_diary}`:'/newdiary'
     console.log(moveTo)
     navigate(moveTo)
   }
