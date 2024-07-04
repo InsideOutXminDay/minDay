@@ -1,35 +1,36 @@
+
 .category-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    width: 100%;
-  }
-  
-  .category-item {
-    background-color: #dff0d8;
-    padding: 80px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: transform 0.2s;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .category-item:hover {
-    transform: scale(1.05);
-  }
-  
-  .category-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-  
-  .category-name {
-    margin-top: 10px;
-    font-size: 1.2em;
-    font-weight: bold;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.category-item {
+  background-color: #dff0d8;
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.category-item:hover {
+  transform: scale(1.05);
+}
+
+.category-image {
+  width: 100%;
+  height: 300px; /* 이미지 높이를 고정 */
+  object-fit: cover; /* 이미지를 사각형을 꽉 채우도록 조정 */
+  border-radius: 8px;
+}
+
+.category-name {
+  margin-top: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+}

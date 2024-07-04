@@ -4,7 +4,7 @@ import '../styles/ContentsView.css';
 const ContentsView = ({ subCategory, onBack }) => {
   return (
     <div className="contents-view">
-      <button onClick={onBack} className="back-button">🔙</button>
+      <button onClick={onBack} className="back-button2">🔙</button>
       <h2>{subCategory.name}</h2>
       <div className="content">
         <video controls>
