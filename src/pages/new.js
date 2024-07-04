@@ -21,7 +21,7 @@ export default function New() {
 
     return (
         <div className="new-page">
-            <form name="newCreate">
+            <form name="newCreate" onSubmit={(e)=>{e.preventDefault();}}>
                 <div className="new-bar">
                     <NavLink to={"/post"}><IoCaretBackOutline id="new-back"></IoCaretBackOutline></NavLink>
                         <div className="button-right">
