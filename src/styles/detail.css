@@ -1,16 +1,16 @@
-.detail-bar{
-    display:flex;
+.detail-bar {
+    display: flex;
     height: 50px;
-    margin:3% 5% 2% 110px ;
+    margin: 3% 5% 2% 110px;
     border-radius: 15px;
     background-color: #E7F998;
-    align-items:center;
+    align-items: center;
 }
 
-.detail-title-bar{
-    display:flex;
+.detail-title-bar {
+    display: flex;
     height: 70px;
-    margin:0% 6% 2% 119px ;
+    margin: 0% 6% 2% 119px;
     border-radius: 2px;
     padding-left: 30px;
     background-color: none;
@@ -18,29 +18,29 @@
     border-bottom: 5px solid #7DCCAC;
 }
 
-.detail-title-bar p{
+.detail-title-bar p {
     width: 90%;
     font-weight: bolder;
     margin-top: 33px;
     font-size: large;
 }
 
-#post-back{
+#post-back {
     padding-left: 20px;
     justify-content: flex-start;
 }
 
-.button-right{
-    margin-left:auto;
+.button-right {
+    margin-left: auto;
     margin-right: 7%;
 }
 
-.detail-textarea p{
-    margin: 10px 40px 0 0 ;
+.detail-textarea p {
+    margin: 10px 40px 0 0;
     padding: 23px 23px 27px 23px;
-    display:flex;
+    display: flex;
     width: 97%;
-    border:none;
+    border: none;
     border-radius: 18px;
     outline: none;
     font-size: 19px;
@@ -54,13 +54,13 @@
     display: grid;
     border: 5px solid #B9ED90;
     border-radius: 18px;
-    margin:0% 5% 10px 110px;
+    margin: 0% 5% 10px 110px;
     height: 480px;
     box-sizing: border-box;
-    background-clip: padding-box; 
+    background-clip: padding-box;
 }
 
-#detail-submit{
+#detail-submit {
     background-color: #B9ED90;
     border: none;
     border-radius: 8px;
@@ -69,15 +69,15 @@
     font-weight: bold;
 }
 
-#detail-submit:hover{
-    background-color:#7DCCAC;
+#detail-submit:hover {
+    background-color: #7DCCAC;
 }
 
 
-.detail-comment-bar{
-    display:flex;
+.detail-comment-bar {
+    display: flex;
     height: 40px;
-    margin:0% 6% 2% 119px ;
+    margin: 0% 6% 2% 119px;
     border-radius: 15px;
     padding-left: 30px;
     background-color: none;
@@ -85,12 +85,51 @@
     background-color: #B9ED90;
 }
 
-.detail-comment-bar p{
+.detail-comment-bar p {
     width: 90%;
     font-size: large;
     text-align: left;
 }
 
+.detail-comment-input {
+    display: flex;
+    height: 32px;
+    margin: 0% 6% 7px 119px;
+    border-radius: 15px;
+    padding-left: 30px;
+    align-items: center;
+    width: 60%;
+    border: 5px solid #B9ED90;
+    
+}
+
+.detail-form{
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail-comment-input input {
+    border: none;
+    font-size: large;
+    width: 20%;
+}
+
+#detail-comment-submit {
+    background-color: #B9ED90;
+    border: none;
+    border-radius: 8px;
+    width: 90px;
+    height: 28px;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: 7%;
+}
+
+#detail-comment-submit:hover {
+    background-color: #7DCCAC;
+}
+
 .detail-comment{
+    text-align: left;
 
 }
