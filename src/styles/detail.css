@@ -1,4 +1,4 @@
-.new-bar{
+.detail-bar{
     display:flex;
     height: 50px;
     margin:3% 5% 2% 110px ;
@@ -7,50 +7,39 @@
     align-items:center;
 }
 
-.new-title-bar{
+.detail-title-bar{
     display:flex;
     height: 70px;
-    margin:0% 5% 2% 110px ;
-    border-radius: 15px;
+    margin:0% 6% 2% 119px ;
+    border-radius: 2px;
     padding-left: 30px;
-    background-color: #E7F998;
-    align-items: center;
+    background-color: none;
     text-align: left;
+    border-bottom: 5px solid #7DCCAC;
 }
+
+.detail-title-bar p{
+    width: 90%;
+    font-weight: bolder;
+    margin-top: 33px;
+    font-size: large;
+}
+
 
 #post-back{
     padding-left: 20px;
     justify-content: flex-start;
 }
 
-.checkbox-right{
-    padding-right: 30px;
-}
 
 .button-right{
     margin-left:auto;
     margin-right: 7%;
 }
 
-.new-title-bar p{
-    width: 90%;
-}
-
-.new-title-bar input{
-    border: none;
-    width: 75%;
-    background-color: #E7F998;
-    font-size: 20px;
-    font-weight:normal;
-}
-
-.new-title-bar input:focus{
-    outline: none;
-}
-
-.new-textarea textarea{
+.detail-textarea p{
     margin: 10px 40px 0 0 ;
-    padding-left: 15px;
+    padding: 23px 23px 27px 23px;
     display:flex;
     width: 97%;
     border:none;
@@ -61,9 +50,10 @@
     resize: none;
     display: block;
     border-right: 15px;
+    text-align: left;
 }
 
-.new-textarea {
+.detail-textarea {
     display: grid;
     border: 5px solid #B9ED90;
     border-radius: 18px;
@@ -73,15 +63,15 @@
     background-clip: padding-box; 
 }
 
-#new-submit{
-    background-color: #7DCCAC;
+#detail-submit{
+    background-color: #B9ED90;
     border: none;
-    border-radius: 50px;
+    border-radius: 8px;
     width: 90px;
     height: 28px;
     font-weight: bold;
 }
 
-#new-submit:hover{
-    background-color:#B9ED90;
+#detail-submit:hover{
+    background-color:#7DCCAC;
 }
