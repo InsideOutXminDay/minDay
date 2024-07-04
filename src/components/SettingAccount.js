@@ -84,8 +84,10 @@ const SettingAccount = () => {
           onChange={(e) => setNewPassword(e.target.value)}
         />
       </div>
+      <div className="settingButton">
       <button onClick={handleSave}>저장</button>
       {notification && <div className="notification">{notification}</div>}
+     </div>
     </div>
   );
 };
