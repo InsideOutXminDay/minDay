@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IoCaretBackOutline } from "react-icons/io5";
+import { NavLink } from "react-router-dom";
 import '../styles/new.css';
 
 
@@ -22,7 +23,7 @@ export default function New() {
         <div className="new-page">
             <form name="newCreate">
                 <div className="new-bar">
-                    <IoCaretBackOutline id="new-back"></IoCaretBackOutline >
+                    <NavLink to={"/post"}><IoCaretBackOutline id="new-back"></IoCaretBackOutline></NavLink>
                         <div className="button-right">
                             <label className="checkbox-right">
                                 <input type="checkbox" id="checkboxId" value={community}
