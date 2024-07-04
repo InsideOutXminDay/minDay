@@ -21,7 +21,13 @@ export default function New() {
 
     return (
         <div className="new-page">
-            <form name="newCreate" onSubmit={(e)=>{e.preventDefault();}}>
+            <form name="newCreate" onSubmit={(e)=>{e.preventDefault();
+                // 출력 확인용
+                // console.log(
+                //     "anonymity(hidden) : " + document.forms[0].anonymity.value,
+                //     "title : "+document.forms[0].title.value,
+                //     "body : "+document.forms[0].body.value);
+            }}>
                 <div className="new-bar">
                     <NavLink to={"/post"}><IoCaretBackOutline id="new-back"></IoCaretBackOutline></NavLink>
                         <div className="button-right">
