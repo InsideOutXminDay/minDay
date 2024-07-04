@@ -1,0 +1,27 @@
+.intro-footer {
+  background-color: #eaeaea;
+  display: flex;
+  flex-direction: column;
+
+  padding: 0.5em 1.5em;
+
+  font-family: 'Pretendard-Regular';
+}
+.intro-footer img {
+  width: 10%;
+  height: 10%;
+  object-fit: cover;
+}
+.footer-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 1em;
+}
+.footer-text span {
+  margin-bottom: 0.3em;
+  color: #3c3b3b;
+}
+.footer-text span:nth-child(5) {
+  margin-bottom: 1.5em;
+}
