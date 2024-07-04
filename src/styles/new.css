@@ -80,3 +80,7 @@
     height: 28px;
     font-weight: bold;
 }
+
+#new-submit:hover{
+    background-color:#B9ED90;
+}

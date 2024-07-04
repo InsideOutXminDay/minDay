@@ -4,6 +4,7 @@ import './App.css';
 import Post from './pages/post';
 import Mind from './pages/mind';
 import New from './pages/new';
+import Edit from './pages/edit';
 import Home from './pages/Home';
 import Diary from './pages/Diary';
 import SettingPage from './pages/SettingPage.js';
@@ -29,6 +30,7 @@ function App() {
             <Route path='/post' element={<Post />}/>
             <Route path='/mind' element={<Mind />}/>
             <Route path='/new/:id' element={<New />}/>
+            <Route path='/edit/:id' element={<Edit />}/>
             {/* <Route path='/mind' element={<커뮤니티-고민/>}/> */}
             {/* <Route path='/post' element={<커뮤니티-일반/>}/> */}
             {/* <Route path='/new/:id' element={<게시글 작성 />}/> */}
