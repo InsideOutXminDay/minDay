@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import Post from './pages/post';
+import Mind from './pages/mind';
 import New from './pages/new';
 import Home from './pages/Home';
 import SettingPage from './pages/SettingPage.js';
@@ -25,6 +26,7 @@ function App() {
             {/* <Route path='/contents/:id' element={<컨텐츠 상세/>}/> */}
             <Route path="/setting" element={<SettingPage />} />
             <Route path='/post' element={<Post />}/>
+            <Route path='/mind' element={<Mind />}/>
             <Route path='/new/:id' element={<New />}/>
             {/* <Route path='/mind' element={<커뮤니티-고민/>}/> */}
             {/* <Route path='/post' element={<커뮤니티-일반/>}/> */}
