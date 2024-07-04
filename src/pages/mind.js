@@ -27,7 +27,7 @@ export default function Mind() {
             </div>
             <div className="guide-card">
                 <h3>고민 커뮤니티</h3>
-                <p>익명으로 서로의 고민을 나눠보며 숨은 위로와 힐링을 받아보아요!</p>
+                <p>익명으로 서로의 고민을 나눠보며 숨은 위로와 힐링을 받아보세요!</p>
 
                 <button id="new-post-create"><NavLink to={"/new/"+_id}>
                 <FaRegPenToSquare id="post-create-icon">작성</FaRegPenToSquare>
