@@ -71,3 +71,12 @@
     box-sizing: border-box;
     background-clip: padding-box; 
 }
+
+#new-submit{
+    background-color: #7DCCAC;
+    border: none;
+    border-radius: 50px;
+    width: 90px;
+    height: 28px;
+    font-weight: bold;
+}

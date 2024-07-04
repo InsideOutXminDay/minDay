@@ -37,7 +37,7 @@ export default function New() {
                                     MyCheckbox(e.target.checked); }} name="anonymity" />익명
                             </label>
                             {unCheck}
-                        <span><input type="submit" value="저장하기" /></span>
+                        <span><input type="submit" value="저장하기" id="new-submit"/></span>
                     </div>
                 </div>
                 <div className="new-title-bar"><p>

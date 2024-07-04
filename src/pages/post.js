@@ -1,6 +1,7 @@
 import React from "react";
 import '../styles/post.css';
 import { NavLink } from "react-router-dom";
+import { FaRegPenToSquare } from "react-icons/fa6";
 
 export default function Post() {
 
@@ -208,7 +209,9 @@ export default function Post() {
             <div className="guide-card">
                 <h3>일반 커뮤니티</h3>
                 <p>서로의 멘탈 관리에 도움이 될 수 있도록 이야기를 공유해 보세요!</p>
-                <button id="new-post-create"><NavLink to={"/new/"+_id}>작성</NavLink></button>
+                <button id="new-post-create"><NavLink to={"/new/"+_id}>
+                <FaRegPenToSquare id="post-create-icon">작성</FaRegPenToSquare>
+                </NavLink></button>
             </div>
 
             <div className="post-card">
