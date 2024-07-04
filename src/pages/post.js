@@ -112,6 +112,7 @@ export default function Post() {
         anonymity: false
     }];
 
+
     //로그인 유저 임시 id 값
     let _id = 1;
     return (
