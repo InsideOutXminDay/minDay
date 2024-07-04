@@ -6,7 +6,7 @@ import '../styles/new.css';
 
 export default function New() {
     const [community, setCommunity] = useState("post");
-    const [unCheck, setUnCheck] = useState(null);
+    const [unCheck, setUnCheck] = useState(<input type="hidden" name="anonymity" value="post"/>);
 
     const MyCheckbox = (checked) => {
         if (checked) {
@@ -14,7 +14,6 @@ export default function New() {
             setUnCheck(null);
         } else if (!checked){
             setCommunity("post")
-            console.log("!checked");
             setUnCheck(<input type="hidden" name="anonymity" value="post"/>);
         }
     }
