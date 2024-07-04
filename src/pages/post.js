@@ -1,5 +1,6 @@
 import React from "react";
 import '../styles/post.css';
+import { NavLink } from "react-router-dom";
 
 export default function Post() {
 
@@ -110,7 +111,8 @@ export default function Post() {
         anonymity: false
     }];
 
-
+    //로그인 값 user id 로 수정해야함
+    let _id = 1;
     return (
         <div className="post-page">
             <div className="post-card">
@@ -206,7 +208,7 @@ export default function Post() {
             <div className="guide-card">
                 <h3>일반 커뮤니티</h3>
                 <p>서로의 멘탈 관리에 도움이 될 수 있도록 이야기를 공유해 보세요!</p>
-                <button id="new-post-create">작성</button>
+                <button id="new-post-create"><NavLink to={"/new/"+_id}>작성</NavLink></button>
             </div>
 
             <div className="post-card">
