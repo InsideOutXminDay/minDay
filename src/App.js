@@ -5,6 +5,7 @@ import Post from './pages/post';
 import Home from './pages/Home';
 import SettingPage from './pages/SettingPage.js';
 import Intro from './pages/Intro.js';
+import Contents from './pages/Contents.js';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           {/* <Route path='/ask' element={<설문 />}/> */}
           {/* <Route path='/find' element={<회원정보 찾기 />}/> */}
           {/* <Route path='/diary/:id' element={<일기 수정 />}/> */}
-          {/* <Route path='/category' element={<컨텐츠 카테고리/>}/> */}
+          <Route path="/contents" element={<Contents />} />
           {/* <Route path='/contents' element={<컨텐츠 보기 />}/> */}
           {/* <Route path='/contents/:id' element={<컨텐츠 상세/>}/> */}
           <Route path="/setting" element={<SettingPage />} />

@@ -1,0 +1,9 @@
+.contents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: max;
+    margin-left: 150px;
+  }
+  
