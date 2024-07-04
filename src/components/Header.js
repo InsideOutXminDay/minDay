@@ -38,7 +38,7 @@ export default function Header(){
     return(
         <div className="Header">
             <div>
-                <div className='logo-icon' onClick={goHome}><img src="/logo_black.svg" className='LogoImg'/></div>
+                <div className='logo-icon' onClick={goHome}><img src="/logo_black.svg" className='LogoImg' alt=''/></div>
                 <div className='mid-icon' >
                     <IoChatbubbleOutline size={"35"}/>
                     <div className='dropdown-content'>
