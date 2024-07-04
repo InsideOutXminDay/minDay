@@ -19,20 +19,21 @@
 .emotion-section{
   width: 100%;
   margin: 10px;
-  
-  button{
-    width: 60px;
-    height: 60px;
-    border: none;
-    border-radius: 50px;
-    background-color: #7DCCAC;
-  }
 }
 
+
 .diary-section{
-  margin: 10px;
+  margin: 10px 0px 60px 0px;
 
   width: 100%;
+}
+.edit-section button{
+  width: 55px;
+  height: 55px;
+  border: none;
+  border-radius: 50px;
+  background-color: #7DCCAC;
+  margin: 10px;
 }
 
 /* ------------------ */

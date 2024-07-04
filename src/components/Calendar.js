@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import moment from 'moment';
 import { IoPencilOutline } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -11,6 +12,7 @@ export default function CalendarComponent(){
   const [diaryData, setDiaryData] = useState([]);
   const [nowDiary, setNowDiary] = useState(null);
   const [Isview, setView] = useState(true);
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -20,6 +22,7 @@ export default function CalendarComponent(){
       .then((data) => setDiaryData(data))
   }, []);
 
+  //달력 날짜 타일 누르면 변화 일어나는 함수
   const onChange = (day) =>{
     setView(true)
     setDate(day)
@@ -28,10 +31,10 @@ export default function CalendarComponent(){
     if(matching){
       setNowDiary(matching)
     }else{setNowDiary(null)}
-    
   }
 
 
+  // 타일에 나타낼 요소 정하는 함수
   const tileContent = ({ date, view }) => {
     if (view==='month' ){
     const dateStr = moment(date).format('YYYY-MM-DD');
@@ -47,6 +50,13 @@ export default function CalendarComponent(){
   }
     return null;
   };
+
+  // 수정 버튼 클릭으로 일기 수정 
+  const onClickUpdate = () => {
+    const moveTo = nowDiary?`/diary/${nowDiary.id_diary}`:'/new'
+    console.log(moveTo)
+    navigate(moveTo)
+  }
   return(
       <div className="container">
           <div className="Calendar">
@@ -62,27 +72,23 @@ export default function CalendarComponent(){
                 onViewChange={()=>setView(false)}
             />
           </div>
-          <div className='emotion-section'>
-            {
-              !Isview?<p></p>:(
-                nowDiary?
-              <img style={{width:"60px"}} src={`/emotion${nowDiary.id_emotion}.png`} />
-              :<button><IoPencilOutline size={40} color='#fffafd'/></button>
-            )
-              
-            }
+          
+          {
+            !Isview?null
+            :(nowDiary?
+              <>
+                <div className='emotion-section'>
+                  <img style={{width:"60px"}} src={`/emotion${nowDiary.id_emotion}.png`} />
+                </div>
+                <div className='diary-section'>
+                  <p>{nowDiary.contents}</p>
+                </div>
+              </>:null)
+          }
+          <div className='edit-section'>
+            <button onClick={onClickUpdate}><IoPencilOutline size={35} color='#fffafd'/></button>
           </div>
-          <div className='diary-section'>
-            {
-              !Isview?<p></p>:(
-                nowDiary?
-                <p>{nowDiary.contents}</p>
-                :<p>다이어리를 입력하세요.</p>
-            )
-            }
-          </div>
-
-
+            
       </div>
   )
 }

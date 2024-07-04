@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
+import Diary from './pages/Diary';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
             {/* <Route path='/join' element={<회원가입 />}/> */}
             {/* <Route path='/ask' element={<설문 />}/> */}
             {/* <Route path='/find' element={<회원정보 찾기 />}/> */}
-            {/* <Route path='/diary/:id' element={<일기 수정 />}/> */}
+            <Route path='/diary/:id' element={<Diary />}/>  {/* /diary/:id */}
             {/* <Route path='/category' element={<컨텐츠 카테고리/>}/> */}
             {/* <Route path='/contents' element={<컨텐츠 보기 />}/> */}
             {/* <Route path='/contents/:id' element={<컨텐츠 상세/>}/> */}
