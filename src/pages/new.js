@@ -29,7 +29,7 @@ export default function New() {
                 //     "body : "+document.forms[0].body.value);
             }}>
                 <div className="new-bar">
-                    <NavLink to={"/post"}><IoCaretBackOutline id="new-back"></IoCaretBackOutline></NavLink>
+                    <NavLink to={"/post"}><IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
                         <div className="button-right">
                             <label className="checkbox-right">
                                 <input type="checkbox" id="checkboxId" value={community}

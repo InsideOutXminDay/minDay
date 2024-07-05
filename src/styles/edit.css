@@ -10,12 +10,11 @@
 .edit-title-bar{
     display:flex;
     height: 70px;
-    /* width: 70%; */
     margin:0% 6% 2% 119px ;
     border-radius: 2px;
     padding-left: 30px;
     background-color: none;
-    align-items:center;
+    text-align: left;
     border-bottom: 5px solid #7DCCAC;
 }
 
