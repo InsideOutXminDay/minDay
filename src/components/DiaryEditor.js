@@ -32,19 +32,16 @@ export default function DiaryEditor({initDate, initData, onSubmit}){
             ...state,
             id_emotion,
         }));
-        console.log(state)
     }, []);
     const handleChangeContent = (e) => {
         setState({
           ...state,
           contents: e.target.value,
         });
-        console.log(state)
 
       };
     const handleSubmit = () => {
         onSubmit(state);
-        console.log(state)
 
     };
     const handleOnGoBack = () => {
