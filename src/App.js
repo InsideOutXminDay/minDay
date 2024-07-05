@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Diary from './pages/Diary';
 import SettingPage from './pages/SettingPage.js';
 import Intro from './pages/Intro.js';
+import Login from './pages/Login.js';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
+
   );
 }
 
