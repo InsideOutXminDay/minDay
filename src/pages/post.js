@@ -118,7 +118,7 @@ export default function Post() {
     let myDB = [];
     const navigate = useNavigate();
     const goToDetail = (item)=>{
-        navigate(`/detail/ ${+item.id_post}`,{
+        navigate(`/detail/${item.id_post}`,{
             state:{
                 id_post: item.id_post,
                 id_user: item.id_user,
@@ -146,6 +146,7 @@ export default function Post() {
             // </NavLink>
                 <div className="post-card" onClick={()=>{
                     goToDetail(pData);
+                    console.log(pData)
                     }}>
                     <h2>{p.title}</h2>
                     <p>{p.body}</p>
