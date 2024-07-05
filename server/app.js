@@ -73,4 +73,15 @@ app.post('/api/login', (req, res) => {
   res.send('로그인 성공');
 });
 
+//회원가입 시 POST 요청/응답
+app.post('/api/signup', (req, res) => {
+  const { userId, pw, nickname, email } = req.body;
+  userInfo.push({ id: id++, userId, pw, nickname, email });
+  return res.send('회원가입 성공');
+});
+//회원가입 됐는지 확인용 GET요청/응답
+app.get('/api/users', (req, res) => {
+  res.send(userInfo);
+});
+
 app.listen(4000, () => console.log('4000번 포트에서 서버 실행 중'));
