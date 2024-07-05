@@ -7,7 +7,7 @@ export default function SignUpForm() {
         <div className="id-box">
           <label htmlFor="id">아이디</label>
           <input id="id" type="text" autoFocus required></input>
-          <button>중복확인</button>
+          <button className="check-btn">중복확인</button>
         </div>
         <div className="nickname-box">
           <label htmlFor="nickname">닉네임</label>
@@ -25,7 +25,7 @@ export default function SignUpForm() {
           <label htmlFor="pw-sure">비밀번호 확인</label>
           <input id="pw-sure" type="password" required></input>
         </div>
-        <button>회원가입</button>
+        <button className="signup-btn">회원가입</button>
       </form>
     </div>
   );
