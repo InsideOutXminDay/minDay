@@ -9,7 +9,6 @@ const ContentsView = ({ subCategory, onBack }) => {
       <div className="content">
         <video controls>
           <source src={subCategory.video} type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
       </div>
     </div>
