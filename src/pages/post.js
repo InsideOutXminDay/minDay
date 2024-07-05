@@ -112,117 +112,34 @@ export default function Post() {
         anonymity: false
     }];
 
+    let myDB = [];
+
+    for (let i = 0; i < postdb.length; i++) {
+        let p = postdb[i];
+        myDB.push(
+            <NavLink to={"/detail/" + p.id_post}>
+                <div className="post-card">
+                    <h2>{p.title}</h2>
+                    <p>{p.body}</p>
+                </div>
+            </NavLink>
+        );
+    }
 
     //로그인 유저 임시 id 값
-    let _id = 1;
+    let _userid = 1;
+
     return (
         <div className="post-page">
-            <div className="post-card">
-                <h2>test</h2>
-                <p> test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test
-                    test test test test test test</p>
-            </div>
+            {myDB[0]}
             <div className="guide-card">
                 <h3>일반 커뮤니티</h3>
                 <p>서로의 멘탈 관리에 도움이 될 수 있도록 이야기를 공유해 보세요!</p>
-                <button id="new-post-create"><NavLink to={"/new/"+_id}>
-                <FaRegPenToSquare id="post-create-icon">작성</FaRegPenToSquare>
+                <button id="new-post-create"><NavLink to={"/new/" + _userid}>
+                    <FaRegPenToSquare id="post-create-icon">작성</FaRegPenToSquare>
                 </NavLink></button>
             </div>
-
-            <div className="post-card">
-                <h2>test</h2>
-                <p>test test test test test test </p>
-            </div>
-            <div className="post-card">
-                <h2>test</h2>
-                <p>test test test test test test </p>
-            </div>
+            {myDB.slice(1)}
         </div>
     )
 }

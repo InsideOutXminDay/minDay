@@ -8,6 +8,8 @@ export default function Detail() {
     // 임시 유저 닉네임값
     var myNickname = "testUser";
 
+
+
     return (
         <div>
             <div className="detail-page">
