@@ -15,9 +15,21 @@ export default function CalendarComponent(){
 
   useEffect(() => {
     // Fetch the diary data from the public folder
-    fetch('/datas/diary.json')
-      .then((response) => response.json())
-      .then((data) => setDiaryData(data))
+    const fetchData = async () => {
+      // JSON 파일에서 데이터 가져오기
+      const response = await fetch('/datas/diary.json');
+      const jsonData = await response.json();
+
+      // 로컬스토리지에서 데이터 가져오기
+      const diaryString = window.localStorage.getItem('diary');
+      const diaryObj = diaryString ? [JSON.parse(diaryString)] : [];
+
+      // JSON 파일 데이터와 로컬스토리지 데이터를 병합
+      const combinedData = [...jsonData, ...diaryObj];
+      setDiaryData(combinedData);
+    };
+
+    fetchData();
   }, []);
 
   //달력 날짜 타일 누르면 변화 일어나는 함수
@@ -52,8 +64,7 @@ export default function CalendarComponent(){
   // 수정 버튼 클릭으로 일기 수정 
   const onClickUpdate = () => {
     const moveTo = nowDiary?`/diary/${nowDiary.id_diary}`:'/newdiary'
-    console.log(moveTo)
-    navigate(moveTo)
+    navigate(moveTo, { state: { date: date } })
   }
   return(
       <div className="container">

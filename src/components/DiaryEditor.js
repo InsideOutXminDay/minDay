@@ -6,21 +6,23 @@ import { emotionList } from "../util";
 import EmotionItem from "./EmotionItem";
 import '../styles/DiaryEditor.css'
 
-export default function DiaryEditor({initData, onSubmit}){
+export default function DiaryEditor({initDate, initData, onSubmit}){
     const navigate = useNavigate();
     
     //생성 시 기본 값
     const [state, setState] = useState({
+        id_diary:0,
         date: moment(new Date()).format('YYYY-MM-DD'),
         id_emotion: 3,
+        id_user:1,
         contents: "",
     });
 
     useEffect(() => {
-        if (initData) {
+        if (initData||initDate) {
           setState({
             ...initData,
-            date: moment(new Date(parseInt(initData.date))).format('YYYY-MM-DD'),
+            date: moment(new Date(initDate)).format('YYYY-MM-DD'),
           });
         }
       }, [initData]);
@@ -34,7 +36,7 @@ export default function DiaryEditor({initData, onSubmit}){
     const handleChangeContent = (e) => {
         setState({
           ...state,
-          content: e.target.value,
+          contents: e.target.value,
         });
       };
     const handleSubmit = () => {
