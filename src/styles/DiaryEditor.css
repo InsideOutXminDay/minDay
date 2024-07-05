@@ -1,0 +1,46 @@
+.DiaryEditor{
+    display: flex;
+    flex-wrap:wrap;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    border-radius: 20px;
+    margin: 15px 15px 15px 0px;
+    
+}
+.emotion-selector{
+    text-align: left;
+    width: 90%;
+
+    font-size: 20px;
+    margin: 20px;
+}
+.emotions{
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+
+}
+
+.diary-editor{
+    text-align: left;
+    font-size: 20px;
+    width: 90%;
+    margin: 20px;
+}
+
+.input-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    border-radius: 5px;
+
+    textarea{
+        resize: none;
+        border: none;
+        width:100%;
+        padding: 20px;
+        height: 100px;
+
+    }
+}
