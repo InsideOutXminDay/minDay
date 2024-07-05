@@ -2,11 +2,19 @@ import { ImBubble } from 'react-icons/im';
 import '../styles/LoginForm.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginForm() {
+  //아이디, 비밀번호 관리(식별 id는 서버에서)
   const [user, setUser] = useState([]);
+  //로그인 정보 관리
+  const [login, setLogin] = useState(false);
+
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
+
+  const navigate = useNavigate();
+
   const getData = async () => {
     const response = await axios.get('http://localhost:4000/api/login');
     setUser(response.data);
@@ -28,6 +36,8 @@ export default function LoginForm() {
 
     setId('');
     setPw('');
+
+    navigate('/home');
   };
 
   const changeIdHandler = (e) => {
@@ -73,7 +83,11 @@ export default function LoginForm() {
         </div>
         <span>회원 정보를 잊으셨나요?</span>
       </article>
-      <h3>아래는 요청/응답 테스트용입니다.</h3>
+      <h3>userInfo의 간이 데이터입니다.</h3>
+      <span>아이디-비밀번호입니다. 맞게 입력하면 홈페이지로이동합니다.</span>
+      <span>
+        비밀번호를 틀리거나, 아예 다른 아이디를 입력하면 403에러가 뜹니다.
+      </span>
       {user.map((user) => (
         <p key={user.id}>
           {user.userId}-{user.pw}
