@@ -12,17 +12,17 @@ export default function DiaryEditor({initDate, initData, onSubmit}){
     //생성 시 기본 값
     const [state, setState] = useState({
         id_diary:0,
-        date: moment(new Date()).format('YYYY-MM-DD'),
+        date:  moment(new Date(initDate)).format('YYYY-MM-DD'),
         id_emotion: 3,
         id_user:1,
         contents: "",
     });
 
     useEffect(() => {
-        if (initData||initDate) {
+        if (initData) {
           setState({
             ...initData,
-            date: moment(new Date(initDate)).format('YYYY-MM-DD'),
+            date: moment(new Date(initData.date)).format('YYYY-MM-DD'),
           });
         }
       }, [initData]);
@@ -32,15 +32,20 @@ export default function DiaryEditor({initDate, initData, onSubmit}){
             ...state,
             id_emotion,
         }));
+        console.log(state)
     }, []);
     const handleChangeContent = (e) => {
         setState({
           ...state,
           contents: e.target.value,
         });
+        console.log(state)
+
       };
     const handleSubmit = () => {
         onSubmit(state);
+        console.log(state)
+
     };
     const handleOnGoBack = () => {
         navigate(-1);

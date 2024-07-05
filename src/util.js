@@ -70,3 +70,23 @@ export const emotionList = [
         img: '/emotion16.png',
     },
   ];
+
+
+export const getDiaryData =  () => {
+    // Fetch the diary data from the public folder
+    const fetchData = async () => {
+        // JSON 파일에서 데이터 가져오기
+        const response = await fetch('/datas/diary.json');
+        const jsonData = await response.json();
+  
+        // 로컬스토리지에서 데이터 가져오기
+        const diaryString = window.localStorage.getItem('diary');
+        const diaryObj = diaryString ? [JSON.parse(diaryString)] : [];
+  
+        // JSON 파일 데이터와 로컬스토리지 데이터를 병합
+        const combinedData = [...jsonData, ...diaryObj];
+        return combinedData;
+      };
+      const data =  fetchData();
+      return data;
+}
