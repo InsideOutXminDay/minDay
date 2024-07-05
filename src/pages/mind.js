@@ -3,35 +3,36 @@ import '../styles/post.css';
 import { NavLink } from "react-router-dom";
 import { FaRegPenToSquare } from "react-icons/fa6";
 
+
+const postdb = [{
+    id_post: 1,
+    id_user: 5,
+    title: "test",
+    body: `test test test test test test
+    test test test test test test
+    test test test test test test
+    test test test test test test
+    test test test test test test
+    test test test test test test
+    test test test test test test`,
+    anonymity: true
+},
+{
+    id_post: 2,
+    id_user: 6,
+    title: "test",
+    body: `test test test test test test`,
+    anonymity: true
+}, {
+    id_post: 3,
+    id_user: 2,
+    title: "test",
+    body: `test test test test test test`,
+    anonymity: true
+}];
+
+
 export default function Mind() {
-
-
-    const postdb = [{
-        id_post: 1,
-        id_user: 5,
-        title: "test",
-        body: `test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test`,
-        anonymity: true
-    },
-    {
-        id_post: 2,
-        id_user: 6,
-        title: "test",
-        body: `test test test test test test`,
-        anonymity: true
-    }, {
-        id_post: 3,
-        id_user: 2,
-        title: "test",
-        body: `test test test test test test`,
-        anonymity: true
-    }];
 
     let myDB = [];
 
@@ -49,7 +50,7 @@ export default function Mind() {
 
     //로그인 유저 임시 id 값
     let _userid = 1;
-    
+
     return (
         <div className="post-page">
             {myDB[0]}
