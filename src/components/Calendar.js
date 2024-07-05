@@ -4,8 +4,7 @@ import Calendar from 'react-calendar';
 import moment from 'moment';
 import { IoPencilOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
-
-
+import { getDiaryData } from '../util';
 
 export default function CalendarComponent(){
   const [date, setDate] = useState(new Date());
@@ -16,10 +15,7 @@ export default function CalendarComponent(){
 
 
   useEffect(() => {
-    // Fetch the diary data from the public folder
-    fetch('/datas/diary.json')
-      .then((response) => response.json())
-      .then((data) => setDiaryData(data))
+    getDiaryData().then(diaryData=>{setDiaryData(diaryData)})
   }, []);
 
   //달력 날짜 타일 누르면 변화 일어나는 함수
@@ -53,9 +49,8 @@ export default function CalendarComponent(){
 
   // 수정 버튼 클릭으로 일기 수정 
   const onClickUpdate = () => {
-    const moveTo = nowDiary?`/diary/${nowDiary.id_diary}`:'/new'
-    console.log(moveTo)
-    navigate(moveTo)
+    const moveTo = nowDiary?`/diary/${nowDiary.id_diary}`:'/newdiary'
+    navigate(moveTo, { state: { date: date } })
   }
   return(
       <div className="container">
