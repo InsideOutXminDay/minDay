@@ -83,16 +83,18 @@ export default function LoginForm() {
         </div>
         <span>회원 정보를 잊으셨나요?</span>
       </article>
-      <h3>userInfo의 간이 데이터입니다.</h3>
-      <span>아이디-비밀번호입니다. 맞게 입력하면 홈페이지로이동합니다.</span>
-      <span>
-        비밀번호를 틀리거나, 아예 다른 아이디를 입력하면 403에러가 뜹니다.
-      </span>
-      {user.map((user) => (
-        <p key={user.id}>
-          {user.userId}-{user.pw}
+      <div className="login-test">
+        <h3>userInfo의 간이 데이터입니다.</h3>
+        <p>아이디-비밀번호입니다. 맞게 입력하면 홈페이지로이동합니다.</p>
+        <p>
+          비밀번호를 틀리거나, 아예 다른 아이디를 입력하면 403에러가 뜹니다.
         </p>
-      ))}
+        {user.map((user) => (
+          <p key={user.id}>
+            {user.userId}-{user.pw}
+          </p>
+        ))}
+      </div>
     </>
   );
 }

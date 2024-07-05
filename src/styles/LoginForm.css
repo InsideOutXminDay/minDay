@@ -92,3 +92,7 @@
 .login-form span:hover {
   cursor: pointer;
 }
+.login-test {
+  position: absolute;
+  left: 0;
+}
