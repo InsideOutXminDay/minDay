@@ -4,113 +4,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { FaRegPenToSquare } from "react-icons/fa6";
 
 
-const postdb = [{
-    id_post: 1,
-    id_user: 5,
-    title: "test 1",
-    body: `test111 test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test`,
-    anonymity: false
-},
-{
-    id_post: 2,
-    id_user: 6,
-    title: "test 2",
-    body: `test222 test test test test test`,
-    anonymity: false
-}, {
-    id_post: 3,
-    id_user: 2,
-    title: "test 3",
-    body: `test333 test test test test test`,
-    anonymity: false
-}];
-
 
 
 export default function Post() {
@@ -140,7 +33,6 @@ export default function Post() {
         myDB.push(
                 <div className="post-card" onClick={()=>{
                     goToDetail(pData);
-                    console.log(pData)
                     }}>
                     <h2>{p.title}</h2>
                     <p>{p.body}</p>

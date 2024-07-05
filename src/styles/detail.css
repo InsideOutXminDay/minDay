@@ -130,4 +130,5 @@
 
 #detail-comment-submit:hover {
     background-color: #7DCCAC;
+    cursor: pointer;
 }

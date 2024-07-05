@@ -25,9 +25,11 @@ const postdb = [{
     anonymity: false
 }];
 
-export default function Edit() {
     //로그인 유저 임시 id 값
     var myId = 1;
+
+export default function Edit() {
+
     return (
         <div>
             <div className="edit-page">

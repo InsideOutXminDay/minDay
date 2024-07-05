@@ -4,56 +4,17 @@ import { NavLink, useLocation } from "react-router-dom";
 import { IoCaretBackOutline } from "react-icons/io5";
 
 
-const commentDB = [
-    {
-        id_comment: 1,
-        body: "test comment 1",
-        id_user: 3,
-        id_post: 1
-    },
-    {
-        id_comment: 2,
-        body: "test comment 2",
-        id_user: 4,
-        id_post: 2
-    },
-    {
-        id_comment: 3,
-        body: "test comment 3",
-        id_user: 1,
-        id_post: 3
-    },
-    {
-        id_comment: 1,
-        body: "test comment 1",
-        id_user: 3,
-        id_post: 1
-    },
-    {
-        id_comment: 2,
-        body: "test comment 2",
-        id_user: 4,
-        id_post: 2
-    },
-    {
-        id_comment: 3,
-        body: "test comment 3",
-        id_user: 1,
-        id_post: 3
-    }
-];
-
-
-var myNickname = "testUser";
 
 export default function Detail() {
 
     let myComment = [];
     const location = useLocation();
     const postInfo = { ...location.state };
+    let backButton = postInfo.anonymity ? "/mind" : "/post";
+    let userNickname = "";
 
-    for (let i = 0; i < commentDB.length; i++) {
-        let p = commentDB[i];
+    for (let i = 0; i < commentDB.length; i++){
+        
         if (postInfo.id_post === commentDB[i].id_post) {
             myComment.push(
                 <div className="detail-comment-bar">
@@ -63,7 +24,11 @@ export default function Detail() {
         }
     }
 
-    let backButton = postInfo.anonymity ? "/mind" : "/post";
+    for(let t = 0; t < userDB.length; t++){
+        if(postInfo.id_user === userDB[t].id_user){
+           userNickname = userDB[t].nickname
+        }
+    }
 
     return (
         <div>
@@ -71,7 +36,7 @@ export default function Detail() {
                 <div className="detail-bar">
                     <NavLink to={backButton}><IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
                     <div className="button-right">
-                        <span><input type="submit" value={myNickname} id="detail-submit" /></span>
+                        <span><input type="submit" value={userNickname} id="detail-submit" /></span>
                     </div>
                 </div>
                 <div className="detail-title-bar"><p>
@@ -83,7 +48,7 @@ export default function Detail() {
                 <div>
                     <div className="detail-comment-input">
                         <div>
-                            <form className="detail-form">
+                            <form className="detail-form" onSubmit={(e)=>{e.preventDefault();}}>
                                 <p className="input-text"><input placeholder='댓글을 입력해주세요' name="body" />
                                 </p>
                                 <p className="button-right"><input id="detail-comment-submit" type="submit" value="댓글쓰기" /></p>

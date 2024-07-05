@@ -4,32 +4,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { FaRegPenToSquare } from "react-icons/fa6";
 
 
-const postdb = [{
-    id_post: 1,
-    id_user: 5,
-    title: "test 1",
-    body: `test111 test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test`,
-    anonymity: true
-},
-{
-    id_post: 2,
-    id_user: 6,
-    title: "test 2",
-    body: `test222 test test test test test`,
-    anonymity: true
-}, {
-    id_post: 3,
-    id_user: 2,
-    title: "test 3",
-    body: `test333 test test test test test`,
-    anonymity: true
-}];
-
 
 export default function Mind() {
 
