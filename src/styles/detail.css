@@ -73,7 +73,6 @@
     background-color: #7DCCAC;
 }
 
-
 .detail-comment-bar {
     display: flex;
     height: 40px;
@@ -91,27 +90,32 @@
     text-align: left;
 }
 
-.detail-comment-input {
+.detail-comment-input .input-text {
     display: flex;
     height: 32px;
-    margin: 0% 6% 7px 119px;
+    width: 100%;
+    margin: 0% 2% 7px 119px;
     border-radius: 15px;
     padding-left: 30px;
     align-items: center;
-    width: 60%;
     border: 5px solid #B9ED90;
-    
 }
 
-.detail-form{
+.detail-comment-input .input-text input {
+    width: 100%;
+    justify-content: left;
+
+}
+
+.detail-form {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
 }
 
 .detail-comment-input input {
     border: none;
     font-size: large;
-    width: 20%;
+    margin-right: 7%;
 }
 
 #detail-comment-submit {
@@ -119,17 +123,11 @@
     border: none;
     border-radius: 8px;
     width: 90px;
-    height: 28px;
+    height: 40px;
     font-weight: bold;
-    margin-left: auto;
-    margin-right: 7%;
+    margin-bottom: 7px;
 }
 
 #detail-comment-submit:hover {
     background-color: #7DCCAC;
-}
-
-.detail-comment{
-    text-align: left;
-
 }

@@ -26,10 +26,14 @@ export default function Detail() {
                 </div>
                 <div>
                 <div className="detail-comment-input">
-                    <form className="detail-form"><p className="detail-comment" ><input className="detail-comment" placeholder='댓글을 입력해주세요' />
+                    <div>
+                    <form className="detail-form">
+                        <p className="input-text"><input placeholder='댓글을 입력해주세요' name="body" />
                     </p>
-                    <p><input type="submit"  value="댓글쓰기" id="detail-comment-submit" /></p>
+                   
+                    <p className="button-right"><input  id="detail-comment-submit"  type="submit"  value="댓글쓰기" /></p>
                     </form>
+                    </div>
                 </div>
                 </div>
                 <div className="detail-comment-bar">
