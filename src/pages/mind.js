@@ -1,15 +1,14 @@
 import React from "react";
 import '../styles/post.css';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaRegPenToSquare } from "react-icons/fa6";
 
 
 const postdb = [{
     id_post: 1,
     id_user: 5,
-    title: "test",
-    body: `test test test test test test
-    test test test test test test
+    title: "test 1",
+    body: `test111 test test test test test
     test test test test test test
     test test test test test test
     test test test test test test
@@ -20,14 +19,14 @@ const postdb = [{
 {
     id_post: 2,
     id_user: 6,
-    title: "test",
-    body: `test test test test test test`,
+    title: "test 2",
+    body: `test222 test test test test test`,
     anonymity: true
 }, {
     id_post: 3,
     id_user: 2,
-    title: "test",
-    body: `test test test test test test`,
+    title: "test 3",
+    body: `test333 test test test test test`,
     anonymity: true
 }];
 
@@ -35,16 +34,35 @@ const postdb = [{
 export default function Mind() {
 
     let myDB = [];
+    const navigate = useNavigate();
+    const goToDetail = (item)=>{
+        navigate(`/detail/${item.id_post}`,{
+            state:{
+                id_post: item.id_post,
+                id_user: item.id_user,
+                title: item.title,
+                body: item.body,
+                anonymity: item.anonymity
+            }});
+    }
 
     for (let i = 0; i < postdb.length; i++) {
         let p = postdb[i];
-        myDB.push(
-            <NavLink to={"/detail/" + p.id_post}>
-                <div className="post-card">
-                    <h2>{p.title}</h2>
-                    <p>{p.body}</p>
-                </div>
-            </NavLink>
+        let pData = {
+            id_post: p.id_post,
+            id_user: p.id_user,
+            title: p.title,
+            body: p.body,
+            anonymity: p.anonymity
+    };
+    myDB.push(
+            <div className="post-card" onClick={()=>{
+                goToDetail(pData);
+                console.log(pData)
+                }}>
+                <h2>{p.title}</h2>
+                <p>{p.body}</p>
+            </div>
         );
     }
 

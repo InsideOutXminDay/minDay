@@ -43,39 +43,8 @@ const commentDB = [
     }
 ];
 
-const postdb = [{
-    id_post: 1,
-    id_user: 5,
-    title: "test",
-    body: `test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test
-    test test test test test test`,
-    anonymity: true
-},
-{
-    id_post: 2,
-    id_user: 6,
-    title: "test",
-    body: `test test test test test test`,
-    anonymity: true
-}, {
-    id_post: 3,
-    id_user: 2,
-    title: "test",
-    body: `test test test test test test`,
-    anonymity: true
-}];
 
-
-
-// 임시 유저 닉네임값
 var myNickname = "testUser";
-
-
 
 export default function Detail() {
 
@@ -94,12 +63,13 @@ export default function Detail() {
         }
     }
 
+    let backButton = postInfo.anonymity ? "/mind" : "/post";
+
     return (
         <div>
             <div className="detail-page">
-
                 <div className="detail-bar">
-                    <NavLink to={"/post"}><IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
+                    <NavLink to={backButton}><IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
                     <div className="button-right">
                         <span><input type="submit" value={myNickname} id="detail-submit" /></span>
                     </div>
@@ -116,7 +86,6 @@ export default function Detail() {
                             <form className="detail-form">
                                 <p className="input-text"><input placeholder='댓글을 입력해주세요' name="body" />
                                 </p>
-
                                 <p className="button-right"><input id="detail-comment-submit" type="submit" value="댓글쓰기" /></p>
                             </form>
                         </div>
