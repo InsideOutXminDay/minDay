@@ -11,6 +11,7 @@ import Diary from './pages/Diary';
 import NewDiary from './pages/NewDiary.js';
 import SettingPage from './pages/SettingPage.js';
 import Intro from './pages/Intro.js';
+import Contents from './pages/Contents.js';
 import Login from './pages/Login.js';
 
 function App() {
@@ -27,9 +28,7 @@ function App() {
             {/* <Route path='/find' element={<회원정보 찾기 />}/> */}
             <Route path='/diary/:id' element={<Diary />}/>  {/* /diary/:id */}
             <Route path='/newdiary' element={<NewDiary />}/>  {/* /diary/:id */}
-            {/* <Route path='/category' element={<컨텐츠 카테고리/>}/> */}
-            {/* <Route path='/contents' element={<컨텐츠 보기 />}/> */}
-            {/* <Route path='/contents/:id' element={<컨텐츠 상세/>}/> */}
+            <Route path="/contents" element={<Contents />} />
             <Route path="/setting" element={<SettingPage />} />
             <Route path='/post' element={<Post />}/>
             <Route path='/mind' element={<Mind />}/>
