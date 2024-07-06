@@ -4,6 +4,79 @@ import { NavLink, useLocation } from "react-router-dom";
 import { IoCaretBackOutline } from "react-icons/io5";
 
 
+const commentDB = [
+    {
+        id_comment: 1,
+        body: "test comment 1",
+        id_user: 3,
+        id_post: 1
+    },
+    {
+        id_comment: 2,
+        body: "test comment 2",
+        id_user: 4,
+        id_post: 2
+    },
+    {
+        id_comment: 3,
+        body: "test comment 3",
+        id_user: 1,
+        id_post: 3
+    },
+    {
+        id_comment: 1,
+        body: "test comment 1",
+        id_user: 3,
+        id_post: 1
+    },
+    {
+        id_comment: 2,
+        body: "test comment 2",
+        id_user: 4,
+        id_post: 2
+    },
+    {
+        id_comment: 3,
+        body: "test comment 3",
+        id_user: 1,
+        id_post: 3
+    }
+];
+
+const userDB = [
+    {   id_user : 1,
+        inputid : "test01",
+        nickname : "test01Nick",
+        email : "test01@test.com",
+        password : "nnnnnnnn"
+    },
+    {   id_user : 2,
+        inputid : "test02",
+        nickname : "test02Nick",
+        email : "test03@test.com",
+        password : "nnnnnnnn"
+    },
+    {   id_user : 3,
+        inputid : "test03",
+        nickname : "test03Nick",
+        email : "test03@test.com",
+        password : "nnnnnnnnnn"
+    },
+    {   id_user : 5,
+        inputid : "test05",
+        nickname : "test05Nick",
+        email : "test05@test.com",
+        password : "nnnnnnnnnn"
+    },
+    {   id_user : 6,
+        inputid : "test06",
+        nickname : "test06Nick",
+        email : "test06@test.com",
+        password : "nnnnnnnnnn"
+    }
+];
+
+
 
 export default function Detail() {
 
