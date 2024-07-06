@@ -127,7 +127,7 @@ export default function Post() {
        
                  
 // console.log(myDB)
-
+console.log(postDB)
 // postDB.push(
 //     <NavLink to={"/detail/" + res.data[i].id_post}>
 //         <div className="post-card">
