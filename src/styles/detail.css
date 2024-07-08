@@ -44,7 +44,7 @@
     border-radius: 18px;
     outline: none;
     font-size: 19px;
-    overflow: hidden;
+    overflow-y :scroll;
     resize: none;
     border-right: 15px;
     text-align: left;
