@@ -57,10 +57,10 @@
     border-radius: 18px;
     outline: none;
     font-size: 19px;
-    overflow: hidden;
     resize: none;
     display: block;
     border-right: 15px;
+    height: 540px;
 }
 
 .new-textarea {
