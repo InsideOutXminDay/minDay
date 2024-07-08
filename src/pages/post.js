@@ -120,28 +120,30 @@ export default function Post() {
     let _userid = 11;
 
     const navigate = useNavigate();
-    const goTodetail = (item)=>{
-        navigate(`/detail/${item.id_post}`, {state: {
-            id_post : item.id_post,
-            id_user : item.id_user,
-            title : item.title,
-            body : item.body,
-            anonymity : item.anonymity
-        }})
+    const goTodetail = (item) => {
+        navigate(`/detail/${item.id_post}`, {
+            state: {
+                id_post: item.id_post,
+                id_user: item.id_user,
+                title: item.title,
+                body: item.body,
+                anonymity: item.anonymity
+            }
+        })
     }
 
-    const goToNew = ()=>{
-        navigate(`/new/${_userid}`, {state:{lastPage:"/post"}})
+    const goToNew = () => {
+        navigate(`/new/${_userid}`, { state: { lastPage: "/post" } })
     }
 
     for (let i = 0; i < postdb.length; i++) {
         let p = postdb[i];
-        
+
         myDB.push(
-            <NavLink to={"/detail/" + p.id_post} onClick={(e)=>{
+            <NavLink to={"/detail/" + p.id_post} onClick={(e) => {
                 e.preventDefault()
                 goTodetail(p)
-                }}>
+            }}>
                 <div className="post-card">
                     <h2>{p.title}</h2>
                     <p>{p.body}</p>
@@ -156,8 +158,8 @@ export default function Post() {
             <div className="guide-card">
                 <h3>일반 커뮤니티</h3>
                 <p>서로의 멘탈 관리에 도움이 될 수 있도록 이야기를 공유해 보세요!</p>
-                <button id="new-post-create"><NavLink to={"/new/" + _userid} 
-                onClick={(e)=>{e.preventDefault(); goToNew()}}> 
+                <button id="new-post-create"><NavLink to={"/new/" + _userid}
+                    onClick={(e) => { e.preventDefault(); goToNew() }}>
                     <FaRegPenToSquare id="post-create-icon">작성</FaRegPenToSquare>
                 </NavLink></button>
             </div>
