@@ -1,10 +1,10 @@
 import '../styles/Calendar.css'
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import moment from 'moment';
 import { IoPencilOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
-import { getDiaryData } from '../util';
+import { DiaryStateContext } from '../App';
 
 export default function CalendarComponent(){
   const [date, setDate] = useState(new Date());
@@ -12,11 +12,11 @@ export default function CalendarComponent(){
   const [nowDiary, setNowDiary] = useState(null);
   const [Isview, setView] = useState(true);
   const navigate = useNavigate();
-
+  // 데이터 불러오기
+  const data = useContext(DiaryStateContext);
 
   useEffect(() => {
-    getDiaryData().then(diaryData=>{setDiaryData(diaryData)})
-    console.log("diaryData",diaryData)
+    setDiaryData(data)
   }, []);
 
   //달력 날짜 타일 누르면 변화 일어나는 함수

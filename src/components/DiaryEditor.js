@@ -25,6 +25,7 @@ export default function DiaryEditor({initDate, initData, onSubmit}){
             date: moment(new Date(initData.date)).format('YYYY-MM-DD'),
           });
         }
+
       }, [initData]);
 
     const handleChangeEmotion = useCallback((id_emotion) => {
