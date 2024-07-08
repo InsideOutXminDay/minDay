@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IoCaretBackOutline } from "react-icons/io5";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import '../styles/new.css';
 
 
@@ -19,9 +19,27 @@ export default function New() {
         }
     }
 
+    const location = useLocation();
+    const postInfo = { ...location.state };
+    let backButton = postInfo.lastPage;
+console.log(postInfo.lastPage)
+
+    const newSave = (item)=>{console.log("저장되었습니다 : "+item.title)}
+
     return (
         <div className="new-page">
             <form name="newCreate" onSubmit={(e)=>{e.preventDefault();
+            let item = {
+                //테스트용 user, post num 정보값
+                id_post : 11,
+                id_user : 11,
+                title : e.target.title.value,
+                body : e.target.body.value,
+                anonymity : e.target.anonymity.value
+            }
+           
+            
+            newSave(item)
                 // 출력 확인용
                 // console.log(
                 //     "anonymity(hidden) : " + document.forms[0].anonymity.value,
@@ -29,7 +47,7 @@ export default function New() {
                 //     "body : "+document.forms[0].body.value);
             }}>
                 <div className="new-bar">
-                    <NavLink to={"/post"}><IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
+                    <NavLink to={backButton}><IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
                         <div className="button-right">
                             <label className="checkbox-right">
                                 <input type="checkbox" id="checkboxId" value={community}
