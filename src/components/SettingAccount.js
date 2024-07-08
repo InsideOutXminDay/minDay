@@ -43,7 +43,7 @@ const SettingAccount = () => {
 
   return (
     <div className="setting-account">
-      <div className="logo_full">
+      <div className="logo_full_setting">
         <img src='/logo_full.png' />
       </div>
       <h2>회원 정보 변경</h2>
@@ -85,9 +85,9 @@ const SettingAccount = () => {
         />
       </div>
       <div className="settingButton">
-      <button onClick={handleSave}>저장</button>
-      {notification && <div className="notification">{notification}</div>}
-     </div>
+        <button onClick={handleSave}>저장</button>
+        {notification && <div className="notification">{notification}</div>}
+      </div>
     </div>
   );
 };

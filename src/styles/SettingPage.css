@@ -29,19 +29,16 @@
   font-size: 24px;
 }
 
-.logo_full {
-  max-height: 20px !important;
-  max-width: 100%; 
+.logo_full_setting {
   display: flex;
   justify-content: center;
-  object-fit: contain;
-  display: block;
-  margin-bottom: 100px;
-  margin-left: 105px;
+  margin-bottom: 25px;
 }
-.logo_full img {
-  max-height: 100px; 
-  max-width: 100%; 
+
+.logo_full_setting img {
+  max-height: 100px;
+  width: auto;
+  height: auto;
 }
 
 .form-group {
@@ -51,6 +48,7 @@
 .form-group label {
   display: block;
   margin-bottom: 5px;
+  text-align: left;
 }
 
 .form-group input {
@@ -61,10 +59,14 @@
   border-radius: 5px;
 }
 
+.settingButton {
+  display: block;
+  justify-content: center;
+}
+
 .settingButton button {
   font-family: Pretendard-Regular;
   width: 50%;
-  margin-left: 100px;
   margin-top: 20px;
   padding: 10px;
   background-color: #D4F6B9;
