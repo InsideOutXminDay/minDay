@@ -13,17 +13,19 @@ import SettingPage from './pages/SettingPage.js';
 import Intro from './pages/Intro.js';
 import Contents from './pages/Contents.js';
 import Login from './pages/Login.js';
+import SignUp from './pages/SignUp.js';
 
 function App() {
   return (
+
       <BrowserRouter>
         <div className='App'>
           <Routes>
             <Route path="/" element={<Intro />} />
             <Route path="/home" element={<Home />} />{' '}
             {/* /home/:userid >> 개인별 홈화면 구현 */}
-            {/* <Route path='/login' element={<로그인 />}/> */}
-            {/* <Route path='/join' element={<회원가입 />}/> */}
+            {<Route path="/login" element={<Login />} />}
+            {<Route path="/join" element={<SignUp />} />}
             {/* <Route path='/ask' element={<설문 />}/> */}
             {/* <Route path='/find' element={<회원정보 찾기 />}/> */}
             <Route path='/diary/:id' element={<Diary />}/>  {/* /diary/:id */}
@@ -38,7 +40,6 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
-
   );
 }
 
