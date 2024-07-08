@@ -1,20 +1,27 @@
 import { useEffect, useState } from 'react';
 import '../styles/SignUpForm.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 export default function SignUpForm() {
   const navigate = useNavigate();
 
-  //회원가입 정보 관리
-  const [userInfo, setUserInfo] = useState([
-    { id: 'happy', name: 'hw', pw: 1234, email: 'good@naver.com' },
-    { id: 'sad', name: 'wh', pw: 1111, email: 'bad@naver.com' },
-  ]);
+  const [userInfo, setUserInfo] = useState([]);
+
   //아이디, 닉네임, 이메일, 비밀번호 입력 관리
   const [inputId, setInputId] = useState('');
   const [inputName, setInputName] = useState('');
   const [inputEmail, setInputEmail] = useState('');
   const [inputPw, setInputPw] = useState('');
   const [inputPwCheck, setInputPwCheck] = useState('');
+
+  const getData = async () => {
+    const response = await axios.get('http://localhost:4000/api/users');
+    setUserInfo(response.data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const handleInputId = (e) => {
     setInputId(e.target.value);
@@ -31,6 +38,14 @@ export default function SignUpForm() {
   const handleInputPwCheck = (e) => {
     setInputPwCheck(e.target.value);
   };
+  const handleClick = () => {
+    console.log('아이디 중복확인');
+    const checkId = userInfo.find((user) => user.userId === inputId);
+    if (checkId) {
+      alert('이미 사용중인 아이디입니다.');
+    }
+    alert('사용 가능한 아이디입니다.');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,16 +53,24 @@ export default function SignUpForm() {
     if (inputPw !== inputPwCheck) {
       alert('비밀번호를 다시 확인해주세요');
     }
+
+    //회원가입 이상 없음->userInfo에 추가, post요청 보내기(확인은 /api/user에서 get요청)
     setUserInfo([
       ...userInfo,
       {
-        id: inputId,
+        userId: inputId,
         pw: inputPw,
-        name: inputName,
+        nickname: inputName,
         email: inputEmail,
       },
     ]);
     //POST 요청 보내기
+    await axios.post('http://localhost:4000/api/signup', {
+      userId: inputId,
+      pw: inputPw,
+      nickname: inputName,
+      email: inputEmail,
+    });
 
     //입력창 비우기
     setInputId('');
@@ -55,8 +78,9 @@ export default function SignUpForm() {
     setInputEmail('');
     setInputPw('');
     setInputPwCheck('');
-    //회원가입완료되면 로그인된 채로 홈페이지로
-    //navigate('/home');
+    //회원가입완료되면 로그인 페이지로 or 대문페이지로?
+    //navigate('/');
+    //navigate('/login');
   };
 
   return (
@@ -74,7 +98,9 @@ export default function SignUpForm() {
               autoFocus
               required
             ></input>
-            <button className="check-btn">중복확인</button>
+            <button className="check-btn" onClick={handleClick}>
+              중복확인
+            </button>
           </div>
           <div className="nickname-box">
             <label htmlFor="nickname">닉네임</label>
@@ -122,7 +148,7 @@ export default function SignUpForm() {
       <div className="signup-test">
         {userInfo.map((user, index) => (
           <p key={index}>
-            아이디: {user.id} - 닉네임: {user.name}
+            아이디: {user.userId} - 닉네임: {user.nickname}
           </p>
         ))}
       </div>
