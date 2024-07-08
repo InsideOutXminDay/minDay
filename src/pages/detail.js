@@ -121,6 +121,13 @@ export default function Detail() {
         })
     }
 
+    const newSaveComment = (item) => {
+        //db 에 저장되는 것 구현 필요
+        console.log(
+            `저장되었습니다 포스트 번호 : ${postInfo.id_post} body : ${item.body} 
+        `)
+    }
+
     //임시 user id (첫번째 글 user id) 
     let userId = 5;
     return (
@@ -147,7 +154,15 @@ export default function Detail() {
                 <div>
                     <div className="detail-comment-input">
                         <div>
-                            <form className="detail-form" onSubmit={(e) => { e.preventDefault(); }}>
+                            <form className="detail-form" onSubmit={(e) => { e.preventDefault();
+                            let item = {
+                                id_post : postInfo.id_post,
+                                // 임시 user id 값
+                                id_user : userId,
+                                body : e.target.body.value
+                            }
+                                newSaveComment(item);
+                             }}>
                                 <p className="input-text"><input placeholder='댓글을 입력해주세요' name="body" />
                                 </p>
                                 <p className="button-right"><input id="detail-comment-submit" type="submit" value="댓글쓰기" /></p>
