@@ -1,11 +1,11 @@
 import React from "react";
 import '../styles/post.css';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate  } from "react-router-dom";
 import { FaRegPenToSquare } from "react-icons/fa6";
 
 export default function Mind() {
 
-
+    const navigate = useNavigate();
     const postdb = [{
         id_post: 1,
         id_user: 5,
@@ -35,10 +35,25 @@ export default function Mind() {
 
     let myDB = [];
 
+
+    const goTodetail = (item)=>{
+        navigate(`/detail/${item.id_post}`, {state: {
+            id_post : item.id_post,
+            id_user : item.id_user,
+            title : item.title,
+            body : item.body,
+            anonymity : item.anonymity
+        }})
+    }
+
     for (let i = 0; i < postdb.length; i++) {
         let p = postdb[i];
+        // console.log(p);
         myDB.push(
-            <NavLink to={"/detail/" + p.id_post}>
+            <NavLink to={"/detail/" + p.id_post} onClick={(e)=>{
+                e.preventDefault()
+                goTodetail(p)
+                }}>
                 <div className="post-card">
                     <h2>{p.title}</h2>
                     <p>{p.body}</p>
