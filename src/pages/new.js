@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoCaretBackOutline } from "react-icons/io5";
 import { NavLink, useLocation } from "react-router-dom";
 import '../styles/new.css';
@@ -11,7 +11,6 @@ export default function New() {
     const location = useLocation();
     const postInfo = { ...location.state };
     let backButton = postInfo.lastPage;
-
 
     const MyCheckbox = (checked) => {
         if (checked) {
@@ -29,7 +28,10 @@ export default function New() {
             `저장되었습니다 title : ${item.title}
         body : ${item.body} 익명 : ${item.anonymity}
         `)
+
+
     }
+
 
     return (
         <div className="new-page">

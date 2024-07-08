@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import '../styles/post.css';
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaRegPenToSquare } from "react-icons/fa6";
@@ -6,115 +6,16 @@ import axios from 'axios';
 
 export default function Post() {
 
-    const postdb = [{
-        id_post: 1,
-        id_user: 5,
-        title: "test",
-        body: `test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test`,
-        anonymity: false
-    },
-    {
-        id_post: 2,
-        id_user: 6,
-        title: "test",
-        body: `test test test test test test`,
-        anonymity: false
-    }, {
-        id_post: 3,
-        id_user: 2,
-        title: "test",
-        body: `test test test test test test`,
-        anonymity: false
-    }];
-
+    const [postdb, setPostdb] = useState([]);
     let myDB = [];
 
+    useEffect(() => {
+        axios.get('http://localhost:3333/api/post')
+            .then((res) => {
+                console.log(res.data);
+            setPostdb([...res.data]); }
+        );
+}, [])
 
     //로그인 유저 임시 id 값
     let _userid = 11;
