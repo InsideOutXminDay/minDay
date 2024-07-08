@@ -1,3 +1,5 @@
+import { createContext, useState } from "react";
+
 
 export const emotionList = [
     {
@@ -72,21 +74,81 @@ export const emotionList = [
   ];
 
 
+// diary 데이터
+export const diaryDatas = [
+    {
+      "id_diary": 1,
+      "id_emotion": 14,
+      "id_user": 1,
+      "contents": "그냥 너무 사는게 우울하고 슬프다ㅠㅠ",
+      "date": "2024-06-20"
+    },
+    {
+      "id_diary": 2,
+      "id_emotion": 1,
+      "id_user": 1,
+      "contents": "행복해!",
+      "date": "2024-07-04"
+    }
+  ];
+
+
+export function diaryReducer(state, action) {
+switch (action.type) {
+    case "CREATE": {
+        console.log("create", [action.data, ...state])
+        return [action.data, ...state];
+        }
+    case "UPDATE": {
+        console.log("update", action.data)
+        return state.map((it) =>
+            String(it.id_diary) === String(action.data.id_diary) ? { ...action.data } : it
+        );
+    }
+    case "DELETE": {
+        return state.filter((it) => String(it.id) !== String(action.targetId));
+    }
+    default: {
+        return state;
+    }
+}
+}
+
+export const onCreate = (dispatch) => (data) => {
+    dispatch({
+      type: "CREATE",
+      data: {
+        id_diary: data.id_diary,
+        date: data.date,
+        contents:data.contents,
+        id_emotion:data.id_emotion,
+        id_user:data.id_user
+      },
+    });
+  };
+
+export const onUpdate = (dispatch) => (data) => {
+    dispatch({
+      type: "UPDATE",
+      data: {
+        id_diary: data.id_diary,
+        date: data.date,
+        contents:data.contents,
+        id_emotion:data.id_emotion,
+        id_user:data.id_user
+      },
+    });
+  };
+
 export const getDiaryData =  () => {
-    // Fetch the diary data from the public folder
-    const fetchData = async () => {
-        // JSON 파일에서 데이터 가져오기
-        const response = await fetch('/datas/diary.json');
-        const jsonData = await response.json();
-  
-        // 로컬스토리지에서 데이터 가져오기
-        const diaryString = window.localStorage.getItem('diary');
-        const diaryObj = diaryString ? [JSON.parse(diaryString)] : [];
-  
-        // JSON 파일 데이터와 로컬스토리지 데이터를 병합
-        const combinedData = [...jsonData, ...diaryObj];
-        return combinedData;
-      };
-      const data =  fetchData();
-      return data;
+const fetchData = async () => {
+    // 로컬스토리지에서 데이터 가져오기
+    const diaryString = window.localStorage.getItem('diary');
+    const diaryObj = diaryString ? JSON.parse(diaryString) :[];
+
+    const combinedData = [...diaryDatas, ...diaryObj];
+    return combinedData;
+    };
+    const data =  fetchData();
+    return data;
 }

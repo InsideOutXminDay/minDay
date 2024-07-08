@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useReducer } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import Post from './pages/post';
@@ -15,9 +15,20 @@ import Contents from './pages/Contents.js';
 import Login from './pages/Login.js';
 import SignUp from './pages/SignUp.js';
 
-function App() {
-  return (
+// diary 데이터
+import { diaryDatas, diaryReducer, onCreate, onUpdate} from './util.js';
+export const DiaryStateContext = React.createContext();
+export const DiaryDispatchContext = React.createContext();
 
+function App() {
+  // diary 데이터
+  const [data, dispatch] = useReducer(diaryReducer,diaryDatas)
+  const handleCreate = onCreate(dispatch);
+  const handleUpdate = onUpdate(dispatch);
+
+  return (
+    <DiaryStateContext.Provider value={data}>
+      <DiaryDispatchContext.Provider value={{ onCreate: handleCreate, onUpdate: handleUpdate}}>
       <BrowserRouter>
         <div className='App'>
           <Routes>
@@ -40,6 +51,9 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
+      </DiaryDispatchContext.Provider>
+    </DiaryStateContext.Provider>
+
   );
 }
 
