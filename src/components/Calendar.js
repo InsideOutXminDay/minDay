@@ -16,6 +16,7 @@ export default function CalendarComponent(){
 
   useEffect(() => {
     getDiaryData().then(diaryData=>{setDiaryData(diaryData)})
+    console.log("diaryData",diaryData)
   }, []);
 
   //달력 날짜 타일 누르면 변화 일어나는 함수

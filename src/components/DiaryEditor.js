@@ -11,7 +11,7 @@ export default function DiaryEditor({initDate, initData, onSubmit}){
     
     //생성 시 기본 값
     const [state, setState] = useState({
-        id_diary:0,
+        id_diary:parseInt(moment(new Date(initDate)).format('YYYYMMDD')),
         date:  moment(new Date(initDate)).format('YYYY-MM-DD'),
         id_emotion: 3,
         id_user:1,
