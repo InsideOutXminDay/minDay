@@ -40,7 +40,10 @@
     text-decoration: none;
     color: black;
 }
-
+.post-page a{
+    text-decoration: none;
+    color: black;
+}
 #post-create-icon{
     width: 45px;
     height: 45px;

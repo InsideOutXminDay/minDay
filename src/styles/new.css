@@ -14,10 +14,11 @@
     border-radius: 15px;
     padding-left: 30px;
     background-color: #E7F998;
-    align-items:center;
+    align-items: center;
+    text-align: left;
 }
 
-#new-back{
+#post-back{
     padding-left: 20px;
     justify-content: flex-start;
 }
