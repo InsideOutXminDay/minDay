@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/detail.css';
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { IoCaretBackOutline } from "react-icons/io5";
 
 
@@ -103,13 +103,30 @@ export default function Detail() {
         }
     }
 
+    const navigate = useNavigate();
+    const goToEdit = (item)=>{
+        navigate(`/edit/${item.id_post}`, {state: {
+        id_post : item.id_post,
+        id_user : item.id_user,
+        title : item.title,
+        body : item.body,
+        anonymity : item.anonymity
+    }})}
+
+    //임시 user id (첫번째 글 user id) 
+    let userId = 5;
     return (
         <div>
             <div className="detail-page">
                 <div className="detail-bar">
                     <NavLink to={backButton}><IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
                     <div className="button-right">
-                        <span><input type="submit" value={userNickname} id="detail-submit" /></span>
+                        <span><input type="submit" value={userNickname} id="detail-submit" 
+                        onClick={(e)=>{e.preventDefault()
+                            if(postInfo.id_user===userId){
+                                goToEdit(postInfo)
+                            }
+                        }}/></span>
                     </div>
                 </div>
                 <div className="detail-title-bar"><p>
