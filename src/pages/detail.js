@@ -17,38 +17,30 @@ export default function Detail() {
     const [userDB, setUserDB] = useState([]);
     const [postDB, setPostDB] = useState([]);
     const params = useParams();
-    let detailTitle = '';
-    let detailBody = '';
+    let nowPost = {};
 
     useEffect(() => {
         axios.get('http://localhost:3333/api/comment')
             .then((res) => {
-                // console.log(res.data);
                 setCommentDB([...res.data]);
-            }
-            ).catch(error => console.error('Error:', error));
+            }).catch(error => console.error('Error:', error));
     }, [])
 
     useEffect(() => {
         axios.get('http://localhost:3333/api/user')
             .then((res) => {
-                // console.log(res.data);
                 setUserDB([...res.data]);
-            }
-            ).catch(error => console.error('Error:', error));
+            }).catch(error => console.error('Error:', error));
     }, [])
 
     useEffect(() => {
         axios.get('http://localhost:3333/api/post')
             .then((res) => {
-                // console.log(res.data);
                 setPostDB([...res.data]);
-            }
-            ).catch(error => console.error('Error:', error));
+            }).catch(error => console.error('Error:', error));
     })
 
     for (let i = 0; i < commentDB.length; i++) {
-
         if (postInfo.id_post === commentDB[i].id_post) {
             myComment.push(
                 <div className="detail-comment-bar">
@@ -66,9 +58,13 @@ export default function Detail() {
 
     for (let t = 0; t < postDB.length; t++) {
         if (Number(params.id) === postDB[t].id_post) {
-            detailTitle = postDB[t].title;
-            detailBody = postDB[t].body;
-            
+            nowPost = {
+                detail_post : postDB[t].id_post,
+                detail_user : postDB[t].id_user,
+                detail_title : postDB[t].title,
+                detail_body : postDB[t].body,
+                detail_anonymity : postDB[t].anonymity
+            }
         }
     }
 
@@ -86,14 +82,33 @@ export default function Detail() {
     }
 
     const newSaveComment = (item) => {
-        //db 에 저장되는 것 구현 필요
-        console.log(
-            `저장되었습니다 포스트 번호 : ${postInfo.id_post} body : ${item.body} 
-        `)
+        // 임시 id_user
+        let body = item.body;
+        let id_user = 2;
+        let id_post = nowPost.detail_post;
+        fetch('http://localhost:3333/api/comment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                //테스트용 user 값 (item)
+                body: body,
+                id_user: id_user,
+                id_post: id_post
+            })
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        }).catch(error => console.error('Error:', error.message)).then(
+               alert("저장되었습니다")
+        );
     }
 
-    //임시 user id (첫번째 글 user id) 
-    let userId = 5;
+    //임시 user id ( id_post : 88) 
+    let userId = 2;
     return (
         <div>
             <div className="detail-page">
@@ -103,24 +118,25 @@ export default function Detail() {
                         <span><input type="submit" value={userNickname} id="detail-submit"
                             onClick={(e) => {
                                 e.preventDefault()
-                                if (postInfo.id_user === userId) {
-                                    goToEdit(postInfo)
+                                
+                                if (nowPost[0].detail_user === userId) {
+                                    goToEdit(nowPost)
                                 }
                             }} /></span>
                     </div>
                 </div>
                 <div className="detail-title-bar"><p>
-                    {detailTitle}</p>
+                    {nowPost.detail_title}</p>
                 </div>
                 <div className="detail-textarea">
-                    <p>{detailBody}</p>
+                    <p>{nowPost.detail_body}</p>
                 </div>
                 <div>
                     <div className="detail-comment-input">
                         <div>
                             <form className="detail-form" onSubmit={(e) => { e.preventDefault();
                             let item = {
-                                id_post : postInfo.id_post,
+                                id_post : nowPost.detail_post,
                                 // 임시 user id 값
                                 id_user : userId,
                                 body : e.target.body.value
