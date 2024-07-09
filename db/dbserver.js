@@ -40,6 +40,25 @@ app.get("/api/post", (req, res) => {
   });
 });
 
+app.get("/api/comment", (req, res) => {
+  mydb.query("SELECT * from comment", (error, results) => {
+    if (error) {
+      return res.send("쿼리 실행 실패: " + error.message);
+    }
+    res.json(results);
+  });
+});
+
+app.get("/api/user", (req, res) => {
+  mydb.query("SELECT * from user", (error, results) => {
+    if (error) {
+      return res.send("쿼리 실행 실패: " + error.message);
+    }
+    res.json(results);
+  });
+});
+
+
 app.post("/api/new", (req, res) => {
   const { id_user, title, body, anonymity } = req.body;
   const q = "insert into post(id_user, title, body, anonymity) VALUES (?,?,?,?);"
