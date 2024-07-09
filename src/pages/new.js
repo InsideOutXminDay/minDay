@@ -23,13 +23,28 @@ export default function New() {
     }
 
     const newSave = (item) => {
-        //db 에 저장되는 것 구현 필요
-        console.log(
-            `저장되었습니다 title : ${item.title}
-        body : ${item.body} 익명 : ${item.anonymity}
-        `)
-
-
+        let id_user = item.id_user;
+        let title = item.title;
+        let body = item.body;
+        let anonymity = item.anonymity ? 0 : 1;
+        fetch('http://localhost:3333/api/new', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                //테스트용 user 값 (item)
+                id_user: id_user,
+                title: title,
+                body: body,
+                anonymity: anonymity
+            })
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        }).catch(error => console.error('Error:', error.message));
     }
 
 
@@ -38,9 +53,8 @@ export default function New() {
             <form name="newCreate" onSubmit={(e) => {
                 e.preventDefault();
                 let item = {
-                    //테스트용 user, post num 정보값
-                    id_post: 11,
-                    id_user: 11,
+                    //테스트용 user 값
+                    id_user: 2,
                     title: e.target.title.value,
                     body: e.target.body.value,
                     anonymity: e.target.anonymity.value

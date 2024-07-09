@@ -12,10 +12,11 @@ export default function Post() {
     useEffect(() => {
         axios.get('http://localhost:3333/api/post')
             .then((res) => {
-            // console.log(res.data);
-            setPostdb([...res.data]); }
-        ).catch(error => console.error('Error:', error));
-}, [])
+                // console.log(res.data);
+                setPostdb([...res.data]);
+            }
+            ).catch(error => console.error('Error:', error));
+    }, [])
 
     //로그인 유저 임시 id 값
     let _userid = 11;
@@ -39,20 +40,21 @@ export default function Post() {
 
     for (let i = 0; i < postdb.length; i++) {
         let p = postdb[i];
-        if(p.anonymity == 0){
-        myDB.push(
-            <NavLink to={"/detail/" + p.id_post}
-            key={p.id_post}
-            onClick={(e) => {
-                e.preventDefault()
-                goTodetail(p)
-            }}>
-                <div className="post-card">
-                    <h2>{p.title}</h2>
-                    <p>{p.body}</p>
-                </div>
-            </NavLink>
-        );}else{continue}
+        if (p.anonymity == 0) {
+            myDB.push(
+                <NavLink to={"/detail/" + p.id_post}
+                    key={p.id_post}
+                    onClick={(e) => {
+                        e.preventDefault()
+                        goTodetail(p)
+                    }}>
+                    <div className="post-card">
+                        <h2>{p.title}</h2>
+                        <p>{p.body}</p>
+                    </div>
+                </NavLink>
+            );
+        } else { continue }
     }
 
     return (
