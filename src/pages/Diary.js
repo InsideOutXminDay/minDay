@@ -7,7 +7,8 @@ import { DiaryDispatchContext, DiaryStateContext } from "../App";
 export default function Diary(){
     const [predata, setPreData] = useState([]);
     const diaryId = useParams();
-    const data = useContext(DiaryStateContext)
+    const {data} = useContext(DiaryStateContext)
+    console.log(data);
     // diary 데이터관련
     const {onUpdate} = useContext(DiaryDispatchContext);
     useEffect(() => {

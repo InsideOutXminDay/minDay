@@ -6,23 +6,19 @@ export const emotionList = [
         id: 1,
         name: "행복",
         img: '/emotion1.png',
-    },
-    {
+    },{
         id: 2,
         name: "신남",
         img: '/emotion2.png',
-    },
-    {
+    },{
         id: 3,
         name: "만족",
         img: '/emotion3.png',
-    },
-    {
+    },{
         id: 4,
         name: "감동",
         img: '/emotion4.png',
-    },
-    {
+    },{
         id: 5,
         name: "편안",
         img: '/emotion5.png',
@@ -92,17 +88,108 @@ export const diaryDatas = [
     }
   ];
 
+export const onDiaryCreate = (dispatch) => (data) => {
+    dispatch({
+      type: "CREATEDiary",
+      data: {
+        id_diary: data.id_diary,
+        date: data.date,
+        contents:data.contents,
+        id_emotion:data.id_emotion,
+        id_user:data.id_user
+      },
+    });
+  };
 
-export function diaryReducer(state, action) {
+export const onDiaryUpdate = (dispatch) => (data) => {
+    dispatch({
+      type: "UPDATEDiary",
+      data: {
+        id_diary: data.id_diary,
+        date: data.date,
+        contents:data.contents,
+        id_emotion:data.id_emotion,
+        id_user:data.id_user
+      },
+    });
+  };
+
+
+// ask/checklist 데이터
+export const ListData = [
+    {
+        id_ask:1,
+        id_user:1,
+        content:"22:00",
+        isdone:0
+    },{
+        id_ask:2,
+        id_user:1,
+        content:"06:00",
+        isdone:0
+    },{
+        id_ask:3,
+        id_user:1,
+        content:3,
+        isdone:0
+    },{
+        id_ask:4,
+        id_user:1,
+        content:"맛있는거 먹기",
+        isdone:0
+    },{
+        id_ask:5,
+        id_user:1,
+        content: "달리기",
+        isdone:0
+    },{
+        id_ask:6,
+        id_user:1,
+        content:3,
+        isdone:0
+    },{
+        id_ask:7,
+        id_user:1,
+        content:"식사 챙겨 먹기",
+        isdone:0
+    },{
+        id_ask:8,
+        id_user:1,
+        content:"충분한 휴식 취하기",
+        isdone:0        
+    }
+];
+
+
+export const onListUpdate = (dispatch) => (id_ask, id_user, content, isdone) => {
+    // console.log("data",id_ask, id_user, content, isdone)
+    dispatch({
+      type: "UPDATEList",
+      data: {
+        id_ask,
+        id_user,
+        content,
+        isdone
+      },
+    });
+  };
+
+  export function Reducer(state, action) {
 switch (action.type) {
-    case "CREATE": {
+    case "CREATEDiary": {
         console.log("create", [action.data, ...state])
         return [action.data, ...state];
         }
-    case "UPDATE": {
+    case "UPDATEDiary": {
         console.log("update", action.data)
         return state.map((it) =>
             String(it.id_diary) === String(action.data.id_diary) ? { ...action.data } : it
+        );
+    }
+    case "UPDATEList": {
+        console.log("list update", action.data)
+        return state.map((it) =>
+            String(it.id_ask) === String(action.data.id_ask) ? { ...action.data } : it
         );
     }
     case "DELETE": {
@@ -112,43 +199,4 @@ switch (action.type) {
         return state;
     }
 }
-}
-
-export const onCreate = (dispatch) => (data) => {
-    dispatch({
-      type: "CREATE",
-      data: {
-        id_diary: data.id_diary,
-        date: data.date,
-        contents:data.contents,
-        id_emotion:data.id_emotion,
-        id_user:data.id_user
-      },
-    });
-  };
-
-export const onUpdate = (dispatch) => (data) => {
-    dispatch({
-      type: "UPDATE",
-      data: {
-        id_diary: data.id_diary,
-        date: data.date,
-        contents:data.contents,
-        id_emotion:data.id_emotion,
-        id_user:data.id_user
-      },
-    });
-  };
-
-export const getDiaryData =  () => {
-const fetchData = async () => {
-    // 로컬스토리지에서 데이터 가져오기
-    const diaryString = window.localStorage.getItem('diary');
-    const diaryObj = diaryString ? JSON.parse(diaryString) :[];
-
-    const combinedData = [...diaryDatas, ...diaryObj];
-    return combinedData;
-    };
-    const data =  fetchData();
-    return data;
 }
