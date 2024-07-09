@@ -1,28 +1,8 @@
 import React, { useState } from "react";
 import { IoCaretBackOutline } from "react-icons/io5";
-import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import '../styles/edit.css';
 
-// const postdb = [{
-//     id_post: 1,
-//     id_user: 5,
-//     title: "test",
-//     body: `test test test test test test
-//     test test test test test test`,
-//     anonymity: false
-// }, {
-//     id_post: 2,
-//     id_user: 6,
-//     title: "test",
-//     body: `test test test test test test`,
-//     anonymity: false
-// }, {
-//     id_post: 3,
-//     id_user: 2,
-//     title: "test",
-//     body: `test test test test test test`,
-//     anonymity: false
-// }];
 
 //로그인 유저 임시 id 값 (첫번째 글)
 var myId = 5;
@@ -34,10 +14,6 @@ export default function Edit() {
     const [newBody, setBody] = useState(postInfo.body);
     let backButton = postInfo.id_post;
     const navigate = useNavigate();
-
-
-    const params = useParams();
-
 
     const goTodetail = (item) => {
         navigate(`/detail/${item.id_post}`, {
@@ -74,7 +50,6 @@ export default function Edit() {
                alert("저장되었습니다")
         );
     }
-
 
     return (
         <div>
