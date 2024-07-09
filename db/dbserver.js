@@ -91,7 +91,6 @@ app.post("/api/edit", (req, res) => {
       if (error) {
         return res.status(500).send("쿼리 실행 실패: " + error.message);
       }
-      console.log(req.body)
       res.json(results);
     });
 });
