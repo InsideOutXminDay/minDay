@@ -1,86 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import '../styles/detail.css';
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import { IoCaretBackOutline } from "react-icons/io5";
-
-
-const commentDB = [
-    {
-        id_comment: 1,
-        body: "test comment 1",
-        id_user: 3,
-        id_post: 1
-    },
-    {
-        id_comment: 2,
-        body: "test comment 2",
-        id_user: 4,
-        id_post: 2
-    },
-    {
-        id_comment: 3,
-        body: "test comment 3",
-        id_user: 1,
-        id_post: 3
-    },
-    {
-        id_comment: 1,
-        body: "test comment 1",
-        id_user: 3,
-        id_post: 1
-    },
-    {
-        id_comment: 2,
-        body: "test comment 2",
-        id_user: 4,
-        id_post: 2
-    },
-    {
-        id_comment: 3,
-        body: "test comment 3",
-        id_user: 1,
-        id_post: 3
-    }
-];
-
-const userDB = [
-    {
-        id_user: 1,
-        inputid: "test01",
-        nickname: "test01Nick",
-        email: "test01@test.com",
-        password: "nnnnnnnn"
-    },
-    {
-        id_user: 2,
-        inputid: "test02",
-        nickname: "test02Nick",
-        email: "test03@test.com",
-        password: "nnnnnnnn"
-    },
-    {
-        id_user: 3,
-        inputid: "test03",
-        nickname: "test03Nick",
-        email: "test03@test.com",
-        password: "nnnnnnnnnn"
-    },
-    {
-        id_user: 5,
-        inputid: "test05",
-        nickname: "test05Nick",
-        email: "test05@test.com",
-        password: "nnnnnnnnnn"
-    },
-    {
-        id_user: 6,
-        inputid: "test06",
-        nickname: "test06Nick",
-        email: "test06@test.com",
-        password: "nnnnnnnnnn"
-    }
-];
-
+import axios from 'axios';
 
 
 export default function Detail() {
@@ -90,6 +12,40 @@ export default function Detail() {
     const postInfo = { ...location.state };
     let backButton = postInfo.anonymity ? "/mind" : "/post";
     let userNickname = "";
+
+    const [commentDB, setCommentDB] = useState([]);
+    const [userDB, setUserDB] = useState([]);
+    const [postDB, setPostDB] = useState([]);
+    const params = useParams();
+    let detailTitle = '';
+    let detailBody = '';
+
+    useEffect(() => {
+        axios.get('http://localhost:3333/api/comment')
+            .then((res) => {
+                // console.log(res.data);
+                setCommentDB([...res.data]);
+            }
+            ).catch(error => console.error('Error:', error));
+    }, [])
+
+    useEffect(() => {
+        axios.get('http://localhost:3333/api/user')
+            .then((res) => {
+                // console.log(res.data);
+                setUserDB([...res.data]);
+            }
+            ).catch(error => console.error('Error:', error));
+    }, [])
+
+    useEffect(() => {
+        axios.get('http://localhost:3333/api/post')
+            .then((res) => {
+                // console.log(res.data);
+                setPostDB([...res.data]);
+            }
+            ).catch(error => console.error('Error:', error));
+    })
 
     for (let i = 0; i < commentDB.length; i++) {
 
@@ -105,6 +61,14 @@ export default function Detail() {
     for (let t = 0; t < userDB.length; t++) {
         if (postInfo.id_user === userDB[t].id_user) {
             userNickname = userDB[t].nickname
+        }
+    }
+
+    for (let t = 0; t < postDB.length; t++) {
+        if (Number(params.id) === postDB[t].id_post) {
+            detailTitle = postDB[t].title;
+            detailBody = postDB[t].body;
+            
         }
     }
 
@@ -146,10 +110,10 @@ export default function Detail() {
                     </div>
                 </div>
                 <div className="detail-title-bar"><p>
-                    {postInfo.title}</p>
+                    {detailTitle}</p>
                 </div>
                 <div className="detail-textarea">
-                    <p>{postInfo.body}</p>
+                    <p>{detailBody}</p>
                 </div>
                 <div>
                     <div className="detail-comment-input">

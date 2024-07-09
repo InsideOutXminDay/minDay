@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { IoCaretBackOutline } from "react-icons/io5";
 import { NavLink, useLocation } from "react-router-dom";
 import '../styles/new.css';
@@ -44,7 +44,9 @@ export default function New() {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
-        }).catch(error => console.error('Error:', error.message));
+        }).catch(error => console.error('Error:', error.message)).then(
+               alert("저장되었습니다")
+        );
     }
 
 
