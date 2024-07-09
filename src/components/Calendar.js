@@ -13,7 +13,7 @@ export default function CalendarComponent(){
   const [Isview, setView] = useState(true);
   const navigate = useNavigate();
   // 데이터 불러오기
-  const data = useContext(DiaryStateContext);
+  const {data} = useContext(DiaryStateContext);
 
   useEffect(() => {
     setDiaryData(data)

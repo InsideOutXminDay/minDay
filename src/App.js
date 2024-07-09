@@ -16,19 +16,23 @@ import Login from './pages/Login.js';
 import SignUp from './pages/SignUp.js';
 
 // diary 데이터
-import { diaryDatas, diaryReducer, onCreate, onUpdate} from './util.js';
+import { diaryDatas,ListData, Reducer, onDiaryCreate, onDiaryUpdate,onListUpdate} from './util.js';
+import Ask from './pages/Ask.js';
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
 function App() {
   // diary 데이터
-  const [data, dispatch] = useReducer(diaryReducer,diaryDatas)
-  const handleCreate = onCreate(dispatch);
-  const handleUpdate = onUpdate(dispatch);
+  const [data, dispatch] = useReducer(Reducer,diaryDatas);
+  const [data_l, dispatch_list] = useReducer(Reducer,ListData);
+
+  const handleCreate = onDiaryCreate(dispatch);
+  const handleUpdate = onDiaryUpdate(dispatch);
+  const handleListUpdate = onListUpdate(dispatch_list);
 
   return (
-    <DiaryStateContext.Provider value={data}>
-      <DiaryDispatchContext.Provider value={{ onCreate: handleCreate, onUpdate: handleUpdate}}>
+    <DiaryStateContext.Provider value={{data,data_l}}>
+      <DiaryDispatchContext.Provider value={{ onCreate: handleCreate, onUpdate: handleUpdate, onListUpdate:handleListUpdate}}>
       <BrowserRouter>
         <div className='App'>
           <Routes>
@@ -37,7 +41,7 @@ function App() {
             {/* /home/:userid >> 개인별 홈화면 구현 */}
             {<Route path="/login" element={<Login />} />}
             {<Route path="/join" element={<SignUp />} />}
-            {/* <Route path='/ask' element={<설문 />}/> */}
+            <Route path='/ask' element={<Ask />}/> {/* /ask/:id */}
             {/* <Route path='/find' element={<회원정보 찾기 />}/> */}
             <Route path='/diary/:id' element={<Diary />}/>  {/* /diary/:id */}
             <Route path='/newdiary' element={<NewDiary />}/>  {/* /diary/:id */}
