@@ -1,28 +1,28 @@
 import React, { useState } from "react";
 import { IoCaretBackOutline } from "react-icons/io5";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import '../styles/edit.css';
 
-const postdb = [{
-    id_post: 1,
-    id_user: 5,
-    title: "test",
-    body: `test test test test test test
-    test test test test test test`,
-    anonymity: false
-}, {
-    id_post: 2,
-    id_user: 6,
-    title: "test",
-    body: `test test test test test test`,
-    anonymity: false
-}, {
-    id_post: 3,
-    id_user: 2,
-    title: "test",
-    body: `test test test test test test`,
-    anonymity: false
-}];
+// const postdb = [{
+//     id_post: 1,
+//     id_user: 5,
+//     title: "test",
+//     body: `test test test test test test
+//     test test test test test test`,
+//     anonymity: false
+// }, {
+//     id_post: 2,
+//     id_user: 6,
+//     title: "test",
+//     body: `test test test test test test`,
+//     anonymity: false
+// }, {
+//     id_post: 3,
+//     id_user: 2,
+//     title: "test",
+//     body: `test test test test test test`,
+//     anonymity: false
+// }];
 
 //로그인 유저 임시 id 값 (첫번째 글)
 var myId = 5;
@@ -33,8 +33,12 @@ export default function Edit() {
     const [newTitle, setTitle] = useState(postInfo.title);
     const [newBody, setBody] = useState(postInfo.body);
     let backButton = postInfo.id_post;
-
     const navigate = useNavigate();
+
+
+    const params = useParams();
+
+
     const goTodetail = (item) => {
         navigate(`/detail/${item.id_post}`, {
             state: {
@@ -48,11 +52,27 @@ export default function Edit() {
     }
 
     const editSave = (item) => {
-        //db 에 저장되는 것 구현 필요
-        console.log(
-            `저장되었습니다 title : ${item.title}
-        body : ${item.body} 익명 : ${item.anonymity}
-        `)
+        let id_post = item.id_post;
+        let title = item.title;
+        let body = item.body;
+        fetch('http://localhost:3333/api/edit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id_post : id_post,
+                title: title,
+                body: body
+            })
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        }).catch(error => console.error('Error:', error.message)).then(
+               alert("저장되었습니다")
+        );
     }
 
 

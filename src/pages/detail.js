@@ -8,6 +8,7 @@ import axios from 'axios';
 export default function Detail() {
 
     let myComment = [];
+    const navigate = useNavigate();
     const location = useLocation();
     const postInfo = { ...location.state };
     let backButton = postInfo.anonymity ? "/mind" : "/post";
@@ -48,12 +49,6 @@ export default function Detail() {
         }
     }
 
-    for (let t = 0; t < userDB.length; t++) {
-        if (postInfo.id_user === userDB[t].id_user) {
-            userNickname = userDB[t].nickname
-        }
-    }
-
     for (let t = 0; t < postDB.length; t++) {
         if (Number(params.id) === postDB[t].id_post) {
             nowPost = {
@@ -65,16 +60,22 @@ export default function Detail() {
             }
         }
     }
+    
+    //현재 로그인한 유저 값 필요
+    for (let t = 0; t < userDB.length; t++) {
+        if ( 2 === userDB[t].id_user) {
+            userNickname = userDB[t].nickname
+        }
+    }
 
-    const navigate = useNavigate();
     const goToEdit = (item) => {
-        navigate(`/edit/${item.id_post}`, {
+        navigate(`/edit/${item.detail_post}`, {
             state: {
-                id_post: item.id_post,
-                id_user: item.id_user,
-                title: item.title,
-                body: item.body,
-                anonymity: item.anonymity
+                id_post: item.detail_post,
+                id_user: item.detail_user,
+                title: item.detail_title,
+                body: item.detail_body,
+                anonymity: item.detail_anonymity
             }
         })
     }
@@ -108,7 +109,6 @@ export default function Detail() {
     //임시 user id ( id_post : 88) 
     let userId = 2;
     return (
-        <div>
             <div className="detail-page">
                 <div className="detail-bar">
                     <NavLink to={backButton}><IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
@@ -117,7 +117,7 @@ export default function Detail() {
                             onClick={(e) => {
                                 e.preventDefault()
                                 
-                                if (nowPost[0].detail_user === userId) {
+                                if (nowPost.detail_user === userId) {
                                     goToEdit(nowPost)
                                 }
                             }} /></span>
@@ -150,6 +150,5 @@ export default function Detail() {
                 </div>
                 {[...myComment].reverse().map((item) => <div className="detail-comment-bar">{item}</div>)}
             </div>
-        </div>
     )
 }

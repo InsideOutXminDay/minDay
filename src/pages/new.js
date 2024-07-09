@@ -26,7 +26,7 @@ export default function New() {
         let id_user = item.id_user;
         let title = item.title;
         let body = item.body;
-        let anonymity = item.anonymity ? 0 : 1;
+        let anonymity = item.anonymity ? 1 : 0;
         fetch('http://localhost:3333/api/new', {
             method: 'POST',
             headers: {
