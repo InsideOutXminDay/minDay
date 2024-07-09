@@ -41,11 +41,9 @@ export default function Detail() {
     })
 
     for (let i = 0; i < commentDB.length; i++) {
-        if (postInfo.id_post === commentDB[i].id_post) {
+        if (Number(params.id)  === commentDB[i].id_post) {
             myComment.push(
-                <div className="detail-comment-bar">
-                    <p>{commentDB[i].body}</p>
-                </div>
+            <p>{commentDB[i].body}</p>
             );
         }
     }
@@ -150,7 +148,7 @@ export default function Detail() {
                         </div>
                     </div>
                 </div>
-                {myComment}
+                {[...myComment].reverse().map((item) => <div className="detail-comment-bar">{item}</div>)}
             </div>
         </div>
     )
