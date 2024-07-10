@@ -43,8 +43,10 @@ export default function SignUpForm() {
     const checkId = userInfo.find((user) => user.userId === inputId);
     if (checkId) {
       alert('이미 사용중인 아이디입니다.');
+      setInputId('');
+    } else {
+      alert('사용 가능한 아이디입니다.');
     }
-    alert('사용 가능한 아이디입니다.');
   };
 
   const handleSubmit = async (e) => {
