@@ -47,6 +47,7 @@ export default function New() {
         }).catch(error => console.error('Error:', error.message)).then(
                alert("저장되었습니다")
         );
+        
     }
 
 

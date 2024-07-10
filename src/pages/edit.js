@@ -49,6 +49,7 @@ export default function Edit() {
         }).catch(error => console.error('Error:', error.message)).then(
                alert("저장되었습니다")
         );
+        window.location.replace(`/detail/${id_post}`);
     }
 
     return (

@@ -21,6 +21,13 @@ export default function Detail() {
     let nowPost = {};
 
     useEffect(() => {
+        axios.get('http://localhost:3333/api/post')
+            .then((res) => {
+                setPostDB([...res.data]);
+            }).catch(error => console.error('Error:', error));
+    }, [])
+    
+    useEffect(() => {
         axios.get('http://localhost:3333/api/comment')
             .then((res) => {
                 setCommentDB([...res.data]);
@@ -33,13 +40,6 @@ export default function Detail() {
                 setUserDB([...res.data]);
             }).catch(error => console.error('Error:', error));
     }, [])
-
-    useEffect(() => {
-        axios.get('http://localhost:3333/api/post')
-            .then((res) => {
-                setPostDB([...res.data]);
-            }).catch(error => console.error('Error:', error));
-    })
 
     for (let i = 0; i < commentDB.length; i++) {
         if (Number(params.id)  === commentDB[i].id_post) {
@@ -104,6 +104,7 @@ export default function Detail() {
         }).catch(error => console.error('Error:', error.message)).then(
                alert("저장되었습니다")
         );
+        window.location.reload();
     }
 
     //임시 user id ( id_post : 88) 
