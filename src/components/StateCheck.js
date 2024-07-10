@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { DiaryDispatchContext } from "../App";
 
-export default function StateCheck({ initData ,user_id}) {
+export default function StateCheck({ initData ,user_id,onUpdate}) {
     const { onListUpdate } = useContext(DiaryDispatchContext)
 
     //기본값(생성)
@@ -32,14 +32,14 @@ export default function StateCheck({ initData ,user_id}) {
 
 
     const onSubmit = () => {
-        onListUpdate(sleep.id_ask, sleep.id_user, sleep.content, sleep.isdone);
-        onListUpdate(wake.id_ask, wake.id_user, wake.content, wake.isdone);
-        onListUpdate(phone.id_ask, phone.id_user, phone.content, phone.isdone);
-        onListUpdate(satisfaction.id_ask, satisfaction.id_user, satisfaction.content,satisfaction.isdone);
-        onListUpdate(hobby.id_ask, hobby.id_user, hobby.content, hobby.isdone);
-        onListUpdate(exercise.id_ask, exercise.id_user, exercise.content, exercise.isdone);
-        onListUpdate(meal.id_ask, meal.id_user, meal.content, meal.isdone);
-        onListUpdate(rest.id_ask, rest.id_user, rest.content, rest.isdone);
+        onUpdate(sleep.id_ask, sleep.id_user, sleep.content, sleep.isdone);
+        onUpdate(wake.id_ask, wake.id_user, wake.content, wake.isdone);
+        onUpdate(phone.id_ask, phone.id_user, phone.content, phone.isdone);
+        onUpdate(satisfaction.id_ask, satisfaction.id_user, satisfaction.content,satisfaction.isdone);
+        onUpdate(hobby.id_ask, hobby.id_user, hobby.content, hobby.isdone);
+        onUpdate(exercise.id_ask, exercise.id_user, exercise.content, exercise.isdone);
+        onUpdate(meal.id_ask, meal.id_user, meal.content, meal.isdone);
+        onUpdate(rest.id_ask, rest.id_user, rest.content, rest.isdone);
         navigate("/home")
 
     }

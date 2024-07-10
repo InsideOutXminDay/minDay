@@ -16,7 +16,7 @@ import Login from './pages/Login.js';
 import SignUp from './pages/SignUp.js';
 
 // diary 데이터
-import { diaryDatas,ListData, Reducer, onDiaryCreate, onDiaryUpdate,onListUpdate} from './util.js';
+import { diaryDatas,ListData, Reducer, onDiaryCreate, onDiaryUpdate,onListUpdate,onListCreate} from './util.js';
 import Ask from './pages/Ask.js';
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
@@ -29,10 +29,12 @@ function App() {
   const handleCreate = onDiaryCreate(dispatch);
   const handleUpdate = onDiaryUpdate(dispatch);
   const handleListUpdate = onListUpdate(dispatch_list);
+  const handleListCreate = onListCreate(dispatch_list);
+
 
   return (
     <DiaryStateContext.Provider value={{data,data_l}}>
-      <DiaryDispatchContext.Provider value={{ onCreate: handleCreate, onUpdate: handleUpdate, onListUpdate:handleListUpdate}}>
+      <DiaryDispatchContext.Provider value={{ onCreate: handleCreate, onUpdate: handleUpdate, onListUpdate:handleListUpdate, onListCreate:handleListCreate}}>
       <BrowserRouter>
         <div className='App'>
           <Routes>

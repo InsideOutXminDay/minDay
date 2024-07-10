@@ -176,6 +176,19 @@ export const onListUpdate = (dispatch) => (id_ask, id_user, content, isdone) => 
     });
   };
 
+  export const onListCreate = (dispatch) => (id_ask, id_user, content, isdone) => {
+    // console.log("data",id_ask, id_user, content, isdone)
+    dispatch({
+      type: "CREATEList",
+      data: {
+        id_ask,
+        id_user,
+        content,
+        isdone
+      },
+    });
+  };
+
   export function Reducer(state, action) {
 switch (action.type) {
     case "CREATEDiary": {
@@ -193,6 +206,10 @@ switch (action.type) {
         return state.map((it) =>
             String(it.id_ask) === String(action.data.id_ask) ? { ...action.data } : it
         );
+    }
+    case "CREATEList": {
+        console.log("list create", [action.data, ...state])
+        return [action.data, ...state]
     }
     case "DELETE": {
         return state.filter((it) => String(it.id) !== String(action.targetId));

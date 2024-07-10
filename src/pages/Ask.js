@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import StateCheck from "../components/StateCheck";
 
 export default function Ask(){
-    const { onListUpdate } = useContext(DiaryDispatchContext);
+    const { onListUpdate,onListCreate } = useContext(DiaryDispatchContext);
     const { data_l } = useContext(DiaryStateContext);
     const [initData, setInitData] = useState([]);
     const user_id = 1//useParams?
@@ -15,10 +15,16 @@ export default function Ask(){
         setInitData(foundData);
     }, [data_l]);
 
+    const onUpdate = (id_ask, id_user, content, isdone) => {
+        initData.length?
+        onListUpdate(id_ask, id_user, content, isdone)
+        :onListCreate(id_ask, id_user, content, isdone)
+    }
+
     return (
         <div>
             <div>
-                <StateCheck initData={initData} user_id={user_id}/>
+                <StateCheck initData={initData} user_id={user_id} onUpdate={onUpdate}/>
             </div>
         </div>
     );
