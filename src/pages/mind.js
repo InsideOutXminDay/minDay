@@ -1,39 +1,22 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import '../styles/post.css';
 import { NavLink, useNavigate  } from "react-router-dom";
 import { FaRegPenToSquare } from "react-icons/fa6";
+import axios from 'axios';
 
 export default function Mind() {
 
     const navigate = useNavigate();
-    const postdb = [{
-        id_post: 1,
-        id_user: 5,
-        title: "test",
-        body: `test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test
-        test test test test test test`,
-        anonymity: true
-    },
-    {
-        id_post: 2,
-        id_user: 6,
-        title: "test",
-        body: `test test test test test test`,
-        anonymity: true
-    }, {
-        id_post: 3,
-        id_user: 2,
-        title: "test",
-        body: `test test test test test test`,
-        anonymity: true
-    }];
-
+    const [postdb, setPostdb] = useState([]);
     let myDB = [];
+
+    useEffect(() => {
+        axios.get('http://localhost:3333/api/post')
+            .then((res) => {
+            // console.log(res.data);
+            setPostdb([...res.data]); }
+        ).catch(error => console.error('Error:', error));
+}, [])
 
 
     const goTodetail = (item)=>{
@@ -52,8 +35,11 @@ export default function Mind() {
 
     for (let i = 0; i < postdb.length; i++) {
         let p = postdb[i];
+        if(p.anonymity == 1){
         myDB.push(
-            <NavLink to={"/detail/" + p.id_post} onClick={(e)=>{
+            <NavLink to={"/detail/" + p.id_post} 
+            key={p.id_post}
+            onClick={(e)=>{
                 e.preventDefault()
                 goTodetail(p)
                 }}>
@@ -61,8 +47,9 @@ export default function Mind() {
                     <h2>{p.title}</h2>
                     <p>{p.body}</p>
                 </div>
-            </NavLink>
-        );
+            </NavLink> 
+        );}
+        else{continue}
     }
 
     //로그인 유저 임시 id 값

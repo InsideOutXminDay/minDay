@@ -1,137 +1,115 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import '../styles/detail.css';
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import { IoCaretBackOutline } from "react-icons/io5";
-
-
-const commentDB = [
-    {
-        id_comment: 1,
-        body: "test comment 1",
-        id_user: 3,
-        id_post: 1
-    },
-    {
-        id_comment: 2,
-        body: "test comment 2",
-        id_user: 4,
-        id_post: 2
-    },
-    {
-        id_comment: 3,
-        body: "test comment 3",
-        id_user: 1,
-        id_post: 3
-    },
-    {
-        id_comment: 1,
-        body: "test comment 1",
-        id_user: 3,
-        id_post: 1
-    },
-    {
-        id_comment: 2,
-        body: "test comment 2",
-        id_user: 4,
-        id_post: 2
-    },
-    {
-        id_comment: 3,
-        body: "test comment 3",
-        id_user: 1,
-        id_post: 3
-    }
-];
-
-const userDB = [
-    {
-        id_user: 1,
-        inputid: "test01",
-        nickname: "test01Nick",
-        email: "test01@test.com",
-        password: "nnnnnnnn"
-    },
-    {
-        id_user: 2,
-        inputid: "test02",
-        nickname: "test02Nick",
-        email: "test03@test.com",
-        password: "nnnnnnnn"
-    },
-    {
-        id_user: 3,
-        inputid: "test03",
-        nickname: "test03Nick",
-        email: "test03@test.com",
-        password: "nnnnnnnnnn"
-    },
-    {
-        id_user: 5,
-        inputid: "test05",
-        nickname: "test05Nick",
-        email: "test05@test.com",
-        password: "nnnnnnnnnn"
-    },
-    {
-        id_user: 6,
-        inputid: "test06",
-        nickname: "test06Nick",
-        email: "test06@test.com",
-        password: "nnnnnnnnnn"
-    }
-];
-
+import axios from 'axios';
 
 
 export default function Detail() {
 
     let myComment = [];
+    const navigate = useNavigate();
     const location = useLocation();
     const postInfo = { ...location.state };
     let backButton = postInfo.anonymity ? "/mind" : "/post";
     let userNickname = "";
 
-    for (let i = 0; i < commentDB.length; i++) {
+    const [commentDB, setCommentDB] = useState([]);
+    const [userDB, setUserDB] = useState([]);
+    const [postDB, setPostDB] = useState([]);
+    const params = useParams();
+    let nowPost = {};
 
-        if (postInfo.id_post === commentDB[i].id_post) {
+    useEffect(() => {
+        axios.get('http://localhost:3333/api/post')
+            .then((res) => {
+                setPostDB([...res.data]);
+            }).catch(error => console.error('Error:', error));
+    }, [])
+    
+    useEffect(() => {
+        axios.get('http://localhost:3333/api/comment')
+            .then((res) => {
+                setCommentDB([...res.data]);
+            }).catch(error => console.error('Error:', error));
+    }, [])
+
+    useEffect(() => {
+        axios.get('http://localhost:3333/api/user')
+            .then((res) => {
+                setUserDB([...res.data]);
+            }).catch(error => console.error('Error:', error));
+    }, [])
+
+    for (let i = 0; i < commentDB.length; i++) {
+        if (Number(params.id)  === commentDB[i].id_post) {
             myComment.push(
-                <div className="detail-comment-bar">
-                    <p>{commentDB[i].body}</p>
-                </div>
+            <p>{commentDB[i].body}</p>
             );
         }
     }
 
+    for (let t = 0; t < postDB.length; t++) {
+        if (Number(params.id) === postDB[t].id_post) {
+            nowPost = {
+                detail_post : postDB[t].id_post,
+                detail_user : postDB[t].id_user,
+                detail_title : postDB[t].title,
+                detail_body : postDB[t].body,
+                detail_anonymity : postDB[t].anonymity
+            }
+        }
+    }
+    
+    //현재 로그인한 유저 값 필요
     for (let t = 0; t < userDB.length; t++) {
-        if (postInfo.id_user === userDB[t].id_user) {
+        if ( 2 === userDB[t].id_user) {
             userNickname = userDB[t].nickname
         }
     }
 
-    const navigate = useNavigate();
     const goToEdit = (item) => {
-        navigate(`/edit/${item.id_post}`, {
+        navigate(`/edit/${item.detail_post}`, {
             state: {
-                id_post: item.id_post,
-                id_user: item.id_user,
-                title: item.title,
-                body: item.body,
-                anonymity: item.anonymity
+                id_post: item.detail_post,
+                id_user: item.detail_user,
+                title: item.detail_title,
+                body: item.detail_body,
+                anonymity: item.detail_anonymity
             }
         })
     }
 
     const newSaveComment = (item) => {
-        //db 에 저장되는 것 구현 필요
-        console.log(
-            `저장되었습니다 포스트 번호 : ${postInfo.id_post} body : ${item.body} 
-        `)
+        // 임시 id_user
+        let body = item.body;
+        let id_user = 2;
+        let id_post = nowPost.detail_post;
+        fetch('http://localhost:3333/api/comment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                //테스트용 user 값 (item)
+                body: body,
+                id_user: id_user,
+                id_post: id_post
+            })
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        }).catch(error => console.error('Error:', error.message)).then(
+               alert("저장되었습니다")
+        );
+        window.location.replace(`/detail/${nowPost.detail_post}`);
     }
 
-    //임시 user id (첫번째 글 user id) 
-    let userId = 5;
+    //임시 user id ( id_post : 88) 
+    let userId = 2;
     return (
-        <div>
             <div className="detail-page">
                 <div className="detail-bar">
                     <NavLink to={backButton}><IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
@@ -139,24 +117,25 @@ export default function Detail() {
                         <span><input type="submit" value={userNickname} id="detail-submit"
                             onClick={(e) => {
                                 e.preventDefault()
-                                if (postInfo.id_user === userId) {
-                                    goToEdit(postInfo)
+                                
+                                if (nowPost.detail_user === userId) {
+                                    goToEdit(nowPost)
                                 }
                             }} /></span>
                     </div>
                 </div>
                 <div className="detail-title-bar"><p>
-                    {postInfo.title}</p>
+                    {nowPost.detail_title}</p>
                 </div>
                 <div className="detail-textarea">
-                    <p>{postInfo.body}</p>
+                    <p>{nowPost.detail_body}</p>
                 </div>
                 <div>
                     <div className="detail-comment-input">
                         <div>
                             <form className="detail-form" onSubmit={(e) => { e.preventDefault();
                             let item = {
-                                id_post : postInfo.id_post,
+                                id_post : nowPost.detail_post,
                                 // 임시 user id 값
                                 id_user : userId,
                                 body : e.target.body.value
@@ -170,8 +149,7 @@ export default function Detail() {
                         </div>
                     </div>
                 </div>
-                {myComment}
+                {[...myComment].reverse().map((item) => <div className="detail-comment-bar">{item}</div>)}
             </div>
-        </div>
     )
 }
