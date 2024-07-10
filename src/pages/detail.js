@@ -116,7 +116,7 @@ export default function Detail() {
         }).catch(error => console.error('Error:', error.message)).then(
             alert("저장되었습니다")
         );
-        navigate(`/detail/${nowPost.detail_post}`);
+        window.location.replace(`/detail/${nowPost.detail_post}`);
     }
 
     const deleteComment = (item) => {

@@ -42,8 +42,6 @@ export default function New() {
             })
         }).then(async (response) => {
             const data = await response.json();
-            console.log(`data.insertId : ${data.insertId}`);
-            setInsert(Number(data.insertId));
             alert("저장되었습니다");
             navigate(`/detail/${Number(data.insertId)}`);
             if (!response.ok) {
