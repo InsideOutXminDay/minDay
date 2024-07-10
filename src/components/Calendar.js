@@ -5,6 +5,7 @@ import moment from 'moment';
 import { IoPencilOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 import { DiaryStateContext } from '../App';
+import { FindData } from '../util';
 
 export default function CalendarComponent(){
   const [date, setDate] = useState(new Date());
@@ -16,8 +17,15 @@ export default function CalendarComponent(){
   const {data} = useContext(DiaryStateContext);
 
   useEffect(() => {
-    setDiaryData(data)
+    const foundData = FindData(data)
+    setDiaryData(foundData)
   }, []);
+  // 오늘 날짜 일기 바로 보여줌
+  useEffect(()=>{
+    const dateStr = moment(date).format('YYYY-MM-DD');
+    const matching = diaryData.find((value)=>value.date === dateStr) 
+    setNowDiary(matching);
+  },[diaryData])
 
   //달력 날짜 타일 누르면 변화 일어나는 함수
   const onChange = (day) =>{
