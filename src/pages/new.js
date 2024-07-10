@@ -22,12 +22,15 @@ export default function New() {
         }
     }
 
-    const newSave = (item) => {
+
+    const newSave = async (item) => {
         let id_user = item.id_user;
         let title = item.title;
         let body = item.body;
         let anonymity = item.anonymity ? 1 : 0;
-        fetch('http://localhost:3333/api/new', {
+
+
+        await fetch('http://localhost:3333/api/new', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -39,16 +42,16 @@ export default function New() {
                 body: body,
                 anonymity: anonymity
             })
-        }).then(response => {
+        }).then(async (response) => {
+            const data = await response.json();
+            console.log(`data.insertId : ${data.insertId}`);
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        }).catch(error => console.error('Error:', error.message)).then(
-               alert("저장되었습니다")
-        );
-        
-    }
+                throw new Error(`error! status: ${response.status}`);
+            }})
+            .catch(error => console.error('Error:', error.message)).then(
+                alert("저장되었습니다")
+            );
+        }
 
 
     return (
