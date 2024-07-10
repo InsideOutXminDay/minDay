@@ -73,18 +73,18 @@ export const emotionList = [
 // diary 데이터
 export const diaryDatas = [
     {
-      "id_diary": 1,
-      "id_emotion": 14,
-      "id_user": 1,
-      "contents": "그냥 너무 사는게 우울하고 슬프다ㅠㅠ",
-      "date": "2024-06-20"
+      id_diary: 1,
+      id_emotion: 14,
+      id_user: 1,
+      contents: "그냥 너무 사는게 우울하고 슬프다ㅠㅠ",
+      date: "2024-06-20"
     },
     {
-      "id_diary": 2,
-      "id_emotion": 1,
-      "id_user": 1,
-      "contents": "행복해!",
-      "date": "2024-07-04"
+      id_diary: 2,
+      id_emotion: 1,
+      id_user: 1,
+      contents: "행복해!",
+      date: "2024-07-04"
     }
   ];
 
@@ -116,44 +116,46 @@ export const onDiaryUpdate = (dispatch) => (data) => {
 
 
 // ask/checklist 데이터
+// idask = id_user + 각 문항 번호(기본키로사용하면서 검색도 쉬움..?)
+// ask에서 문항 검색하려니 이렇게 생각함
 export const ListData = [
     {
-        id_ask:1,
+        id_ask:11,
         id_user:1,
         content:"22:00",
         isdone:0
     },{
-        id_ask:2,
+        id_ask:12,
         id_user:1,
         content:"06:00",
         isdone:0
     },{
-        id_ask:3,
+        id_ask:13,
         id_user:1,
-        content:3,
+        content:30,
         isdone:0
     },{
-        id_ask:4,
+        id_ask:14,
         id_user:1,
         content:"맛있는거 먹기",
         isdone:0
     },{
-        id_ask:5,
+        id_ask:15,
         id_user:1,
         content: "달리기",
         isdone:0
     },{
-        id_ask:6,
+        id_ask:16,
         id_user:1,
         content:3,
         isdone:0
     },{
-        id_ask:7,
+        id_ask:17,
         id_user:1,
         content:"식사 챙겨 먹기",
         isdone:0
     },{
-        id_ask:8,
+        id_ask:18,
         id_user:1,
         content:"충분한 휴식 취하기",
         isdone:0        
