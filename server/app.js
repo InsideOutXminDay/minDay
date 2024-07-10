@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const session = require('express-session');
 
 const app = express();
 
@@ -11,6 +12,15 @@ app.use(cors());
 // for parsing application/json
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//session
+app.use(
+  session({
+    secret: 'test',
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 //샘플 데이터 입니다. (간이 db)
 let id = 6;
@@ -52,26 +62,45 @@ const userInfo = [
   },
 ];
 
+const loggedInUser = [];
+
+app.get('/', (req, res) => res.send('signup/login server home'));
+
 //로그인 시 GET, POST 요청/응답
 app.get('/api/login', (req, res) => {
-  res.send(userInfo);
+  res.send(loggedInUser);
 });
 app.post('/api/login', (req, res) => {
   const { userId, pw } = req.body;
   const user = userInfo.filter((user) => user.userId === userId);
+  const id = user[0].id;
   if (user.length === 0) {
-    res.status(403);
+    res.status(400);
     res.send('가입되지 않은 회원');
     return;
   }
   if (user[0].pw !== pw) {
-    res.status(403);
+    res.status(400);
     res.send('비밀번호가 일치하지 않음');
     return;
   }
-  res.status(200);
-  res.send('로그인 성공');
+  loggedInUser.push({ id, userId });
+  //session에 로그인 정보 저장
+  req.session.user = {
+    loggedIn: true,
+    id,
+    userId,
+  };
+  console.log(req.sessionID);
+  console.log(req.session);
+  res.status(200).send('로그인 성공');
 });
+
+//로그아웃
+// app.get('/api/logout', (req, res) => {
+//   req.session.destroy();
+//   res.send('로그아웃 성공');
+// });
 
 //회원가입 시 POST 요청/응답
 app.post('/api/signup', (req, res) => {
