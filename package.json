@@ -28,6 +28,7 @@
     "type": "module",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:5000", 
   "browserslist": {
     "production": [
       ">0.2%",

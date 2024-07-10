@@ -1,0 +1,36 @@
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.category-item {
+  background-color: #dff0d8;
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.category-item:hover {
+  transform: scale(1.05);
+}
+
+.category-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.category-name {
+  margin-top: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+}

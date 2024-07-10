@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+.login-form {
+  width: 80vw;
+  height: 70vh;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: 'Montserrat', sans-serif;
+}
+.login-form img {
+  width: 20%;
+  height: 20%;
+  object-fit: cover;
+}
+.login-form h1 {
+  font-size: 2em;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 50%;
+  height: 40%;
+
+  position: relative;
+}
+.form label {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-right: 0.3em;
+}
+.form input {
+  width: 90%;
+  border-style: none;
+  outline: none;
+
+  font-size: 1.2em;
+  font-weight: 500;
+}
+.id-input,
+.pw-input {
+  border-bottom: 1px solid #7dccac;
+}
+.id-input {
+  margin-bottom: 2.2em;
+}
+.btns {
+  margin-bottom: 4em;
+}
+.btns button {
+  font-size: 1.3em;
+  border-style: none;
+  border-radius: 10px;
+}
+.login-btn,
+.kakao-btn:hover {
+  cursor: pointer;
+}
+.login-btn {
+  color: white;
+  background-color: #7dccac;
+  padding: 0.5rem 3.3rem;
+  border-style: none;
+  border-radius: 10px;
+  margin-top: 2.5em;
+  font-size: 1.3em;
+  width: 30%;
+  position: absolute;
+  top: 7em;
+  left: 13em;
+}
+.kakao-btn {
+  background-color: #f7e600;
+  display: flex;
+  gap: 1em;
+  box-sizing: border-box;
+  padding: 0.5rem 1rem;
+}
+.login-form span {
+  font-family: 'Pretendard-Regular';
+  font-size: 1.2em;
+  color: #878787;
+}
+.login-form span:hover {
+  cursor: pointer;
+}
+.login-test {
+  position: absolute;
+  left: 0;
+}

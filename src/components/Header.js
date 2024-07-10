@@ -10,11 +10,9 @@ export default function Header(){
         navigate('/home'); 
     }
     const goCommunityMind=()=>{
-        // user테이블 연결 후 /home/:userid 로 변경
-        alert('/mind'); 
+        navigate('/mind'); 
     }
     const goCommunityPost=()=>{
-        // user테이블 연결 후 /home/:userid 로 변경
         alert('/post'); 
     }
     const goRecommend=()=>{
@@ -27,12 +25,10 @@ export default function Header(){
         alert("/category");
     }
     const goSetting=()=>{
-        // navigate('/setting'); // 페이지 작성 후 연결
-        alert("/setting");
+        navigate("/setting");
     }
     const Logout=()=>{
-        // navigate('/'); // 페이지 작성 후 연결
-        alert("/");
+        navigate("/");
 
     }
     return(

@@ -1,0 +1,32 @@
+.CheckList {
+    float:right;
+    width: 75%;
+    margin-bottom: 30px;
+}
+.list-wrapper{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    padding: 20px 30px;
+    flex-direction: column; /* 자식 요소들을 수직 방향으로 정렬 */
+}
+
+.list-wrapper-wide{
+  /* background-color: blue; */
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.title-wrapper{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    /* gap: 52%; */
+    padding: 0px 60px;
+}
