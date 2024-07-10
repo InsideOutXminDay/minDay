@@ -1,5 +1,4 @@
-import { createContext, useState } from "react";
-
+export const user_id = 1;
 
 export const emotionList = [
     {
@@ -73,18 +72,18 @@ export const emotionList = [
 // diary 데이터
 export const diaryDatas = [
     {
-      "id_diary": 1,
-      "id_emotion": 14,
-      "id_user": 1,
-      "contents": "그냥 너무 사는게 우울하고 슬프다ㅠㅠ",
-      "date": "2024-06-20"
+      id_diary: 1,
+      id_emotion: 14,
+      id_user: 1,
+      contents: "그냥 너무 사는게 우울하고 슬프다ㅠㅠ",
+      date: "2024-06-20"
     },
     {
-      "id_diary": 2,
-      "id_emotion": 1,
-      "id_user": 1,
-      "contents": "행복해!",
-      "date": "2024-07-04"
+      id_diary: 2,
+      id_emotion: 1,
+      id_user: 1,
+      contents: "행복해!",
+      date: "2024-07-04"
     }
   ];
 
@@ -116,44 +115,46 @@ export const onDiaryUpdate = (dispatch) => (data) => {
 
 
 // ask/checklist 데이터
+// idask = id_user + 각 문항 번호(기본키로사용하면서 검색도 쉬움..?)
+// ask에서 문항 검색하려니 이렇게 생각함
 export const ListData = [
     {
-        id_ask:1,
+        id_ask:11,
         id_user:1,
         content:"22:00",
         isdone:0
     },{
-        id_ask:2,
+        id_ask:12,
         id_user:1,
         content:"06:00",
         isdone:0
     },{
-        id_ask:3,
+        id_ask:13,
         id_user:1,
-        content:3,
+        content:30,
         isdone:0
     },{
-        id_ask:4,
+        id_ask:14,
         id_user:1,
         content:"맛있는거 먹기",
         isdone:0
     },{
-        id_ask:5,
+        id_ask:15,
         id_user:1,
         content: "달리기",
         isdone:0
     },{
-        id_ask:6,
+        id_ask:16,
         id_user:1,
         content:3,
         isdone:0
     },{
-        id_ask:7,
+        id_ask:17,
         id_user:1,
         content:"식사 챙겨 먹기",
         isdone:0
     },{
-        id_ask:8,
+        id_ask:18,
         id_user:1,
         content:"충분한 휴식 취하기",
         isdone:0        
@@ -174,29 +175,51 @@ export const onListUpdate = (dispatch) => (id_ask, id_user, content, isdone) => 
     });
   };
 
-  export function Reducer(state, action) {
-switch (action.type) {
-    case "CREATEDiary": {
-        console.log("create", [action.data, ...state])
-        return [action.data, ...state];
+  export const onListCreate = (dispatch) => (id_ask, id_user, content, isdone) => {
+    // console.log("data",id_ask, id_user, content, isdone)
+    dispatch({
+      type: "CREATEList",
+      data: {
+        id_ask,
+        id_user,
+        content,
+        isdone
+      },
+    });
+  };
+
+export function Reducer(state, action) {
+    switch (action.type) {
+        case "CREATEDiary": {
+            console.log("create", [action.data, ...state])
+            return [action.data, ...state];
+            }
+        case "UPDATEDiary": {
+            console.log("update", action.data)
+            return state.map((it) =>
+                String(it.id_diary) === String(action.data.id_diary) ? { ...action.data } : it
+            );
         }
-    case "UPDATEDiary": {
-        console.log("update", action.data)
-        return state.map((it) =>
-            String(it.id_diary) === String(action.data.id_diary) ? { ...action.data } : it
-        );
-    }
-    case "UPDATEList": {
-        console.log("list update", action.data)
-        return state.map((it) =>
-            String(it.id_ask) === String(action.data.id_ask) ? { ...action.data } : it
-        );
-    }
-    case "DELETE": {
-        return state.filter((it) => String(it.id) !== String(action.targetId));
-    }
-    default: {
-        return state;
+        case "UPDATEList": {
+            console.log("list update", action.data)
+            return state.map((it) =>
+                String(it.id_ask) === String(action.data.id_ask) ? { ...action.data } : it
+            );
+        }
+        case "CREATEList": {
+            console.log("list create", [action.data, ...state])
+            return [action.data, ...state]
+        }
+        case "DELETE": {
+            return state.filter((it) => String(it.id) !== String(action.targetId));
+        }
+        default: {
+            return state;
+        }
     }
 }
+
+
+export function FindData(datas){
+    return datas.filter(item => item.id_user === user_id);
 }
