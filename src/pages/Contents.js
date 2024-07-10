@@ -51,6 +51,7 @@ const Contents = () => {
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
 
   return (
+    
     <div className="contents">
       {!selectedCategory && (
         <Category categories={categories} onSelectCategory={setSelectedCategory} />

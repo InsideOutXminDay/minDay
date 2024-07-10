@@ -22,7 +22,7 @@ app.get('/user', (req, res) => {
 });
 
 app.put('/user', (req, res) => {
-  const { id, nickname, email, currentPassword, newPassword } = req.body;
+  const { id, nickname, email, password} = req.body;
 
   fs.readFile(userDataPath, 'utf8', (err, data) => {
     if (err) {
@@ -37,7 +37,7 @@ app.put('/user', (req, res) => {
     userData.id = id;
     userData.nickname = nickname;
     userData.email = email;
-    userData.password = newPassword;
+    userData.password = password;
 
     fs.writeFile(userDataPath, JSON.stringify(userData, null, 2), (err) => {
       if (err) {

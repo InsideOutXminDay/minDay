@@ -1,14 +1,15 @@
 import React from 'react';
-import SettingAccount from '../components/SettingAccount.js';
-import '../components/SettingAccount.js';
+import SettingAccount from '../components/SettingAccount';
+import Header from '../components/Header';
 import '../styles/SettingPage.css';
-
-
 
 const SettingPage = () => {
   return (
-    <div className="setting-page">
-      <SettingAccount />
+    <div style={{ display: "flex" }}>
+      <Header />
+      <div className="setting-page">
+        <SettingAccount />
+      </div>
     </div>
   );
 };
