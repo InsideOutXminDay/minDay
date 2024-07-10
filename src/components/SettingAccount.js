@@ -70,7 +70,7 @@ const SettingAccount = () => {
         setTimeout(() => setNotification(''), 3000);
       } catch (error) {
         console.error('오류 발생:', error);
-        setNotification('저장 중 오류가 발생했습니다.');
+        setNotification('회원 정보를 다시 확인해주세요.');
         setTimeout(() => setNotification(''), 3000);
       }
     }
@@ -115,7 +115,7 @@ const SettingAccount = () => {
         {errors.currentPassword && <div className="error">{errors.currentPassword}</div>}
         <input
           type="password"
-          placeholder="새 비밀번호 / 비밀번호 확인"
+          placeholder="비밀번호 확인 / 변경할 비밀번호"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
         />
