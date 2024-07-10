@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { DiaryStateContext, DiaryDispatchContext } from "../App";
 import StateCheck from "../components/StateCheck";
-import { FindData } from "../util";
+import { FindData,user_id } from "../util";
 
 export default function Ask(){
     const { onListUpdate,onListCreate } = useContext(DiaryDispatchContext);

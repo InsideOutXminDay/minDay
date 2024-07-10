@@ -2,7 +2,7 @@ import moment from "moment";
 import { useEffect, useCallback } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { emotionList } from "../util";
+import { emotionList, user_id } from "../util";
 import EmotionItem from "./EmotionItem";
 import '../styles/DiaryEditor.css'
 
@@ -11,10 +11,10 @@ export default function DiaryEditor({initDate, initData, onSubmit}){
     
     //생성 시 기본 값
     const [state, setState] = useState({
-        id_diary:parseInt(moment(new Date(initDate)).format('YYYYMMDD')),
+        id_diary:parseInt(moment(new Date(initDate)).format('YYYYMMDD')+user_id),
         date:  moment(new Date(initDate)).format('YYYY-MM-DD'),
         id_emotion: 3,
-        id_user:1,
+        id_user:user_id,
         contents: "",
     });
 
