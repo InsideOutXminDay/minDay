@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { IoCaretBackOutline } from "react-icons/io5";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import '../styles/new.css';
-
 
 
 export default function New() {
@@ -12,6 +11,7 @@ export default function New() {
     const postInfo = { ...location.state };
     let backButton = postInfo.lastPage;
 
+    const navigate = useNavigate();
     const MyCheckbox = (checked) => {
         if (checked) {
             setCommunity("mind");
@@ -22,13 +22,11 @@ export default function New() {
         }
     }
 
-
     const newSave = async (item) => {
         let id_user = item.id_user;
         let title = item.title;
         let body = item.body;
         let anonymity = item.anonymity ? 1 : 0;
-
 
         await fetch('http://localhost:3333/api/new', {
             method: 'POST',
@@ -45,15 +43,15 @@ export default function New() {
         }).then(async (response) => {
             const data = await response.json();
             console.log(`data.insertId : ${data.insertId}`);
+            setInsert(Number(data.insertId));
+            alert("저장되었습니다");
+            navigate(`/detail/${Number(data.insertId)}`);
             if (!response.ok) {
                 throw new Error(`error! status: ${response.status}`);
             }})
-            .catch(error => console.error('Error:', error.message)).then(
-                alert("저장되었습니다")
-            );
+            .catch(error => console.error('Error:', error.message))
         }
-
-
+  
     return (
         <div className="new-page">
             <form name="newCreate" onSubmit={(e) => {

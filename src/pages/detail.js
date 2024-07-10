@@ -116,7 +116,7 @@ export default function Detail() {
         }).catch(error => console.error('Error:', error.message)).then(
             alert("저장되었습니다")
         );
-        window.location.replace(`/detail/${nowPost.detail_post}`);
+        navigate(`/detail/${nowPost.detail_post}`);
     }
 
     const deleteComment = (item) => {
@@ -139,7 +139,7 @@ export default function Detail() {
         }).catch(error => console.error('Error:', error.message)).then(
             alert("삭제되었습니다")
         );
-        window.location.replace(`/detail/${nowPost.detail_post}`);
+        navigate(`/detail/${nowPost.detail_post}`);
     }
 
     //임시 user id ( id_post : 88) 
