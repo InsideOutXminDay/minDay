@@ -1,5 +1,4 @@
-import { createContext, useState } from "react";
-
+export const user_id = 1;
 
 export const emotionList = [
     {
@@ -189,33 +188,38 @@ export const onListUpdate = (dispatch) => (id_ask, id_user, content, isdone) => 
     });
   };
 
-  export function Reducer(state, action) {
-switch (action.type) {
-    case "CREATEDiary": {
-        console.log("create", [action.data, ...state])
-        return [action.data, ...state];
+export function Reducer(state, action) {
+    switch (action.type) {
+        case "CREATEDiary": {
+            console.log("create", [action.data, ...state])
+            return [action.data, ...state];
+            }
+        case "UPDATEDiary": {
+            console.log("update", action.data)
+            return state.map((it) =>
+                String(it.id_diary) === String(action.data.id_diary) ? { ...action.data } : it
+            );
         }
-    case "UPDATEDiary": {
-        console.log("update", action.data)
-        return state.map((it) =>
-            String(it.id_diary) === String(action.data.id_diary) ? { ...action.data } : it
-        );
-    }
-    case "UPDATEList": {
-        console.log("list update", action.data)
-        return state.map((it) =>
-            String(it.id_ask) === String(action.data.id_ask) ? { ...action.data } : it
-        );
-    }
-    case "CREATEList": {
-        console.log("list create", [action.data, ...state])
-        return [action.data, ...state]
-    }
-    case "DELETE": {
-        return state.filter((it) => String(it.id) !== String(action.targetId));
-    }
-    default: {
-        return state;
+        case "UPDATEList": {
+            console.log("list update", action.data)
+            return state.map((it) =>
+                String(it.id_ask) === String(action.data.id_ask) ? { ...action.data } : it
+            );
+        }
+        case "CREATEList": {
+            console.log("list create", [action.data, ...state])
+            return [action.data, ...state]
+        }
+        case "DELETE": {
+            return state.filter((it) => String(it.id) !== String(action.targetId));
+        }
+        default: {
+            return state;
+        }
     }
 }
+
+
+export function FindData(datas){
+    return datas.filter(item => item.id_user === user_id);
 }
