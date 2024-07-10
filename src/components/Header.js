@@ -21,8 +21,7 @@ export default function Header(){
         alert("/recommend");
     }
     const goContents=()=>{
-        // navigate('/category'); // 페이지 작성 후 연결
-        alert("/category");
+         navigate('/contents');
     }
     const goSetting=()=>{
         navigate("/setting");

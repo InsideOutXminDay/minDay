@@ -40,11 +40,12 @@
 }
 
 
+
 .back-button1 {
   position: absolute;
-  margin-left: 100px;
+  margin-left: 330px;
   top: 25px;
-  right: 571px;
+  right: auto;
   background: none;
   border: none;
   font-size: 2em;
