@@ -26,7 +26,7 @@ export default function Detail() {
                 setPostDB([...res.data]);
             }).catch(error => console.error('Error:', error));
     }, [])
-    
+
     useEffect(() => {
         axios.get('http://localhost:3333/api/comment')
             .then((res) => {
@@ -42,9 +42,21 @@ export default function Detail() {
     }, [])
 
     for (let i = 0; i < commentDB.length; i++) {
-        if (Number(params.id)  === commentDB[i].id_post) {
-            myComment.push(
-            <p>{commentDB[i].body}</p>
+        if (Number(params.id) === commentDB[i].id_post) {
+            let commentX = null;
+            if (commentDB[i].id_user === 2) {
+                commentX = <button onClick={(e) => {
+                    e.preventDefault();
+                    let item = {
+                        id_post: Number(params.id),
+                        id_comment: commentDB[i].id_comment
+                    }
+                    deleteComment(item);
+                }}>X</button>;
+            }
+            myComment.push(<>
+                <p>{commentDB[i].body}</p>
+                {commentX}</>
             );
         }
     }
@@ -52,18 +64,18 @@ export default function Detail() {
     for (let t = 0; t < postDB.length; t++) {
         if (Number(params.id) === postDB[t].id_post) {
             nowPost = {
-                detail_post : postDB[t].id_post,
-                detail_user : postDB[t].id_user,
-                detail_title : postDB[t].title,
-                detail_body : postDB[t].body,
-                detail_anonymity : postDB[t].anonymity
+                detail_post: postDB[t].id_post,
+                detail_user: postDB[t].id_user,
+                detail_title: postDB[t].title,
+                detail_body: postDB[t].body,
+                detail_anonymity: postDB[t].anonymity
             }
         }
     }
-    
+
     //현재 로그인한 유저 값 필요
     for (let t = 0; t < userDB.length; t++) {
-        if ( 2 === userDB[t].id_user) {
+        if (2 === userDB[t].id_user) {
             userNickname = userDB[t].nickname
         }
     }
@@ -102,7 +114,30 @@ export default function Detail() {
             }
             return response.json();
         }).catch(error => console.error('Error:', error.message)).then(
-               alert("저장되었습니다")
+            alert("저장되었습니다")
+        );
+        window.location.replace(`/detail/${nowPost.detail_post}`);
+    }
+
+    const deleteComment = (item) => {
+        let id_post = item.id_post;
+        let id_comment = item.id_comment;
+        fetch('http://localhost:3333/api/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id_post: id_post,
+                id_comment: id_comment
+            })
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        }).catch(error => console.error('Error:', error.message)).then(
+            alert("삭제되었습니다")
         );
         window.location.replace(`/detail/${nowPost.detail_post}`);
     }
@@ -110,46 +145,47 @@ export default function Detail() {
     //임시 user id ( id_post : 88) 
     let userId = 2;
     return (
-            <div className="detail-page">
-                <div className="detail-bar">
-                    <NavLink to={backButton}><IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
-                    <div className="button-right">
-                        <span><input type="submit" value={userNickname} id="detail-submit"
-                            onClick={(e) => {
-                                e.preventDefault()
-                                
-                                if (nowPost.detail_user === userId) {
-                                    goToEdit(nowPost)
-                                }
-                            }} /></span>
-                    </div>
-                </div>
-                <div className="detail-title-bar"><p>
-                    {nowPost.detail_title}</p>
-                </div>
-                <div className="detail-textarea">
-                    <p>{nowPost.detail_body}</p>
-                </div>
-                <div>
-                    <div className="detail-comment-input">
-                        <div>
-                            <form className="detail-form" onSubmit={(e) => { e.preventDefault();
-                            let item = {
-                                id_post : nowPost.detail_post,
-                                // 임시 user id 값
-                                id_user : userId,
-                                body : e.target.body.value
+        <div className="detail-page">
+            <div className="detail-bar">
+                <NavLink to={backButton}><IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
+                <div className="button-right">
+                    <span><input type="submit" value={userNickname} id="detail-submit"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            if (nowPost.detail_user === userId) {
+                                goToEdit(nowPost)
                             }
-                                newSaveComment(item);
-                             }}>
-                                <p className="input-text"><input placeholder='댓글을 입력해주세요' name="body" />
-                                </p>
-                                <p className="button-right"><input id="detail-comment-submit" type="submit" value="댓글쓰기" /></p>
-                            </form>
-                        </div>
+                        }} /></span>
+                </div>
+            </div>
+            <div className="detail-title-bar"><p>
+                {nowPost.detail_title}</p>
+            </div>
+            <div className="detail-textarea">
+                <p>{nowPost.detail_body}</p>
+            </div>
+            <div>
+                <div className="detail-comment-input">
+                    <div>
+                        <form className="detail-form" onSubmit={(e) => {
+                            e.preventDefault();
+                            let item = {
+                                id_post: nowPost.detail_post,
+                                // 임시 user id 값
+                                id_user: userId,
+                                body: e.target.body.value
+                            }
+                            newSaveComment(item);
+                        }}>
+                            <p className="input-text"><input placeholder='댓글을 입력해주세요' name="body" />
+                            </p>
+                            <p className="button-right"><input id="detail-comment-submit" type="submit" value="댓글쓰기" /></p>
+                        </form>
                     </div>
                 </div>
-                {[...myComment].reverse().map((item) => <div className="detail-comment-bar">{item}</div>)}
             </div>
+            {[...myComment].reverse().map((item) => <div className="detail-comment-bar">{item}
+            </div>)}
+        </div>
     )
 }
