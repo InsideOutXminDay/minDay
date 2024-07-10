@@ -3,6 +3,7 @@ import Category from '../components/Category';
 import SubCategory from '../components/SubCategory';
 import ContentsView from '../components/ContentsView';
 import '../styles/Contents.css';
+import Header from '../components/Header';
 
 const categories = [
   { id: 1, name: '편안한 수면', image: 'img/contents_img/contents_sleep.jpg' },
@@ -45,31 +46,34 @@ const subCategories = [
   { id: 4, categoryId: 6, name: '나를 채찍질하지 않기', image: 'img/contents_img/subcontents/sad4_image.jpg', video: 'videos/meditation.mp4' },
 ];
 
-
 const Contents = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
 
   return (
-    
-    <div className="contents">
-      {!selectedCategory && (
-        <Category categories={categories} onSelectCategory={setSelectedCategory} />
-      )}
-      {selectedCategory && !selectedSubCategory && (
-        <SubCategory
-          category={selectedCategory}
-          subCategories={subCategories.filter(sub => sub.categoryId === selectedCategory.id)}
-          onBack={() => setSelectedCategory(null)}
-          onSelectSubCategory={setSelectedSubCategory}
-        />
-      )}
-      {selectedSubCategory && (
-        <ContentsView
-          subCategory={selectedSubCategory}
-          onBack={() => setSelectedSubCategory(null)}
-        />
-      )}
+
+      <div style={{ display: "flex" }}>
+        <Header />
+
+      <div className="contents">
+        {!selectedCategory && (
+          <Category categories={categories} onSelectCategory={setSelectedCategory} />
+        )}
+        {selectedCategory && !selectedSubCategory && (
+          <SubCategory
+            category={selectedCategory}
+            subCategories={subCategories.filter(sub => sub.categoryId === selectedCategory.id)}
+            onBack={() => setSelectedCategory(null)}
+            onSelectSubCategory={setSelectedSubCategory}
+          />
+        )}
+        {selectedSubCategory && (
+          <ContentsView
+            subCategory={selectedSubCategory}
+            onBack={() => setSelectedSubCategory(null)}
+          />
+        )}
+      </div>
     </div>
   );
 };
