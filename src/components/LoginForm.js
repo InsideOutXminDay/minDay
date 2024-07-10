@@ -8,7 +8,7 @@ export default function LoginForm() {
   //아이디, 비밀번호 관리(식별 id는 서버에서)
   const [user, setUser] = useState([]);
   //로그인 정보 관리
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState([]);
 
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
@@ -16,8 +16,11 @@ export default function LoginForm() {
   const navigate = useNavigate();
 
   const getData = async () => {
-    const response = await axios.get('http://localhost:4000/api/login');
+    const response = await axios.get('http://localhost:4000/api/users');
     setUser(response.data);
+
+    const loggedInUser = await axios.get('http://localhost:4000/api/login');
+    setLogin(loggedInUser.data);
   };
 
   useEffect(() => {
@@ -40,6 +43,11 @@ export default function LoginForm() {
     navigate('/home');
   };
 
+  // const handleLogOut = async () => {
+  //   await axios.get('http://localhost:4000/api/logout');
+  //   //navigate('/');
+  // };
+
   const changeIdHandler = (e) => {
     setId(e.target.value);
   };
@@ -51,30 +59,37 @@ export default function LoginForm() {
     <>
       <article className="login-form">
         <img src="/img/logo_full.png"></img>
-        <h1>Log In</h1>
-        <form className="form" onSubmit={submitHandler}>
-          <div className="id-input">
-            <label htmlFor="id">ID</label>
-            <input
-              id="id"
-              type="text"
-              name="id"
-              value={id}
-              onChange={changeIdHandler}
-            ></input>
+        {login.length >= 1 ? (
+          <button>로그아웃</button>
+        ) : (
+          <div>
+            <h1>Log In</h1>
+            <form className="form" onSubmit={submitHandler}>
+              <div className="id-input">
+                <label htmlFor="id">ID</label>
+                <input
+                  id="id"
+                  type="text"
+                  name="id"
+                  value={id}
+                  onChange={changeIdHandler}
+                ></input>
+              </div>
+              <div className="pw-input">
+                <label htmlFor="pw">PW</label>
+                <input
+                  id="pw"
+                  type="password"
+                  name="pw"
+                  value={pw}
+                  onChange={changePwHandler}
+                ></input>
+              </div>
+              <button className="login-btn">Log in</button>
+            </form>
           </div>
-          <div className="pw-input">
-            <label htmlFor="pw">PW</label>
-            <input
-              id="pw"
-              type="password"
-              name="pw"
-              value={pw}
-              onChange={changePwHandler}
-            ></input>
-          </div>
-          <button className="login-btn">Log in</button>
-        </form>
+        )}
+
         <div className="btns">
           <button className="kakao-btn">
             Kakao Login
@@ -87,12 +102,16 @@ export default function LoginForm() {
         <h3>userInfo의 간이 데이터입니다.</h3>
         <p>아이디-비밀번호입니다. 맞게 입력하면 홈페이지로이동합니다.</p>
         <p>
-          비밀번호를 틀리거나, 아예 다른 아이디를 입력하면 403에러가 뜹니다.
+          비밀번호를 틀리거나, 아예 다른 아이디를 입력하면 400에러가 뜹니다.
         </p>
         {user.map((user) => (
           <p key={user.id}>
             {user.userId}-{user.pw}
           </p>
+        ))}
+        <p>로그인한 사용자</p>
+        {login.map((user) => (
+          <p key={user.id}>{user.userId}</p>
         ))}
       </div>
     </>
