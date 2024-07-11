@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const port = 4000; //proxy도 4000으로 해둠
 // db 
-const mydb = require('./back.combine.db.js');
+const mydb = require('./db.js');
 
 app.use(cors({
     origin: 'http://localhost:3000',
