@@ -65,7 +65,7 @@ const SettingAccount = () => {
           newPassword
         };
 
-        const response = await axios.put('/user', requestData);
+        await axios.put('/user', requestData);
         setNotification('저장되었습니다.');
         setTimeout(() => setNotification(''), 3000);
       } catch (error) {
