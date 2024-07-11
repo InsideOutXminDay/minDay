@@ -95,6 +95,18 @@ app.post("/api/edit", (req, res) => {
     });
 });
 
+app.post("/api/delete", (req, res) => {
+  const { id_post, id_comment } = req.body;
+  const q = "delete from comment where id_post = ? && id_comment = ?;"
+  mydb.query(q
+    , [ id_post, id_comment ], (error, results) => {
+      if (error) {
+        return res.status(500).send("쿼리 실행 실패: " + error.message);
+      }
+      res.json(results);
+    });
+});
+
 
 app.listen(3333, () => {
   console.log(`DB Server running`)
