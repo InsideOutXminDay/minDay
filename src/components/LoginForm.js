@@ -34,13 +34,25 @@ export default function LoginForm() {
 
     console.log(userId, pw);
 
-    await axios.post('http://localhost:4000/api/login', { userId, pw });
-    getData();
+    try {
+      const response = await axios.post('http://localhost:4000/api/login', {
+        userId,
+        pw,
+      });
+      getData();
+      if (response.status === 200) {
+        navigate('/home');
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        alert('비밀번호를 다시 확인해주세요.');
+      } else {
+        alert('가입되지 않은 회원입니다.');
+      }
+    }
 
     setId('');
     setPw('');
-
-    navigate('/home');
   };
 
   // const handleLogOut = async () => {
