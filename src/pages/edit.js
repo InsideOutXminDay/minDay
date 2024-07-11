@@ -31,7 +31,7 @@ export default function Edit() {
         let id_post = item.id_post;
         let title = item.title;
         let body = item.body;
-        fetch('http://localhost:3333/api/edit', {
+        fetch('http://localhost:4000/api/edit', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
