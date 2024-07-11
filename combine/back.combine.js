@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const port = 4000; //proxy도 4000으로 해둠
 // db 
-const mydb = require('back.combine.db.js');
+const mydb = require('./back.combine.db.js');
 
 app.use(cors({
     origin: 'http://localhost:3000',
@@ -29,8 +29,7 @@ app.use(
 );
 
 // setting feat
-const userDataPath = path.join(__dirname, 'userData.json');
-
+const userDataPath = path.join(__dirname, '../settingserver/userdata.json');
 
 //////////////////////////// login feat ////////////////////////////////
 const loggedInUser = [];
@@ -129,7 +128,7 @@ app.get('/user', (req, res) => {
 });
 
 app.put('/user', (req, res) => {
-    const { id, nickname, email, password } = req.body;
+    const { id, nickname, email, currentPassword, newPassword } = req.body;
 
     fs.readFile(userDataPath, 'utf8', (err, data) => {
         if (err) {
@@ -144,7 +143,7 @@ app.put('/user', (req, res) => {
         userData.id = id;
         userData.nickname = nickname;
         userData.email = email;
-        userData.password = password;
+        userData.password = newPassword;
 
         fs.writeFile(userDataPath, JSON.stringify(userData, null, 2), (err) => {
             if (err) {
