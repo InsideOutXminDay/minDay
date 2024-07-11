@@ -11,7 +11,7 @@ export default function Mind() {
     let myDB = [];
 
     useEffect(() => {
-        axios.get('http://localhost:3333/api/post')
+        axios.get('http://localhost:4000/api/post')
             .then((res) => {
             // console.log(res.data);
             setPostdb([...res.data]); }

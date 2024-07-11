@@ -21,21 +21,21 @@ export default function Detail() {
     let nowPost = {};
 
     useEffect(() => {
-        axios.get('http://localhost:3333/api/post')
+        axios.get('http://localhost:4000/api/post')
             .then((res) => {
                 setPostDB([...res.data]);
             }).catch(error => console.error('Error:', error));
     }, [])
 
     useEffect(() => {
-        axios.get('http://localhost:3333/api/comment')
+        axios.get('http://localhost:4000/api/comment')
             .then((res) => {
                 setCommentDB([...res.data]);
             }).catch(error => console.error('Error:', error));
     }, [])
 
     useEffect(() => {
-        axios.get('http://localhost:3333/api/user')
+        axios.get('http://localhost:4000/api/postuser')
             .then((res) => {
                 setUserDB([...res.data]);
             }).catch(error => console.error('Error:', error));
@@ -97,7 +97,7 @@ export default function Detail() {
         let body = item.body;
         let id_user = 2;
         let id_post = nowPost.detail_post;
-        fetch('http://localhost:3333/api/comment', {
+        fetch('http://localhost:4000/api/comment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -122,7 +122,7 @@ export default function Detail() {
     const deleteComment = (item) => {
         let id_post = item.id_post;
         let id_comment = item.id_comment;
-        fetch('http://localhost:3333/api/delete', {
+        fetch('http://localhost:4000/api/delete', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
