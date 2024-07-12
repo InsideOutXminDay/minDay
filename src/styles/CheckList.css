@@ -1,7 +1,11 @@
 .CheckList {
-    float:right;
-    width: 75%;
-    margin-bottom: 30px;
+    /* float:right; */
+    /* margin-bottom: 30px; */
+    border-radius: 20px;
+    margin: 15px 15px 15px 0px;
+    border: 3px solid #7DCCAC;
+    padding: 50px 50px 70px 50px;
+    width: 87%;
 }
 .list-wrapper{
     margin-top: 20px;

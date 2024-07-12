@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import { DiaryStateContext } from "../App";
 
 import { FindData } from "../util";
+import Paragraph from "../components/Paragraph";
 
 export default function Home(){
     const {data_l} = useContext(DiaryStateContext);
@@ -20,7 +21,11 @@ export default function Home(){
         <div style={{display:"flex"}}>
             <Header/>
             <CalendarComponent/>
-            <CheckList initData={initData}/>
+            <div style={{width:"70%"}}>
+                <Paragraph />
+                <CheckList initData={initData}/>
+            </div>
+            
         </div>
     )
 }
