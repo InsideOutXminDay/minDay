@@ -49,11 +49,24 @@
     height: 530px;
 }
 
+.edit-textarea ::-webkit-scrollbar{
+    border-radius: 30px;
+    width: 8px;
+    background-color: #F3F3F3;
+}
+
+.edit-textarea ::-webkit-scrollbar-thumb {
+    border-radius: 15px;
+    width: 8px;
+    background-color: #7DCCAC ;
+}
+
 .edit-textarea {
     display: grid;
     border: 5px solid #B9ED90;
     border-radius: 18px;
     margin:0% 5% 5% 110px;
+    padding-right: 10px;
     height: 600px;
     box-sizing: border-box;
     background-clip: padding-box; 

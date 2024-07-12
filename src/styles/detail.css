@@ -60,6 +60,14 @@
     background-clip: padding-box;
 }
 
+.detail-textarea ::-webkit-scrollbar{
+    display: none;
+}
+
+.detail-textarea p {
+    scrollbar-width : none;
+}
+ 
 #detail-submit {
     background-color: #B9ED90;
     border: none;
