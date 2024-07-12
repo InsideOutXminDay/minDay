@@ -182,6 +182,7 @@ app.get("/api/mind", (req, res) => {
         }
         res.json(results);
     });
+});
 
 app.get('/api/comment', (req, res) => {
   mydb.query('SELECT * from comment', (error, results) => {
