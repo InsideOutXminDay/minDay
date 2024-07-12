@@ -94,11 +94,12 @@ export default function Detail() {
     }
 
     const newSaveComment = (item) => {
-        // 임시 id_user
+        
         let body = item.body;
 
         let _item = {
             body: item.body,
+            // 임시 id_user
             id_user: 2,
             id_post: nowPost.detail_post
         }
@@ -109,7 +110,6 @@ export default function Detail() {
             newSaveCommentFunc(_item);
         }
     }
-
 
     const newSaveCommentFunc = (item) => {
 

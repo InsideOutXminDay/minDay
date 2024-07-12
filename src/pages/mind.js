@@ -11,9 +11,8 @@ export default function Mind() {
     let myDB = [];
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/post')
+        axios.get('http://localhost:4000/api/mind')
             .then((res) => {
-            // console.log(res.data);
             setPostdb([...res.data]); }
         ).catch(error => console.error('Error:', error));
 }, [])
@@ -57,7 +56,7 @@ export default function Mind() {
     
     return (
         <div className="post-page">
-            {myDB[0]}
+            {myDB.slice(-1)}
             <div className="guide-card">
                 <h3>고민 커뮤니티</h3>
                 <p>익명으로 서로의 고민을 나눠보며 숨은 위로와 힐링을 받아보세요!</p>
@@ -66,7 +65,7 @@ export default function Mind() {
                     <FaRegPenToSquare id="post-create-icon">작성</FaRegPenToSquare>
                 </NavLink></button>
             </div>
-            {myDB.slice(1)}
+            {myDB.slice(0,(myDB.length-1)).reverse()}
         </div>
     )
 }

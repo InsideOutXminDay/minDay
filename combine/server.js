@@ -157,9 +157,17 @@ app.put('/user', (req, res) => {
 //////////////////////////// community feat ////////////////////////////////
 
 
-
 app.get("/api/post", (req, res) => {
-    mydb.query("SELECT * from post", (error, results) => {
+    mydb.query("SELECT * from post where anonymity = 0", (error, results) => {
+        if (error) {
+            return res.send("쿼리 실행 실패: " + error.message);
+        }
+        res.json(results);
+    });
+});
+
+app.get("/api/mind", (req, res) => {
+    mydb.query("SELECT * from post where anonymity = 1", (error, results) => {
         if (error) {
             return res.send("쿼리 실행 실패: " + error.message);
         }
@@ -207,7 +215,7 @@ app.post("/api/comment", (req, res) => {
                 return res.status(500).send("쿼리 실행 실패: " + error.message);
             }
             res.json(results);
-        });
+        });   
 });
 
 app.post("/api/edit", (req, res) => {

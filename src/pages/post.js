@@ -59,7 +59,7 @@ export default function Post() {
 
     return (
         <div className="post-page">
-            {myDB[0]}
+            {myDB.slice(-1)}
             <div className="guide-card">
                 <h3>일반 커뮤니티</h3>
                 <p>서로의 멘탈 관리에 도움이 될 수 있도록 이야기를 공유해 보세요!</p>
@@ -68,7 +68,7 @@ export default function Post() {
                     <FaRegPenToSquare id="post-create-icon">작성</FaRegPenToSquare>
                 </NavLink></button>
             </div>
-            {myDB.slice(1)}
+            {myDB.slice(0,(myDB.length-1)).reverse()}
         </div>
     )
 }
