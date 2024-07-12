@@ -42,17 +42,15 @@ export default function Post() {
         let p = postdb[i];
         if (p.anonymity == 0) {
             myDB.push(
-                <NavLink to={"/detail/" + p.id_post}
-                    key={p.id_post}
-                    onClick={(e) => {
-                        e.preventDefault()
-                        goTodetail(p)
-                    }}>
-                    <div className="post-card">
+                <div className="post-card" key={p.id_post}>
+                    <NavLink to={"/detail/" + p.id_post}
+                        onClick={(e) => {
+                            e.preventDefault(); goTodetail(p);
+                        }}>
                         <h2>{p.title}</h2>
                         <p>{p.body}</p>
-                    </div>
-                </NavLink>
+                    </NavLink>
+                </div>
             );
         } else { continue }
     }
@@ -68,7 +66,7 @@ export default function Post() {
                     <FaRegPenToSquare id="post-create-icon">작성</FaRegPenToSquare>
                 </NavLink></button>
             </div>
-            {myDB.slice(0,(myDB.length-1)).reverse()}
+            {myDB.slice(0, (myDB.length - 1)).reverse()}
         </div>
     )
 }

@@ -37,9 +37,9 @@
 
 .detail-textarea p {
     margin: 10px 40px 0 0;
-    padding: 23px 23px 27px 23px;
+    padding: 23px 0px 27px 23px;
     display: flex;
-    width: 97%;
+    width: 95%;
     border: none;
     border-radius: 18px;
     outline: none;
@@ -66,6 +66,8 @@
 
 .detail-textarea p {
     scrollbar-width : none;
+    overflow-wrap: break-word;
+    word-break: keep-all;
 }
  
 #detail-submit {

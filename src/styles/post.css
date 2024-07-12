@@ -16,9 +16,16 @@
     box-sizing: border-box;
     background-clip: padding-box;    
 }
+
 .post-card:hover{
     cursor: pointer;
 }
+
+.post-card p {
+    overflow-wrap: break-word;
+    word-break: keep-all; 
+}
+
 .guide-card{
     width: 500px;
     max-height: 230px;
@@ -45,6 +52,7 @@
 .post-page a{
     text-decoration: none;
     color: black;
+    margin: -20px;
 }
 #post-create-icon{
     width: 45px;
