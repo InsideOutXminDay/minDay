@@ -7,9 +7,7 @@
   color: white;
   width: 100%;
 
-  padding: 2.6em 0px;
-
-  box-sizing: border-box;
+  padding: 2.6em 0;
 
   display: flex;
   flex-direction: column;
@@ -18,14 +16,17 @@
 }
 .community-title h1 {
   font-weight: 700;
-  font-size: 3em;
+  font-size: 2.5vw;
   margin-bottom: 1em;
+}
+.community-title span {
+  font-size: 1.2vw;
 }
 .community-content {
   display: flex;
   justify-content: center;
-  margin: 4em 2em;
-  box-sizing: border-box;
+  width: 100%;
+  margin-top: 4em;
 }
 .community-content section {
   display: flex;
@@ -34,17 +35,39 @@
 }
 .community-content section span {
   font-weight: 700;
-  font-size: 3.5em;
+  font-size: 2.5vw;
   margin-bottom: 0.3em;
 }
 .community-content section span:nth-child(2) {
-  margin-bottom: 1em;
+  margin-bottom: 1.1em;
 }
 .community-content section p {
-  margin-bottom: 0.3em;
+  font-size: 0.9vw;
+  margin-bottom: 0.2em;
 }
 .community-content img {
   width: 50%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+}
+@media (max-width: 1050px) {
+  .intro-community {
+    margin-bottom: 10rem;
+  }
+  .community-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .community-content img {
+    order: 1;
+    width: 60%;
+  }
+  .community-content section {
+    order: 2;
+    width: 80%;
+    align-items: center;
+  }
+  .community-content section p {
+    font-size: 1.5vw;
+  }
 }

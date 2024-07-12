@@ -2,7 +2,7 @@ import '../styles/IntroDiary.css';
 export default function IntroDiary() {
   return (
     <article className="intro-diary">
-      <div className="diary-title">
+      <div id="diary-part" className="diary-title">
         <h1>하루 한 번, 기록이 주는 변화</h1>
         <span>하루 한 줄 기록으로부터 시작하세요</span>
       </div>

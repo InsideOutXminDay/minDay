@@ -1,4 +1,9 @@
 .intro-header {
+  position: fixed;
+  top: 0;
+  z-index: 5;
+
+  width: 80%;
   height: 13rem;
 
   display: flex;
@@ -6,9 +11,13 @@
   align-items: center;
 
   box-sizing: border-box;
-  padding: 1em;
 
-  position: sticky;
+  background-color: white;
+}
+.intro-header img {
+  width: 30%;
+  height: 100%;
+  object-fit: contain;
 }
 .intro-header button {
   background-color: white;
@@ -31,6 +40,5 @@
   width: 5em;
   height: 3em;
   cursor: pointer;
-
   color: white;
 }

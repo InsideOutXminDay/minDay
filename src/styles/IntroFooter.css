@@ -10,13 +10,15 @@
 .intro-footer img {
   width: 10%;
   height: 10%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .footer-text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0 1em;
+
+  font-size: 1vw;
 }
 .footer-text span {
   margin-bottom: 0.3em;
@@ -24,4 +26,14 @@
 }
 .footer-text span:nth-child(5) {
   margin-bottom: 1.5em;
+}
+@media (max-width: 1050px) {
+  .intro-footer img {
+    width: 20%;
+    height: 20%;
+    object-fit: contain;
+  }
+  .footer-text {
+    font-size: 1.1vw;
+  }
 }

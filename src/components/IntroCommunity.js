@@ -2,7 +2,7 @@ import '../styles/IntroCommunity.css';
 export default function IntroCommunity() {
   return (
     <article className="intro-community">
-      <div className="community-title">
+      <div id="commu-part" className="community-title">
         <h1>함께 나눈다는 것</h1>
         <span>함께 나눌수록 더 좋아요</span>
       </div>
