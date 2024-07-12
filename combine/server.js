@@ -228,6 +228,16 @@ app.post('/api/delete', (req, res) => {
   });
 });
 
+//////////////////////////// paragraph feat ////////////////////////////////
+app.get('/api/paragraph', (req, res) => {
+  mydb.query('SELECT * from paragraph', (error, results) => {
+    if (error) {
+      return res.send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
+});
+
 //////////////////////////// foot ////////////////////////////////
 
 //http://localhost/:4000 에서 확인
