@@ -39,13 +39,15 @@ export default function Mind() {
         let p = postdb[i];
         if (p.anonymity == 1) {
             myDB.push(
-                <NavLink to={"/detail/" + p.id_post}
-                    onClick={(e) => {
-                        e.preventDefault(); goTodetail(p);  }}>
-                    <div className="post-card" key={p.id_post}>
+                <div className="post-card" key={p.id_post}>
+                    <NavLink to={"/detail/" + p.id_post}
+                        onClick={(e) => {
+                            e.preventDefault(); goTodetail(p);
+                        }}>
                         <h2>{p.title}</h2>
                         <p>{p.body}</p>
-                    </div></NavLink>
+                    </NavLink>
+                </div>
             );
         }
         else { continue }
