@@ -73,25 +73,29 @@ export default function CalendarComponent(){
                 formatDay={(locale, date) => moment(date).format('D')}
                 tileContent={tileContent}
                 showNeighboringMonth={false}
-                onViewChange={()=>setView(false)}
+                onViewChange={({ view }) => view==='month'?setView(true):setView(false)}
             />
           </div>
           
-          {
-            !Isview?null
-            :(nowDiary?
-              <>
-                <div className='emotion-section'>
-                  <img style={{width:"60px"}} src={`/emotion${nowDiary.id_emotion}.png`} />
-                </div>
-                <div className='diary-section'>
-                  <p>{nowDiary.contents}</p>
-                </div>
-              </>:null)
-          }
+          {Isview && (
+        <>
+          {nowDiary ? (
+            <>
+              <div className='emotion-section'>
+                <img style={{ width: "60px" }} src={`/emotion${nowDiary.id_emotion}.png`} alt="Emotion" />
+              </div>
+              <div className='diary-section'>
+                <p>{nowDiary.contents.slice(0,20)}</p>
+              </div>
+            </>
+          ) : null}
           <div className='edit-section'>
-            <button onClick={onClickUpdate}><IoPencilOutline size={35} color='#fffafd'/></button>
+            <button onClick={onClickUpdate}>
+              <IoPencilOutline size={35} color='#fffafd' />
+            </button>
           </div>
+        </>
+      )}
             
       </div>
   )
