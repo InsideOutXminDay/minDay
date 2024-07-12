@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import '../styles/detail.css';
 import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import { IoCaretBackOutline } from "react-icons/io5";
+import { LuDelete } from "react-icons/lu";
 import axios from 'axios';
 
 
@@ -52,7 +53,7 @@ export default function Detail() {
                         id_comment: commentDB[i].id_comment
                     }
                     deleteComment(item);
-                }}>X</button>;
+                }}><LuDelete height="20px"/></button>;
             }
             myComment.push(<>
                 <p>{commentDB[i].body}</p>
