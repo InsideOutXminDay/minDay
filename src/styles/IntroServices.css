@@ -3,37 +3,42 @@
 
   display: flex;
   flex-direction: column;
-  margin-top: 100px;
-  margin-bottom: 200px;
+  margin-top: 6em;
+  margin-bottom: 12em;
 }
 .intro-services h1 {
-  font-size: 3.5em;
+  font-size: 3.2vw;
   font-weight: 700;
-  margin-bottom: 100px;
+  margin-bottom: 3em;
   text-align: center;
 }
+.intro-services h1 {
+  font-size: 2vw;
+}
 .intro-services p {
+  font-size: 1.2vw;
   font-weight: 400;
-  margin: 10px;
+  margin: 0.1em 0.2em;
 }
 .services {
   display: flex;
-  justify-content: center;
-  gap: 50px 60px;
-  margin-bottom: 100px;
   flex-wrap: wrap;
-  font-size: 1.5em;
+  row-gap: 2em;
+  width: 100%;
+  margin: auto;
+  padding: 1em 1em;
 }
 .circle {
   border-radius: 50%;
-  width: 200px;
-  height: 200px;
+  width: 11em;
+  height: 11em;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .diary {
-  width: 40%;
+  width: 45%;
+  margin: auto;
 
   display: flex;
   flex-direction: column;
@@ -43,7 +48,8 @@
   background-color: #7dccac;
 }
 .checklist {
-  width: 40%;
+  margin: auto;
+  width: 45%;
 
   display: flex;
   flex-direction: column;
@@ -53,7 +59,8 @@
   background-color: #b9ed90;
 }
 .community {
-  width: 40%;
+  margin: auto;
+  width: 45%;
 
   display: flex;
   flex-direction: column;
@@ -62,13 +69,42 @@
 .community .circle {
   background-color: #e7f998;
 }
-.contents {
-  width: 40%;
+.contents-box {
+  margin: auto;
+  width: 45%;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0;
 }
-.contents .circle {
+.contents-box .circle {
   background-color: #f1fcbe;
+}
+
+@media (max-width: 970px) {
+  .services {
+    display: block;
+  }
+  .intro-services p {
+    font-size: 2vw;
+    font-weight: 400;
+    margin: 0.1em 0.2em;
+  }
+  .diary {
+    width: 90%;
+    margin-bottom: 3em;
+  }
+  .checklist {
+    width: 90%;
+    margin-bottom: 3em;
+  }
+  .community {
+    width: 90%;
+    margin-bottom: 3em;
+  }
+  .contents-box {
+    width: 90%;
+    margin-bottom: 3em;
+  }
 }

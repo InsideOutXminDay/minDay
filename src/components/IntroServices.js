@@ -21,7 +21,7 @@ export default function IntroServices() {
             <FaCheck size="120" />
           </div>
           <h2>데일리 체크리스트</h2>
-          <p>간단한 설문을 통해 오늘 하루를 어떻게 보내면 좋을지 알려드려요!</p>
+          <p>간단한 설문으로 오늘 하루를 어떻게 보내면 좋을지 알려드려요!</p>
           <p>체크할 때마다 뿌듯함까지 2배!</p>
         </section>
         <section className="community">
@@ -32,7 +32,7 @@ export default function IntroServices() {
           <p>일상 게시판에서 서로의 힐링 방법을 공유해보아요!</p>
           <p>고민 게시판은 익명으로 운영되니 솔직하게 털어놓아보세요!</p>
         </section>
-        <section className="contents">
+        <section className="contents-box">
           <div className="circle">
             <MdOutlineOndemandVideo size="120" />
           </div>

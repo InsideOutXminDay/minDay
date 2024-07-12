@@ -1,6 +1,5 @@
 .intro-checklist {
   margin-bottom: 20rem;
-
   font-family: 'Pretendard-Regular';
 }
 .checklist-title {
@@ -8,9 +7,7 @@
   color: #3c3b3b;
   width: 100%;
 
-  padding: 2.6em 0px;
-
-  box-sizing: border-box;
+  padding: 2.6em 0;
 
   display: flex;
   flex-direction: column;
@@ -19,18 +16,19 @@
 }
 .checklist-title h1 {
   font-weight: 700;
-  font-size: 3em;
+  font-size: 2.5vw;
   margin-bottom: 1em;
 }
 .checklist-title span {
   display: block;
   margin-bottom: 0.2em;
+  font-size: 1.2vw;
 }
 .check-content {
   display: flex;
   justify-content: center;
-  margin: 4em 2em;
-  box-sizing: border-box;
+  width: 100%;
+  margin-top: 4em;
 }
 .check-content section {
   display: flex;
@@ -39,14 +37,34 @@
 }
 .check-content section span {
   font-weight: 700;
-  font-size: 3.2em;
-  margin-bottom: 1em;
+  font-size: 2.5vw;
+  margin-bottom: 0.3em;
 }
 .check-content section p {
+  font-size: 0.9vw;
   margin-bottom: 0.2em;
 }
 .check-content img {
   width: 50%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+}
+@media (max-width: 1050px) {
+  .intro-checklist {
+    margin-bottom: 10rem;
+  }
+  .check-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .check-content img {
+    width: 60%;
+  }
+  .check-content section {
+    width: 80%;
+    align-items: center;
+  }
+  .check-content section p {
+    font-size: 1.5vw;
+  }
 }
