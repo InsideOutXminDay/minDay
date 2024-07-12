@@ -53,7 +53,7 @@ export default function Detail() {
                         id_comment: commentDB[i].id_comment
                     }
                     deleteComment(item);
-                }}><LuDelete height="20px"/></button>;
+                }}><LuDelete height="20px" /></button>;
             }
             myComment.push(<>
                 <p>{commentDB[i].body}</p>
@@ -95,6 +95,24 @@ export default function Detail() {
 
     const newSaveComment = (item) => {
         // 임시 id_user
+        let body = item.body;
+
+        let _item = {
+            body: item.body,
+            id_user: 2,
+            id_post: nowPost.detail_post
+        }
+        if (body == '') {
+            alert("입력 내용을 확인하세요");
+        }
+        else {
+            newSaveCommentFunc(_item);
+        }
+    }
+
+
+    const newSaveCommentFunc = (item) => {
+
         let body = item.body;
         let id_user = 2;
         let id_post = nowPost.detail_post;
@@ -140,7 +158,8 @@ export default function Detail() {
         }).catch(error => console.error('Error:', error.message)).then(
             alert("삭제되었습니다")
         );
-        navigate(`/detail/${nowPost.detail_post}`);
+        // navigate(`/detail/${nowPost.detail_post}`);
+        window.location.replace(`/detail/${nowPost.detail_post}`);
     }
 
     //임시 user id ( id_post : 88) 
