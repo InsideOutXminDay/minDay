@@ -7,14 +7,19 @@ import IntroFooter from '../components/IntroFooter';
 import IntroHeader from '../components/IntroHeader';
 import IntroMain from '../components/IntroMain';
 import IntroServices from '../components/IntroServices';
+import { FaArrowUp } from 'react-icons/fa';
 //css
 import '../styles/Intro.css';
 
 export default function Intro() {
   return (
-    <div className="intro">
+    <div id="intro" className="intro">
       <IntroHeader />
       <main>
+        <a href="#intro" class="top-btn">
+          <span>위로</span>
+          <FaArrowUp />
+        </a>
         <IntroMain />
         <IntroServices />
         <IntroDiary />

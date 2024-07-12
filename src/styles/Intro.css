@@ -11,3 +11,31 @@
   margin: auto;
   position: relative;
 }
+.top-btn {
+  position: fixed;
+  right: 30px;
+  bottom: 50px;
+  font-size: 2vw;
+  font-family: 'Pretendard-Regular';
+  font-weight: 500;
+
+  border-style: none;
+  border-radius: 20px;
+  padding: 10px 10px;
+
+  background-color: #7dccac;
+  color: white;
+
+  display: flex;
+  align-items: center;
+
+  text-decoration: none;
+}
+.top-btn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.top-btn span {
+  margin-right: 3px;
+  font-size: 1.7vw;
+}
