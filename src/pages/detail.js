@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import '../styles/detail.css';
 import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import { IoCaretBackOutline } from "react-icons/io5";
+import { LuDelete } from "react-icons/lu";
 import axios from 'axios';
 
 
@@ -21,11 +22,11 @@ export default function Detail() {
     let nowPost = {};
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/post')
+        axios.get('http://localhost:4000/api/postAll')
             .then((res) => {
                 setPostDB([...res.data]);
             }).catch(error => console.error('Error:', error));
-    }, [])
+    })
 
     useEffect(() => {
         axios.get('http://localhost:4000/api/comment')
@@ -52,7 +53,7 @@ export default function Detail() {
                         id_comment: commentDB[i].id_comment
                     }
                     deleteComment(item);
-                }}>X</button>;
+                }}><LuDelete height="20px" /></button>;
             }
             myComment.push(<>
                 <p>{commentDB[i].body}</p>
@@ -93,7 +94,25 @@ export default function Detail() {
     }
 
     const newSaveComment = (item) => {
-        // 임시 id_user
+        
+        let body = item.body;
+
+        let _item = {
+            body: item.body,
+            // 임시 id_user
+            id_user: 2,
+            id_post: nowPost.detail_post
+        }
+        if (body == '') {
+            alert("입력 내용을 확인하세요");
+        }
+        else {
+            newSaveCommentFunc(_item);
+        }
+    }
+
+    const newSaveCommentFunc = (item) => {
+
         let body = item.body;
         let id_user = 2;
         let id_post = nowPost.detail_post;
@@ -139,7 +158,8 @@ export default function Detail() {
         }).catch(error => console.error('Error:', error.message)).then(
             alert("삭제되었습니다")
         );
-        navigate(`/detail/${nowPost.detail_post}`);
+        // navigate(`/detail/${nowPost.detail_post}`);
+        window.location.replace(`/detail/${nowPost.detail_post}`);
     }
 
     //임시 user id ( id_post : 88) 

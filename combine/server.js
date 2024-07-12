@@ -155,14 +155,31 @@ app.put('/user', (req, res) => {
 
 //////////////////////////// community feat ////////////////////////////////
 
-app.get('/api/post', (req, res) => {
-  mydb.query('SELECT * from post', (error, results) => {
-    if (error) {
-      return res.send('쿼리 실행 실패: ' + error.message);
-    }
-    res.json(results);
-  });
+app.get("/api/postAll", (req, res) => {
+    mydb.query("SELECT * from post", (error, results) => {
+        if (error) {
+            return res.send("쿼리 실행 실패: " + error.message);
+        }
+        res.json(results);
+    });
 });
+
+app.get("/api/post", (req, res) => {
+    mydb.query("SELECT * from post where anonymity = 0", (error, results) => {
+        if (error) {
+            return res.send("쿼리 실행 실패: " + error.message);
+        }
+        res.json(results);
+    });
+});
+
+app.get("/api/mind", (req, res) => {
+    mydb.query("SELECT * from post where anonymity = 1", (error, results) => {
+        if (error) {
+            return res.send("쿼리 실행 실패: " + error.message);
+        }
+        res.json(results);
+    });
 
 app.get('/api/comment', (req, res) => {
   mydb.query('SELECT * from comment', (error, results) => {
@@ -217,15 +234,16 @@ app.post('/api/edit', (req, res) => {
   });
 });
 
-app.post('/api/delete', (req, res) => {
-  const { id_post, id_comment } = req.body;
-  const q = 'delete from comment where id_post = ? && id_comment = ?;';
-  mydb.query(q, [id_post, id_comment], (error, results) => {
-    if (error) {
-      return res.status(500).send('쿼리 실행 실패: ' + error.message);
-    }
-    res.json(results);
-  });
+app.post("/api/delete", (req, res) => {
+    const { id_post, id_comment } = req.body;
+    const q = "delete from comment where id_post = ? && id_comment = ?;"
+    mydb.query(q
+        , [id_post, id_comment], (error, results) => {
+            if (error) {
+                return res.status(500).send("쿼리 실행 실패: " + error.message);
+            }
+            res.json(results);
+        });
 });
 
 //////////////////////////// paragraph feat ////////////////////////////////

@@ -37,9 +37,9 @@
 
 .detail-textarea p {
     margin: 10px 40px 0 0;
-    padding: 23px 23px 27px 23px;
+    padding: 23px 0px 27px 23px;
     display: flex;
-    width: 97%;
+    width: 95%;
     border: none;
     border-radius: 18px;
     outline: none;
@@ -60,6 +60,16 @@
     background-clip: padding-box;
 }
 
+.detail-textarea ::-webkit-scrollbar{
+    display: none;
+}
+
+.detail-textarea p {
+    scrollbar-width : none;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+}
+ 
 #detail-submit {
     background-color: #B9ED90;
     border: none;
@@ -132,3 +142,14 @@
     background-color: #7DCCAC;
     cursor: pointer;
 }
+
+.detail-comment-bar button{
+    cursor: pointer;
+    background-color: #B9ED90;
+    border: 3px solid #B9ED90;
+    border-radius: 20px;
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+}
+
