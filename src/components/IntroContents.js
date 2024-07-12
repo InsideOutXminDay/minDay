@@ -2,7 +2,7 @@ import '../styles/IntroContents.css';
 export default function IntroContents() {
   return (
     <article className="intro-contents">
-      <div className="contents-title">
+      <div id="contents-part" className="contents-title">
         <h1>지금 나에게 필요한 컨텐츠</h1>
         <span>필요할 때마다 인터넷 검색을 할 필요가 없어요.</span>
         <span>minDay에서 바로 즐기세요!</span>

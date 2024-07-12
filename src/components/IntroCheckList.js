@@ -2,7 +2,7 @@ import '../styles/IntroCheckList.css';
 export default function IntroCheckList() {
   return (
     <article className="intro-checklist">
-      <div className="checklist-title">
+      <div id="check-part" className="checklist-title">
         <h1>작지만 아주 기본인 것</h1>
         <span>건강한 멘탈은 곧 건강한 신체!</span>
         <span>작은 것부터 실천해가며 루틴화 시켜보세요.</span>
