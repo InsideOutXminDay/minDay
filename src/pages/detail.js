@@ -22,7 +22,7 @@ export default function Detail() {
     let nowPost = {};
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/post')
+        axios.get('http://localhost:4000/api/postAll')
             .then((res) => {
                 setPostDB([...res.data]);
             }).catch(error => console.error('Error:', error));

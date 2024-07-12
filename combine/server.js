@@ -156,6 +156,14 @@ app.put('/user', (req, res) => {
 
 //////////////////////////// community feat ////////////////////////////////
 
+app.get("/api/postAll", (req, res) => {
+    mydb.query("SELECT * from post", (error, results) => {
+        if (error) {
+            return res.send("쿼리 실행 실패: " + error.message);
+        }
+        res.json(results);
+    });
+});
 
 app.get("/api/post", (req, res) => {
     mydb.query("SELECT * from post where anonymity = 0", (error, results) => {
