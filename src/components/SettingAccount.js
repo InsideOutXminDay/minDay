@@ -47,11 +47,14 @@ const SettingAccount = () => {
     if (!validateEmail(email)) {
       errors.email = '유효한 이메일 형식이 아닙니다.';
     }
-    if (currentPassword !== '' && !validatePassword(currentPassword)) {
-      errors.currentPassword = '비밀번호는 최소 4자 이상이어야 합니다.';
+    if (!validatePassword(currentPassword)){
+      errors.currentPassword = '비밀번호를 입력해주세요.';
     }
-    if (newPassword !== '' && !validatePassword(newPassword)) {
-      errors.newPassword = '새 비밀번호는 최소 4자 이상이어야 합니다.';
+    if (!validatePassword(newPassword)){
+      errors.newPassword = '새 비밀번호 / 비밀번호 확인을 입력해주세요. (4자리 이상)';
+    }
+    if (currentPassword != currentPassword){
+      errors.currentPassword = '올바른 비밀번호를 입력해주세요. (4자리 이상)';
     }
     setErrors(errors);
 
@@ -65,13 +68,20 @@ const SettingAccount = () => {
           newPassword
         };
 
-        await axios.put('/user', requestData);
+
+        console.log('front : ',requestData);
+
+        await axios.put('/user', requestData,{
+          headers:{
+            'Content-Type': 'application/json'
+          }
+        });
         setNotification('저장되었습니다.');
-        setTimeout(() => setNotification(''), 3000);
+        setTimeout(() => setNotification(''), 5000);
       } catch (error) {
-        console.error('오류 발생:', error);
-        setNotification('회원 정보를 다시 확인해주세요.');
-        setTimeout(() => setNotification(''), 3000);
+
+        setNotification('올바른 비밀번호를 입력해주세요.');
+        setTimeout(() => setNotification(''), 5000);
       }
     }
   };

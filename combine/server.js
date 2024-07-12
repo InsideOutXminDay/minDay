@@ -120,7 +120,7 @@ app.get('/api/users', (req, res) => {
 app.get('/user', (req, res) => {
   fs.readFile(userDataPath, 'utf8', (err, data) => {
     if (err) {
-      return res.status(500).json({ error: '오류 발생' });
+      return res.status(600).json({ error: '오류 발생' });
     }
     res.json(JSON.parse(data));
   });
@@ -129,15 +129,17 @@ app.get('/user', (req, res) => {
 app.put('/user', (req, res) => {
   const { id, nickname, email, currentPassword, newPassword } = req.body;
 
+  console.log('server : ',req.body);
+
   fs.readFile(userDataPath, 'utf8', (err, data) => {
     if (err) {
-      return res.status(500).json({ error: '오류 발생' });
+      return res.status(601).json({ error: '오류 발생' });
     }
 
     const userData = JSON.parse(data);
 
     if (currentPassword !== userData.password) {
-      return res.status(400).json({ error: '비밀번호가 올바르지 않습니다.' });
+      return res.status(602).json({ error: '비밀번호가 올바르지 않습니다.' });
     }
     userData.id = id;
     userData.nickname = nickname;
