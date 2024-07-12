@@ -86,6 +86,9 @@
   .services {
     display: block;
   }
+  .intro-services h1 {
+    font-size: 3.2vw;
+  }
   .intro-services p {
     font-size: 2vw;
     font-weight: 400;
