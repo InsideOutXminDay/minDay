@@ -25,7 +25,7 @@ export default function Detail() {
             .then((res) => {
                 setPostDB([...res.data]);
             }).catch(error => console.error('Error:', error));
-    }, [])
+    }, [postDB])
 
     useEffect(() => {
         axios.get('http://localhost:4000/api/comment')
