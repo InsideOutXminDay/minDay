@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import '../styles/Paragraph.css'
-import { ParagraphDatas } from '../util'
+import '../../styles/HomePage/Paragraph.css'
+import { ParagraphDatas } from '../../util'
 import axios from 'axios';
 
 export default function Paragraph(){
