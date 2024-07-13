@@ -1,4 +1,4 @@
-import '../styles/IntroContents.css';
+import '../../styles/Intros/IntroContents.css';
 export default function IntroContents() {
   return (
     <article className="intro-contents">

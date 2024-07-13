@@ -1,4 +1,4 @@
-import '../styles/IntroFooter.css';
+import '../../styles/Intros/IntroFooter.css';
 import { FaGithub } from 'react-icons/fa';
 export default function IntroFooter() {
   return (

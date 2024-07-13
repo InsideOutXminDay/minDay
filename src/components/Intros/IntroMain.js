@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import '../styles/IntroMain.css';
+import '../../styles/Intros/IntroMain.css';
 export default function IntroMain() {
   const navigate = useNavigate();
   const handleClick = () => {

@@ -2,7 +2,7 @@ import { SlNotebook } from 'react-icons/sl';
 import { FaCheck } from 'react-icons/fa6';
 import { FaPeopleGroup } from 'react-icons/fa6';
 import { MdOutlineOndemandVideo } from 'react-icons/md';
-import '../styles/IntroServices.css';
+import '../../styles/Intros/IntroServices.css';
 export default function IntroServices() {
   return (
     <article className="intro-services">

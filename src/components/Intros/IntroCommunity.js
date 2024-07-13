@@ -1,4 +1,4 @@
-import '../styles/IntroCommunity.css';
+import '../../styles/Intros/IntroCommunity.css';
 export default function IntroCommunity() {
   return (
     <article className="intro-community">
