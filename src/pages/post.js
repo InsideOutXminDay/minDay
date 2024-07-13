@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import '../styles/post.css';
+import '../styles/community/post.css';
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaRegPenToSquare } from "react-icons/fa6";
 import axios from 'axios';

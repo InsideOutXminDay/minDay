@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IoCaretBackOutline } from "react-icons/io5";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import '../styles/new.css';
+import '../styles/community/new.css';
 
 
 export default function New() {
