@@ -1,15 +1,15 @@
 //components
-import IntroCheckList from '../components/IntroCheckList';
-import IntroCommunity from '../components/IntroCommunity';
-import IntroContents from '../components/IntroContents';
-import IntroDiary from '../components/IntroDiary';
-import IntroFooter from '../components/IntroFooter';
-import IntroHeader from '../components/IntroHeader';
-import IntroMain from '../components/IntroMain';
-import IntroServices from '../components/IntroServices';
+import IntroCheckList from '../components/Intros/IntroCheckList';
+import IntroCommunity from '../components/Intros/IntroCommunity';
+import IntroContents from '../components/Intros/IntroContents';
+import IntroDiary from '../components/Intros/IntroDiary';
+import IntroFooter from '../components/Intros/IntroFooter';
+import IntroHeader from '../components/Intros/IntroHeader';
+import IntroMain from '../components/Intros/IntroMain';
+import IntroServices from '../components/Intros/IntroServices';
 import { FaArrowUp } from 'react-icons/fa';
 //css
-import '../styles/Intro.css';
+import '../styles/Intros/Intro.css';
 
 export default function Intro() {
   return (

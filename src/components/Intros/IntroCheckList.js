@@ -1,4 +1,4 @@
-import '../styles/IntroCheckList.css';
+import '../../styles/Intros/IntroCheckList.css';
 export default function IntroCheckList() {
   return (
     <article className="intro-checklist">

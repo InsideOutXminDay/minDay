@@ -1,4 +1,4 @@
-import '../styles/IntroDiary.css';
+import '../../styles/Intros/IntroDiary.css';
 export default function IntroDiary() {
   return (
     <article className="intro-diary">

@@ -1,5 +1,5 @@
 import { ImBubble } from 'react-icons/im';
-import '../styles/LoginForm.css';
+import '../../styles/Login/LoginForm.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
