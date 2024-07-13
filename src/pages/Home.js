@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import CalendarComponent from "../components/HomePage/Calendar";
-import CheckList from "../components/HomePage/CheckList/CheckList";
+import CalendarComponent from "../components/HomexDiary/Calendar";
+import CheckList from "../components/HomexDiary/CheckList/CheckList";
 import Header from "../components/Header";
 import { DiaryStateContext } from "../App";
 
 import { FindData } from "../util";
-import Paragraph from "../components/HomePage/Paragraph";
+import Paragraph from "../components/HomexDiary/Paragraph";
 
 export default function Home(){
     const {data_l} = useContext(DiaryStateContext);

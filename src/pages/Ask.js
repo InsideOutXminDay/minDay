@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { DiaryStateContext, DiaryDispatchContext } from "../App";
-import StateCheck from "../components/AskPage/StateCheck";
+import StateCheck from "../components/Ask/StateCheck";
 import { FindData,user_id } from "../util";
 
 export default function Ask(){

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import '../../styles/HomePage/Paragraph.css'
+import '../../styles/HomexDiary/Paragraph.css'
 import { ParagraphDatas } from '../../util'
 import axios from 'axios';
 

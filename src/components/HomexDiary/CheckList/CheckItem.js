@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { DiaryDispatchContext } from "../../../App";
-import '../../../styles/HomePage/CheckList/CheckItem.css'
+import '../../../styles/HomexDiary/CheckList/CheckItem.css'
 
 
 export default function CheckItem({id_ask, id_user,content, isdone}){

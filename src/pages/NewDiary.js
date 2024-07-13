@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import DiaryEditor from "../components/new_DiaryPage/DiaryEditor"
+import DiaryEditor from "../components/HomexDiary/DiaryEditor"
 import Header from "../components/Header"
 import { useContext } from "react";
 // 다이어리 데이터
