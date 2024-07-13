@@ -1,11 +1,11 @@
-import '../styles/Calendar.css'
+import '../../styles/HomePage/Calendar.css'
 import { useContext, useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import moment from 'moment';
 import { IoPencilOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
-import { DiaryStateContext } from '../App';
-import { FindData } from '../util';
+import { DiaryStateContext } from '../../App';
+import { FindData } from '../../util';
 
 export default function CalendarComponent(){
   const [date, setDate] = useState(new Date());

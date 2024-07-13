@@ -2,9 +2,9 @@ import moment from "moment";
 import { useEffect, useCallback } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { emotionList, user_id } from "../util";
+import { emotionList, user_id } from "../../util";
 import EmotionItem from "./EmotionItem";
-import '../styles/DiaryEditor.css'
+import '../../styles/new_DiaryPage/DiaryEditor.css'
 
 export default function DiaryEditor({initDate, initData, onSubmit}){
     const navigate = useNavigate();

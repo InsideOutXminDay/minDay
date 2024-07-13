@@ -1,4 +1,4 @@
-import '../styles/EmotionItem.css'
+import '../../styles/new_DiaryPage/EmotionItem.css'
 export default function EmotionItem({ id, img, name, onClick, isSelected }){
     const handleOnClick = () => {
         onClick(id);
