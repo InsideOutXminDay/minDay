@@ -1,4 +1,4 @@
-import '../../styles/HomePage/Calendar.css'
+import '../../styles/HomexDiary/Calendar.css'
 import { useContext, useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import moment from 'moment';

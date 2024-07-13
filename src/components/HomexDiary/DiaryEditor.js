@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { emotionList, user_id } from "../../util";
 import EmotionItem from "./EmotionItem";
-import '../../styles/new_DiaryPage/DiaryEditor.css'
+import '../../styles/HomexDiary/DiaryEditor.css'
 
 export default function DiaryEditor({initDate, initData, onSubmit}){
     const navigate = useNavigate();

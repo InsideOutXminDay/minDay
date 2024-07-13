@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../../../styles/HomePage/CheckList/CheckList.css'
+import '../../../styles/HomexDiary/CheckList/CheckList.css'
 import CheckItem from "./CheckItem";
 
 export default function CheckList({initData}){
