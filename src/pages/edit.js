@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IoCaretBackOutline } from "react-icons/io5";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import '../styles/edit.css';
+import '../styles/community/edit.css';
 
 
 //로그인 유저 임시 id 값 (첫번째 글)

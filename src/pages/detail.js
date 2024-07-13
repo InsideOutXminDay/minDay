@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import '../styles/detail.css';
+import '../styles/community/detail.css';
 import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import { IoCaretBackOutline } from "react-icons/io5";
 import { LuDelete } from "react-icons/lu";
