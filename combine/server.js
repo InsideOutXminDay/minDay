@@ -87,7 +87,14 @@ app.post('/api/login', (req, res) => {
 app.post('/api/signup', (req, res) => {
   const { userId, pw, nickname, email } = req.body;
   userInfo.push({ id: id++, userId, pw, nickname, email });
-  return res.send('회원가입 성공');
+  const q =
+    'insert into user(inputid, nickname, email, password) VALUES (?,?,?,?);';
+  mydb.query(q, [userId, nickname, email, pw], (error, results) => {
+    if (error) {
+      return res.status(500).send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
 });
 
 //회원가입 됐는지 확인용 GET요청/응답
