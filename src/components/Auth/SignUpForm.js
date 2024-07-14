@@ -76,7 +76,7 @@ export default function SignUpForm() {
               id="id"
               type="text"
               name="userId"
-              value={inputForm.userId}
+              value={inputForm.userId || ''}
               onChange={handleInputForm}
               autoFocus
               required
@@ -91,7 +91,7 @@ export default function SignUpForm() {
               id="nickname"
               type="text"
               name="nickname"
-              value={inputForm.nickname}
+              value={inputForm.nickname || ''}
               onChange={handleInputForm}
               required
             ></input>
@@ -102,7 +102,7 @@ export default function SignUpForm() {
               id="email"
               type="email"
               name="email"
-              value={inputForm.email}
+              value={inputForm.email || ''}
               onChange={handleInputForm}
               required
             ></input>
@@ -112,7 +112,7 @@ export default function SignUpForm() {
             <input
               id="pw"
               type="password"
-              value={inputForm.pw}
+              value={inputForm.pw || ''}
               name="pw"
               onChange={handleInputForm}
               required
@@ -124,7 +124,7 @@ export default function SignUpForm() {
               id="pw-sure"
               type="password"
               name="pwCheck"
-              value={inputForm.pwCheck}
+              value={inputForm.pwCheck || ''}
               onChange={handleInputForm}
               required
             ></input>
