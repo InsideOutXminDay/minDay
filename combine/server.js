@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const bcrypt = require('bcrypt');
 // setting
 const fs = require('fs');
 const path = require('path');
@@ -84,12 +85,13 @@ app.post('/api/login', (req, res) => {
 });
 
 //회원가입 시 POST 요청/응답
-app.post('/api/signup', (req, res) => {
+app.post('/api/signup', async (req, res) => {
   const { userId, pw, nickname, email } = req.body;
   userInfo.push({ id: id++, userId, pw, nickname, email });
+  const hashedPW = await bcrypt.hash(pw, 10);
   const q =
     'insert into user(inputid, nickname, email, password) VALUES (?,?,?,?);';
-  mydb.query(q, [userId, nickname, email, pw], (error, results) => {
+  mydb.query(q, [userId, nickname, email, hashedPW], (error, results) => {
     if (error) {
       return res.status(500).send('쿼리 실행 실패: ' + error.message);
     }
