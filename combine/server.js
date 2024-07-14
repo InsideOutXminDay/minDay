@@ -37,7 +37,7 @@ const userDataPath = path.join(__dirname, '../settingserver/userdata.json');
 const loggedInUser = [];
 
 //추후 DB연결로 빼야함
-let id = 6;
+let id = 3;
 const userInfo = [
   {
     id: 1,
@@ -52,27 +52,6 @@ const userInfo = [
     pw: '5678',
     nickname: '철수',
     email: 'happy2@gami.com',
-  },
-  {
-    id: 3,
-    userId: 'mulcam5',
-    pw: '91011',
-    nickname: '유리',
-    email: 'mulcam5@daum.net',
-  },
-  {
-    id: 4,
-    userId: 'candy99',
-    pw: '98765',
-    nickname: '맹구',
-    email: 'candy99@naver.com',
-  },
-  {
-    id: 5,
-    userId: 'react5',
-    pw: '9981',
-    nickname: '훈이',
-    email: 'react5@gamil.com',
   },
 ];
 
@@ -129,7 +108,7 @@ app.get('/user', (req, res) => {
 app.put('/user', (req, res) => {
   const { id, nickname, email, currentPassword, newPassword } = req.body;
 
-  console.log('server : ',req.body);
+  console.log('server : ', req.body);
 
   fs.readFile(userDataPath, 'utf8', (err, data) => {
     if (err) {
@@ -157,31 +136,31 @@ app.put('/user', (req, res) => {
 
 //////////////////////////// community feat ////////////////////////////////
 
-app.get("/api/postAll", (req, res) => {
-    mydb.query("SELECT * from post", (error, results) => {
-        if (error) {
-            return res.send("쿼리 실행 실패: " + error.message);
-        }
-        res.json(results);
-    });
+app.get('/api/postAll', (req, res) => {
+  mydb.query('SELECT * from post', (error, results) => {
+    if (error) {
+      return res.send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
 });
 
-app.get("/api/post", (req, res) => {
-    mydb.query("SELECT * from post where anonymity = 0", (error, results) => {
-        if (error) {
-            return res.send("쿼리 실행 실패: " + error.message);
-        }
-        res.json(results);
-    });
+app.get('/api/post', (req, res) => {
+  mydb.query('SELECT * from post where anonymity = 0', (error, results) => {
+    if (error) {
+      return res.send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
 });
 
-app.get("/api/mind", (req, res) => {
-    mydb.query("SELECT * from post where anonymity = 1", (error, results) => {
-        if (error) {
-            return res.send("쿼리 실행 실패: " + error.message);
-        }
-        res.json(results);
-    });
+app.get('/api/mind', (req, res) => {
+  mydb.query('SELECT * from post where anonymity = 1', (error, results) => {
+    if (error) {
+      return res.send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
 });
 
 app.get('/api/comment', (req, res) => {
@@ -237,16 +216,15 @@ app.post('/api/edit', (req, res) => {
   });
 });
 
-app.post("/api/delete", (req, res) => {
-    const { id_post, id_comment } = req.body;
-    const q = "delete from comment where id_post = ? && id_comment = ?;"
-    mydb.query(q
-        , [id_post, id_comment], (error, results) => {
-            if (error) {
-                return res.status(500).send("쿼리 실행 실패: " + error.message);
-            }
-            res.json(results);
-        });
+app.post('/api/delete', (req, res) => {
+  const { id_post, id_comment } = req.body;
+  const q = 'delete from comment where id_post = ? && id_comment = ?;';
+  mydb.query(q, [id_post, id_comment], (error, results) => {
+    if (error) {
+      return res.status(500).send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
 });
 
 //////////////////////////// paragraph feat ////////////////////////////////
