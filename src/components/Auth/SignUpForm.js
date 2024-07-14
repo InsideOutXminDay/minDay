@@ -5,14 +5,11 @@ import axios from 'axios';
 export default function SignUpForm() {
   const navigate = useNavigate();
 
+  //현재 가입되어 있는 회원 정보(확인용)
   const [userInfo, setUserInfo] = useState([]);
 
-  //아이디, 닉네임, 이메일, 비밀번호 입력 관리
-  const [inputId, setInputId] = useState('');
-  const [inputName, setInputName] = useState('');
-  const [inputEmail, setInputEmail] = useState('');
-  const [inputPw, setInputPw] = useState('');
-  const [inputPwCheck, setInputPwCheck] = useState('');
+  //회원가입 입력폼 관리
+  const [inputForm, setInputForm] = useState({});
 
   const getData = async () => {
     const response = await axios.get('http://localhost:4000/api/users');
@@ -23,27 +20,16 @@ export default function SignUpForm() {
     getData();
   }, []);
 
-  const handleInputId = (e) => {
-    setInputId(e.target.value);
+  const handleInputForm = (e) => {
+    setInputForm({ ...inputForm, [e.target.name]: e.target.value });
   };
-  const handleInputName = (e) => {
-    setInputName(e.target.value);
-  };
-  const handleInputEmail = (e) => {
-    setInputEmail(e.target.value);
-  };
-  const handleInputPw = (e) => {
-    setInputPw(e.target.value);
-  };
-  const handleInputPwCheck = (e) => {
-    setInputPwCheck(e.target.value);
-  };
-  const handleClick = () => {
+
+  const handleCheckDuplicate = (e) => {
     console.log('아이디 중복확인');
-    const checkId = userInfo.find((user) => user.userId === inputId);
+    const checkId = userInfo.find((user) => user.userId === inputForm.userId);
     if (checkId) {
       alert('이미 사용중인 아이디입니다.');
-      setInputId('');
+      setInputForm({ ...inputForm, userId: '' });
     } else {
       alert('사용 가능한 아이디입니다.');
     }
@@ -51,38 +37,32 @@ export default function SignUpForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //비밀번호 확인 일치 안 하면 경고창
-    if (inputPw !== inputPwCheck) {
+
+    if (inputForm.pw !== inputForm.pwCheck) {
       alert('비밀번호를 다시 확인해주세요');
     }
-
-    //회원가입 이상 없음->userInfo에 추가, post요청 보내기(확인은 /api/user에서 get요청)
+    //회원가입 정상적으로 되면 현재 가입된 사용자 정보 배열에 추가(확인용)
     setUserInfo([
       ...userInfo,
       {
-        userId: inputId,
-        pw: inputPw,
-        nickname: inputName,
-        email: inputEmail,
+        userId: inputForm.userId,
+        pw: inputForm.pw,
+        nickname: inputForm.nickname,
+        email: inputForm.email,
       },
     ]);
-    //POST 요청 보내기
+
+    //POST 요청 보내기(서버 메모리에 저장)
     await axios.post('http://localhost:4000/api/signup', {
-      userId: inputId,
-      pw: inputPw,
-      nickname: inputName,
-      email: inputEmail,
+      userId: inputForm.userId,
+      pw: inputForm.pw,
+      nickname: inputForm.nickname,
+      email: inputForm.email,
     });
 
-    //입력창 비우기
-    setInputId('');
-    setInputName('');
-    setInputEmail('');
-    setInputPw('');
-    setInputPwCheck('');
-    //회원가입완료되면 로그인 페이지로 or 대문페이지로?
-    //navigate('/');
-    //navigate('/login');
+    setInputForm('');
+    //회원가입완료되면 로그인 페이지로
+    navigate('/login');
   };
 
   return (
@@ -95,12 +75,13 @@ export default function SignUpForm() {
             <input
               id="id"
               type="text"
-              value={inputId}
-              onChange={handleInputId}
+              name="userId"
+              value={inputForm.userId}
+              onChange={handleInputForm}
               autoFocus
               required
             ></input>
-            <button className="check-btn" onClick={handleClick}>
+            <button className="check-btn" onClick={handleCheckDuplicate}>
               중복확인
             </button>
           </div>
@@ -109,8 +90,9 @@ export default function SignUpForm() {
             <input
               id="nickname"
               type="text"
-              value={inputName}
-              onChange={handleInputName}
+              name="nickname"
+              value={inputForm.nickname}
+              onChange={handleInputForm}
               required
             ></input>
           </div>
@@ -119,8 +101,9 @@ export default function SignUpForm() {
             <input
               id="email"
               type="email"
-              value={inputEmail}
-              onChange={handleInputEmail}
+              name="email"
+              value={inputForm.email}
+              onChange={handleInputForm}
               required
             ></input>
           </div>
@@ -129,8 +112,9 @@ export default function SignUpForm() {
             <input
               id="pw"
               type="password"
-              value={inputPw}
-              onChange={handleInputPw}
+              value={inputForm.pw}
+              name="pw"
+              onChange={handleInputForm}
               required
             ></input>
           </div>
@@ -139,8 +123,9 @@ export default function SignUpForm() {
             <input
               id="pw-sure"
               type="password"
-              value={inputPwCheck}
-              onChange={handleInputPwCheck}
+              name="pwCheck"
+              value={inputForm.pwCheck}
+              onChange={handleInputForm}
               required
             ></input>
           </div>
