@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import '../../styles/SignUp/SignUpForm.css';
+import '../../styles/Auth/SignUpForm.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 export default function SignUpForm() {
