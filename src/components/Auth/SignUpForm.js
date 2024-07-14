@@ -24,10 +24,13 @@ export default function SignUpForm() {
     setInputForm({ ...inputForm, [e.target.name]: e.target.value });
   };
 
-  const handleCheckDuplicate = (e) => {
+  const handleCheckDuplicate = async (e) => {
     console.log('아이디 중복확인');
-    const checkId = userInfo.find((user) => user.userId === inputForm.userId);
-    if (checkId) {
+    const { userId } = inputForm;
+    const response = await axios.post('http://localhost:4000/api/checkid', {
+      userId,
+    });
+    if (response.data.exist === true) {
       alert('이미 사용중인 아이디입니다.');
       setInputForm({ ...inputForm, userId: '' });
     } else {

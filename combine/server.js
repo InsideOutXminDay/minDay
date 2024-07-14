@@ -87,8 +87,11 @@ app.post('/api/login', (req, res) => {
 //회원가입 시 POST 요청/응답
 app.post('/api/signup', async (req, res) => {
   const { userId, pw, nickname, email } = req.body;
+  //프론트 화면에 띄우기 위한 확인용(추후 삭제 예정)
   userInfo.push({ id: id++, userId, pw, nickname, email });
+  //비밀번호 암호화
   const hashedPW = await bcrypt.hash(pw, 10);
+  //db에 추가
   const q =
     'insert into user(inputid, nickname, email, password) VALUES (?,?,?,?);';
   mydb.query(q, [userId, nickname, email, hashedPW], (error, results) => {
@@ -96,6 +99,24 @@ app.post('/api/signup', async (req, res) => {
       return res.status(500).send('쿼리 실행 실패: ' + error.message);
     }
     res.json(results);
+  });
+});
+app.post('/api/checkid', (req, res) => {
+  const { userId } = req.body;
+  console.log(userId);
+  //db에서 탐색
+  const q = 'SELECT COUNT(*) AS count FROM user WHERE inputid = ?';
+  mydb.query(q, [userId], (err, results) => {
+    if (err) {
+      console.error('error executing query: ', err);
+      return res.status(500).json({ error: 'internal server error' });
+    }
+    const count = results[0].count;
+    if (count > 0) {
+      return res.status(200).json({ exist: true });
+    } else {
+      return res.status(200).json({ exist: false });
+    }
   });
 });
 
