@@ -147,74 +147,84 @@ export const onDiaryUpdate = (dispatch) => (data) => {
 
 // ask/checklist 데이터
 // idask = id_user + 각 문항 번호(기본키로사용하면서 검색도 쉬움..?)
-// ask에서 문항 검색하려니 이렇게 생각함
-export const ListData = [
+
+export const ListData1 = [
     {
-        id_ask:11,
+        id_ask:1,
         id_user:1,
         content:"22:00",
-        isdone:0
+        isdone:0,
+        type:"sleep"
     },{
-        id_ask:12,
+        id_ask:2,
         id_user:1,
         content:"06:00",
-        isdone:0
+        isdone:0,
+        type:"wake"
     },{
-        id_ask:13,
+        id_ask:3,
         id_user:1,
-        content:30,
-        isdone:0
+        content:5,
+        isdone:0,
+        type:"phone"
     },{
-        id_ask:14,
+        id_ask:4,
         id_user:1,
         content:"맛있는거 먹기",
-        isdone:0
+        isdone:0,
+        type:"satisfaction"
     },{
-        id_ask:15,
+        id_ask:5,
         id_user:1,
         content: "달리기",
-        isdone:0
+        isdone:0,
+        type:"hobby"
     },{
-        id_ask:16,
+        id_ask:6,
         id_user:1,
         content:3,
-        isdone:0
+        isdone:0,
+        type:"exercise"
     },{
-        id_ask:17,
+        id_ask:7,
         id_user:1,
         content:"식사 챙겨 먹기",
-        isdone:0
+        isdone:0,
+        type:"meal"
     },{
-        id_ask:18,
+        id_ask:8,
         id_user:1,
         content:"충분한 휴식 취하기",
-        isdone:0        
+        isdone:0,
+        type:"rest"
     }
 ];
 
 
-export const onListUpdate = (dispatch) => (id_ask, id_user, content, isdone) => {
-    // console.log("data",id_ask, id_user, content, isdone)
+export const onListUpdate = (dispatch) => (id_ask, id_user, content, isdone, type) => {
+    console.log("data",id_ask, id_user, content, isdone, type)
     dispatch({
       type: "UPDATEList",
       data: {
         id_ask,
         id_user,
         content,
-        isdone
+        isdone, 
+        type
       },
     });
   };
 
-  export const onListCreate = (dispatch) => (id_ask, id_user, content, isdone) => {
-    // console.log("data",id_ask, id_user, content, isdone)
+  export const onListCreate = (dispatch) => (id_ask, id_user, content, isdone, type) => {
+    console.log("data",id_ask, id_user, content, isdone, type)
     dispatch({
       type: "CREATEList",
       data: {
         id_ask,
         id_user,
         content,
-        isdone
+        isdone,
+        type
       },
     });
   };
