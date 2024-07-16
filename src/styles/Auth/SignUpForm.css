@@ -69,6 +69,30 @@
   position: absolute;
   right: 0;
 }
+.signup-ok {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.signup-ok-text {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.signup-ok-btn {
+  font-family: 'Pretendard-Regular';
+  background-color: #7dccac;
+  color: white;
+  border-radius: 20px;
+  border-style: none;
+  font-size: 2rem;
+  margin-top: 3rem;
+  padding: 0.5rem 0.2rem;
+  width: 30vw;
+}
+.signup-ok-btn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
 @media (max-width: 940px) {
   .signup-form div {
     width: 80%;
@@ -90,5 +114,8 @@
 @media (min-width: 500px) and (max-width: 940px) {
   .signup-btn {
     width: 30%;
+  }
+  .signup-ok-btn {
+    font-size: 1.2rem;
   }
 }
