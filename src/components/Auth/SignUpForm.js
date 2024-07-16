@@ -135,13 +135,6 @@ export default function SignUpForm() {
           <button className="signup-btn">회원가입</button>
         </form>
       </div>
-      <div className="signup-test">
-        {userInfo.map((user, index) => (
-          <p key={index}>
-            아이디: {user.userId} - 닉네임: {user.nickname}
-          </p>
-        ))}
-      </div>
     </>
   );
 }

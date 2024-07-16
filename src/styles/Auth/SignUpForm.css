@@ -36,7 +36,6 @@
   cursor: pointer;
 }
 .signup-form div {
-  background-color: azure;
   margin-bottom: 1.3em;
   width: 50%;
   display: flex;
@@ -69,10 +68,6 @@
 
   position: absolute;
   right: 0;
-}
-.signup-test {
-  position: absolute;
-  left: 0;
 }
 @media (max-width: 940px) {
   .signup-form div {
