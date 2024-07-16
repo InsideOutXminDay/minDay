@@ -1,42 +1,38 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { user_id } from "../../util";
 
-export default function StateCheck({ initData ,user_id,onUpdate}) {
+export default function StateCheck({ initData, onUpdate}) {
     const navigate = useNavigate();
+    const [newUser,setNewUser] = useState(true);
+    const idRef = useRef(9);
 
-    //기본값(생성)
-    const [sleep, setSleep] = useState({id_ask:parseInt(`${user_id}1`),id_user:user_id, content:"22:00", isdone:0}); 
-    const [wake, setWake] = useState({id_ask:parseInt(`${user_id}2`),id_user:user_id, content:"06:00", isdone:0}); 
-    const [phone, setPhone] = useState({id_ask:parseInt(`${user_id}3`),id_user:user_id, content:3, isdone:0}); 
-    const [satisfaction, setSatisfaction] = useState({id_ask:parseInt(`${user_id}4`),id_user:user_id, content:"맛있는거 먹기", isdone:0});
-    const [hobby, setHobby] = useState({id_ask:parseInt(`${user_id}5`),id_user:user_id, content:"달리기", isdone:0});
-    const [exercise, setExercise] = useState({id_ask:parseInt(`${user_id}6`),id_user:user_id, content:3, isdone:0});
-    const meal = {id_ask:parseInt(`${user_id}7`),id_user:user_id, content:"식사 챙겨 먹기", isdone:0}
-    const rest = {id_ask:parseInt(`${user_id}8`),id_user:user_id, content:"충분한 휴식 취하기", isdone:0}
-
-    const getContentByAskId=(id)=>{
-        return initData.find(value=>value.id_ask == id)
-    }
+    const [state, setState] = useState({sleep:{content:"22:00"},
+                                wake: {content:"06:00"},
+                                phone: {content:3},
+                                satisfaction: {content:"맛있는거 먹기"},
+                                hobby: {content:"달리기"},
+                                exercise: {content:3},
+                                meal:{content:"식사 잘 챙겨먹기"},
+                                rest: {content:"충분한 휴식 취하기"},
+                            })
 
     useEffect(() => {
-        if (initData.length) {
-            setSleep(getContentByAskId(`${user_id}1`));
-            setWake(getContentByAskId(`${user_id}2`));
-            setPhone(getContentByAskId(`${user_id}3`));
-            setSatisfaction(getContentByAskId(`${user_id}4`));
-            setHobby(getContentByAskId(`${user_id}5`));
-            setExercise(getContentByAskId(`${user_id}6`));
+        if (initData.sleep) {
+            setNewUser(false);
+            setState(initData)   
         }
-    }, [initData]); // Adding initData as a dependency
+    }, [initData]); // Adding initData as a dependency    
 
 
     const onSubmit = () => {
-        const tasks = [sleep, wake, phone, satisfaction, hobby, exercise, meal, rest];
-    
-        tasks.forEach(task => {
-            onUpdate(task.id_ask, task.id_user, task.content, task.isdone);
+        Object.keys(state).map(key => {
+            if (newUser) {
+              onUpdate(idRef.current, user_id, state[key].content, 0, key);
+            } else {
+              onUpdate(state[key].id_ask, user_id, state[key].content, state[key].isdone, key);
+            }
         });
-    
         navigate("/home");
     };
 
@@ -46,37 +42,38 @@ export default function StateCheck({ initData ,user_id,onUpdate}) {
             <div className="Question">
             <div className="q">
                 <p>취침시간을 언제로 정하고싶나요 ?</p>
-                <input type="time" value={sleep.content} 
-                        onChange={(e)=>setSleep(data=>({...data, content:event.target.value}))}/>
+                <input type="time" value={state.sleep.content}
+                        onChange={(e)=>setState(data=>({...data, sleep:{...data.sleep, content:e.target.value}}))}/>
             </div>
             <div className="q">
                 <p>기상시간을 언제로 정하고싶나요 ?</p>
-                <input type="time" value={wake.content} 
-                        onChange={(e)=>setWake(data=>({...data, content:event.target.value}))}/>
+                <input type="time" value={state.wake.content}
+                        onChange={(e)=>setState(data=>({...data, wake:{...data.wake, content:e.target.value}}))}/>
             </div>
             <div className="q">
                 <p>최대 디지털기기 사용시간을 얼마로 정하고싶나요 ?</p>
-                <input type="number" placeholder={phone.content} 
-                    onChange={(e)=>setPhone(data=>({...data, content:event.target.value}))}/>
+                <input type="number" placeholder={state.phone.content}
+                    onChange={(e)=>setState(data=>({...data, phone:{...data.phone, content:e.target.value}}))}/>
             </div>
             <div className="q">
                 <p>매일의 나에게 선물해주고싶은 일은 무엇인가요 ?</p>
-                <textarea type="text" placeholder={satisfaction.content} 
-                    onChange={(e)=>setSatisfaction(data=>({...data, content:event.target.value}))}/>
+                <textarea type="text" placeholder={state.satisfaction.content}
+                    onChange={(e)=>setState(data=>({...data, satisfaction:{...data.satisfaction, content:e.target.value}}))}/>
                 
             </div>
             <div className="q">
                 <p>취미가 무엇인가요 ?</p>
-                <textarea type="text" placeholder={hobby.content} 
-                    onChange={(e)=>setHobby(data=>({...data, content:event.target.value}))}/>
+                <textarea type="text" placeholder={state.hobby.content}
+                    onChange={(e)=>setState(data=>({...data, hobby:{...data.hobby, content:e.target.value}}))}/>
                 
             </div>
             <div className="q">
                 <p>하루 운동량은 얼마인가요 ?</p>
-                <textarea type="number" placeholder={exercise.content} onChange={(e)=>setExercise(data=>({...data, content:event.target.value}))}/>
+                <textarea type="number"placeholder={state.exercise.content} 
+                    onChange={(e)=>setState(data=>({...data, exercise:{...data.exercise, content:e.target.value}}))}/>
                 
             </div>
-            <button onClick={onSubmit}>dd</button>
+            <button onClick={onSubmit}>완료</button>
             </div>
         </div>
     );

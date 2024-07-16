@@ -1,29 +1,40 @@
 import { useContext, useState, useEffect } from "react";
 import { DiaryStateContext, DiaryDispatchContext } from "../App";
 import StateCheck from "../components/Ask/StateCheck";
-import { FindData,user_id } from "../util";
+import { FindData } from "../util";
 
 export default function Ask(){
     const { onListUpdate,onListCreate } = useContext(DiaryDispatchContext);
     const { data_l } = useContext(DiaryStateContext);
     const [initData, setInitData] = useState([]);
 
+    
+
+    const convertListDataToObject = (arr) => {
+        const result = {};
+        arr.forEach(item => {
+          const { type, ...rest } = item;
+          result[type] = rest;
+        });
+        return result;
+      }
+      
     useEffect(() => {     
-        // Filtering initial data
         const foundData = FindData(data_l)
-        setInitData(foundData);
+        // setInitData(foundData)
+        setInitData(convertListDataToObject(data_l));
     }, [data_l]);
 
-    const onUpdate = (id_ask, id_user, content, isdone) => {
-        initData.length?
-        onListUpdate(id_ask, id_user, content, isdone)
-        :onListCreate(id_ask, id_user, content, isdone)
+    const onUpdate = (id_ask, id_user, content, isdone, type) => {
+        initData.sleep?
+        onListUpdate(id_ask, id_user, content, isdone, type)
+        :onListCreate(id_ask, id_user, content, isdone, type)
     }
 
     return (
         <div>
             <div>
-                <StateCheck initData={initData} user_id={user_id} onUpdate={onUpdate}/>
+                <StateCheck initData={initData}  onUpdate={onUpdate}/>
             </div>
         </div>
     );

@@ -16,7 +16,7 @@ import Login from './pages/Login.js';
 import SignUp from './pages/SignUp.js';
 
 // diary 데이터
-import { diaryDatas,ListData, Reducer, onDiaryCreate, onDiaryUpdate,onListUpdate,onListCreate} from './util.js';
+import { diaryDatas,ListData1, Reducer, onDiaryCreate, onDiaryUpdate,onListUpdate,onListCreate} from './util.js';
 import Ask from './pages/Ask.js';
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
@@ -24,7 +24,7 @@ export const DiaryDispatchContext = React.createContext();
 function App() {
   // diary 데이터
   const [data, dispatch] = useReducer(Reducer,diaryDatas);
-  const [data_l, dispatch_list] = useReducer(Reducer,ListData);
+  const [data_l, dispatch_list] = useReducer(Reducer,ListData1);
 
   const handleCreate = onDiaryCreate(dispatch);
   const handleUpdate = onDiaryUpdate(dispatch);
