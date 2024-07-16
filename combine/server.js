@@ -277,11 +277,24 @@ app.get('/api/askcheck', (req, res) => {
   });
 });
 
-app.post('/api/askcheck', (req, res) => {
+app.post('/api/updatechecklist', (req, res) => {
   const { id_askcheck, id_user, content, isdone, type } = req.body;
-  console.log("from res.body",id_askcheck, id_user, content, isdone, type)
+  console.log("updatechecklist",id_askcheck, id_user, content, isdone, type)
   const q = 'update askcheck set id_user = ?, content = ?, isdone = ? WHERE id_askcheck = ? && type = ?;';
   mydb.query(q, [id_user, content, isdone, id_askcheck, type], (error, results) => {
+    if (error) {
+      return res.status(500).send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
+});
+
+// 회원가입 시 완전한 구현 가능
+app.post('/api/createchecklist', (req, res) => {
+  const { id_askcheck, id_user, content, isdone, type } = req.body;
+  const q =
+    'insert into askcheck(id_askcheck, id_user, content, isdone, type) VALUES (?,?,?,?,?);';
+  mydb.query(q, [id_askcheck, id_user, content, isdone, type], (error, results) => {
     if (error) {
       return res.status(500).send('쿼리 실행 실패: ' + error.message);
     }

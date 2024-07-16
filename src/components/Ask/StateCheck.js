@@ -30,7 +30,7 @@ export default function StateCheck({ initData, onUpdate}) {
             if (newUser) {
               onUpdate(idRef.current, user_id, state[key].content, 0, key);
             } else {
-              onUpdate(state[key].id_ask, user_id, state[key].content, state[key].isdone, key);
+              onUpdate(state[key].id_askcheck, user_id, state[key].content, state[key].isdone, key);
             }
         });
         navigate("/home");

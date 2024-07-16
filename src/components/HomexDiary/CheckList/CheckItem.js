@@ -8,7 +8,7 @@ export default function CheckItem({id_askcheck, id_user,content, isdone, type}){
     const [is_done, setIsDone] = useState(isdone);
     const onChangeCheckbox = async() => {
         const updatedIsDone = !is_done;
-        await fetch('http://localhost:4000/api/askcheck', {
+        await fetch('http://localhost:4000/api/updatechecklist', {
             method:'POST',
             headers: {
                 'Content-Type': 'application/json'
