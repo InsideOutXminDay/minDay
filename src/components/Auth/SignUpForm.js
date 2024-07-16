@@ -1,13 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import '../../styles/Auth/SignUpForm.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Modal from '../Auth/Modal';
 export default function SignUpForm() {
   const navigate = useNavigate();
 
   //회원가입 입력폼 관리
   const [inputForm, setInputForm] = useState({});
   const [submit, setSubmit] = useState(false);
+  //모달 관리
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState('');
 
   const handleInputForm = (e) => {
     setInputForm({ ...inputForm, [e.target.name]: e.target.value });
@@ -19,18 +23,24 @@ export default function SignUpForm() {
       userId,
     });
     if (response.data.exist === true) {
-      alert('이미 사용중인 아이디입니다.');
+      setModalContent('이미 사용중인 아이디입니다.');
       setInputForm({ ...inputForm, userId: '' });
     } else {
-      alert('사용 가능한 아이디입니다.');
+      setModalContent('사용 가능한 아이디입니다.');
     }
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (inputForm.pw !== inputForm.pwCheck) {
-      alert('비밀번호를 다시 확인해주세요');
+      setModalContent('비밀번호를 다시 확인해주세요.');
+      setIsModalOpen(true);
       setInputForm({ ...inputForm, pw: '', pwCheck: '' });
     } else {
       setSubmit(true);
@@ -72,6 +82,11 @@ export default function SignUpForm() {
               <button className="check-btn" onClick={handleCheckDuplicate}>
                 중복확인
               </button>
+              <Modal
+                isOpen={isModalOpen}
+                content={modalContent}
+                onClose={handleCloseModal}
+              ></Modal>
             </div>
             <div className="nickname-box">
               <label htmlFor="nickname">닉네임</label>
