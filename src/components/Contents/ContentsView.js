@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/ContentsView.css';
+import '../../styles/Contents/ContentsView.css';
 
 const ContentsView = ({ subCategory, onBack }) => {
   return (

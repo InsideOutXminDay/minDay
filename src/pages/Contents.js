@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Category from '../components/Category';
-import SubCategory from '../components/SubCategory';
-import ContentsView from '../components/ContentsView';
-import '../styles/Contents.css';
+import Category from '../components/Contents/Category';
+import SubCategory from '../components/Contents/SubCategory';
+import ContentsView from '../components/Contents/ContentsView';
+import '../styles/Contents/Contents.css';
 import Header from '../components/Header';
 
 const categories = [
