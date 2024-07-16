@@ -1,14 +1,11 @@
-import { useContext, useState, useEffect } from "react";
-import { DiaryStateContext, DiaryDispatchContext } from "../App";
+import { useState, useEffect } from "react";
 import StateCheck from "../components/Ask/StateCheck";
 import { FindData } from "../util";
+import axios from "axios";
 
 export default function Ask(){
-    const { onListUpdate,onListCreate } = useContext(DiaryDispatchContext);
-    const { data_l } = useContext(DiaryStateContext);
-    const [initData, setInitData] = useState([]);
 
-    
+    const [initData, setInitData] = useState([]);
 
     const convertListDataToObject = (arr) => {
         const result = {};
@@ -19,16 +16,38 @@ export default function Ask(){
         return result;
       }
       
-    useEffect(() => {     
-        const foundData = FindData(data_l)
-        // setInitData(foundData)
-        setInitData(convertListDataToObject(data_l));
-    }, [data_l]);
+      useEffect(() => {
+        axios.get('http://localhost:4000/api/askcheck')
+            .then((res) => {
+                const foundData = FindData(res.data)
+                setInitData(convertListDataToObject(foundData))
+            }
+            ).catch(error => console.error('Error:', error));
+    }, []);
 
-    const onUpdate = (id_ask, id_user, content, isdone, type) => {
-        initData.sleep?
-        onListUpdate(id_ask, id_user, content, isdone, type)
-        :onListCreate(id_ask, id_user, content, isdone, type)
+
+    const onUpdate = async(id_askcheck, id_user, content, isdone, type) => {
+        const address = initData.sleep?'update':'create';
+        await fetch(`http://localhost:4000/api/${address}checklist`, {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id_askcheck: id_askcheck,
+                id_user: id_user,
+                content: content,
+                isdone: isdone,
+                type: type
+            })
+        }).then(async(res)=>{
+            if(!res.ok){
+                throw new Error(`error! status: ${res.status}`)
+            }}).catch(error=>console.log('Error:', error.meesage))
+
+
+        // onListUpdate(id_ask, id_user, content, isdone, type)
+        // :onListCreate(id_ask, id_user, content, isdone, type)
     }
 
     return (
