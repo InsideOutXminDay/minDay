@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactPlayer from 'react-player';
 import '../../styles/Contents/ContentsView.css';
 
 const ContentsView = ({ subCategory, onBack }) => {
@@ -7,9 +8,13 @@ const ContentsView = ({ subCategory, onBack }) => {
       <button onClick={onBack} className="back-button2">🔙</button>
       <h2>{subCategory.name}</h2>
       <div className="content">
-        <video controls>
-          <source src={subCategory.video} type="video/mp4" />
-        </video>
+        <ReactPlayer
+          url={subCategory.video}
+          controls={true}
+          width="940px"
+          height="600px"
+          className="react-player"
+        />
       </div>
     </div>
   );
