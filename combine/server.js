@@ -267,6 +267,28 @@ app.get('/api/paragraph', (req, res) => {
   });
 });
 
+//////////////////////////// checklist feat ////////////////////////////////
+app.get('/api/askcheck', (req, res) => {
+  mydb.query(`SELECT * from askcheck`, (error, results) => {
+    if (error) {
+      return res.send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
+});
+
+app.post('/api/askcheck', (req, res) => {
+  const { id_askcheck, id_user, content, isdone, type } = req.body;
+  console.log("from res.body",id_askcheck, id_user, content, isdone, type)
+  const q = 'update askcheck set id_user = ?, content = ?, isdone = ? WHERE id_askcheck = ? && type = ?;';
+  mydb.query(q, [id_user, content, isdone, id_askcheck, type], (error, results) => {
+    if (error) {
+      return res.status(500).send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
+});
+
 //////////////////////////// foot ////////////////////////////////
 
 //http://localhost/:4000 에서 확인

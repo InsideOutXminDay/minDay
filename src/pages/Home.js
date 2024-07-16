@@ -3,19 +3,21 @@ import CalendarComponent from "../components/HomexDiary/Calendar";
 import CheckList from "../components/HomexDiary/CheckList/CheckList";
 import Header from "../components/Header";
 import { DiaryStateContext } from "../App";
-
+import axios from "axios";
 import { FindData } from "../util";
 import Paragraph from "../components/HomexDiary/Paragraph";
 
 export default function Home(){
-    const {data_l} = useContext(DiaryStateContext);
     const [initData, setInitData] = useState([])
 
-    // db연결 시 테이블에서 정제된 데이터 가져오기 (차후 id_user에 따라서-useParams 이용?)
     useEffect(() => {
-        const foundData = FindData(data_l)
-        if (foundData){setInitData(foundData);}
-    }, [data_l]);  
+        axios.get('http://localhost:4000/api/askcheck')
+            .then((res) => {
+                const foundData = FindData(res.data)
+                setInitData(foundData)
+            }
+            ).catch(error => console.error('Error:', error));
+    }, []);
 
     return(
         <div style={{display:"flex"}}>
