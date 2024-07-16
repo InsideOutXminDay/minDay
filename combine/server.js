@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const bcrypt = require('bcrypt');
 // setting
 const fs = require('fs');
 const path = require('path');
@@ -37,7 +38,7 @@ const userDataPath = path.join(__dirname, '../settingserver/userdata.json');
 const loggedInUser = [];
 
 //추후 DB연결로 빼야함
-let id = 6;
+let id = 3;
 const userInfo = [
   {
     id: 1,
@@ -52,27 +53,6 @@ const userInfo = [
     pw: '5678',
     nickname: '철수',
     email: 'happy2@gami.com',
-  },
-  {
-    id: 3,
-    userId: 'mulcam5',
-    pw: '91011',
-    nickname: '유리',
-    email: 'mulcam5@daum.net',
-  },
-  {
-    id: 4,
-    userId: 'candy99',
-    pw: '98765',
-    nickname: '맹구',
-    email: 'candy99@naver.com',
-  },
-  {
-    id: 5,
-    userId: 'react5',
-    pw: '9981',
-    nickname: '훈이',
-    email: 'react5@gamil.com',
   },
 ];
 
@@ -105,10 +85,39 @@ app.post('/api/login', (req, res) => {
 });
 
 //회원가입 시 POST 요청/응답
-app.post('/api/signup', (req, res) => {
+app.post('/api/signup', async (req, res) => {
   const { userId, pw, nickname, email } = req.body;
+  //프론트 화면에 띄우기 위한 확인용(추후 삭제 예정)
   userInfo.push({ id: id++, userId, pw, nickname, email });
-  return res.send('회원가입 성공');
+  //비밀번호 암호화
+  const hashedPW = await bcrypt.hash(pw, 10);
+  //db에 추가
+  const q =
+    'insert into user(inputid, nickname, email, password) VALUES (?,?,?,?);';
+  mydb.query(q, [userId, nickname, email, hashedPW], (error, results) => {
+    if (error) {
+      return res.status(500).send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
+});
+app.post('/api/checkid', (req, res) => {
+  const { userId } = req.body;
+  console.log(userId);
+  //db에서 탐색
+  const q = 'SELECT COUNT(*) AS count FROM user WHERE inputid = ?';
+  mydb.query(q, [userId], (err, results) => {
+    if (err) {
+      console.error('error executing query: ', err);
+      return res.status(500).json({ error: 'internal server error' });
+    }
+    const count = results[0].count;
+    if (count > 0) {
+      return res.status(200).json({ exist: true });
+    } else {
+      return res.status(200).json({ exist: false });
+    }
+  });
 });
 
 //회원가입 됐는지 확인용 GET요청/응답
@@ -129,7 +138,7 @@ app.get('/user', (req, res) => {
 app.put('/user', (req, res) => {
   const { id, nickname, email, currentPassword, newPassword } = req.body;
 
-  console.log('server : ',req.body);
+  console.log('server : ', req.body);
 
   fs.readFile(userDataPath, 'utf8', (err, data) => {
     if (err) {
@@ -157,31 +166,31 @@ app.put('/user', (req, res) => {
 
 //////////////////////////// community feat ////////////////////////////////
 
-app.get("/api/postAll", (req, res) => {
-    mydb.query("SELECT * from post", (error, results) => {
-        if (error) {
-            return res.send("쿼리 실행 실패: " + error.message);
-        }
-        res.json(results);
-    });
+app.get('/api/postAll', (req, res) => {
+  mydb.query('SELECT * from post', (error, results) => {
+    if (error) {
+      return res.send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
 });
 
-app.get("/api/post", (req, res) => {
-    mydb.query("SELECT * from post where anonymity = 0", (error, results) => {
-        if (error) {
-            return res.send("쿼리 실행 실패: " + error.message);
-        }
-        res.json(results);
-    });
+app.get('/api/post', (req, res) => {
+  mydb.query('SELECT * from post where anonymity = 0', (error, results) => {
+    if (error) {
+      return res.send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
 });
 
-app.get("/api/mind", (req, res) => {
-    mydb.query("SELECT * from post where anonymity = 1", (error, results) => {
-        if (error) {
-            return res.send("쿼리 실행 실패: " + error.message);
-        }
-        res.json(results);
-    });
+app.get('/api/mind', (req, res) => {
+  mydb.query('SELECT * from post where anonymity = 1', (error, results) => {
+    if (error) {
+      return res.send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
 });
 
 app.get('/api/comment', (req, res) => {
@@ -237,16 +246,15 @@ app.post('/api/edit', (req, res) => {
   });
 });
 
-app.post("/api/delete", (req, res) => {
-    const { id_post, id_comment } = req.body;
-    const q = "delete from comment where id_post = ? && id_comment = ?;"
-    mydb.query(q
-        , [id_post, id_comment], (error, results) => {
-            if (error) {
-                return res.status(500).send("쿼리 실행 실패: " + error.message);
-            }
-            res.json(results);
-        });
+app.post('/api/delete', (req, res) => {
+  const { id_post, id_comment } = req.body;
+  const q = 'delete from comment where id_post = ? && id_comment = ?;';
+  mydb.query(q, [id_post, id_comment], (error, results) => {
+    if (error) {
+      return res.status(500).send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
 });
 
 //////////////////////////// paragraph feat ////////////////////////////////
