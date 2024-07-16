@@ -5,6 +5,7 @@ import CheckItem from "./CheckItem";
 
 export default function CheckList({initData}){
     const navigate = useNavigate();
+    console.log("checklist",initData)
     const onClickUpdate=()=>{
         navigate("/ask")
     }
@@ -21,7 +22,7 @@ export default function CheckList({initData}){
                     initData.map(
                         (item) => (
                             <CheckItem
-                            key={item.id_ask}
+                            key={item.id_askcheck}
                             {...item}/>
                         ))
                 }

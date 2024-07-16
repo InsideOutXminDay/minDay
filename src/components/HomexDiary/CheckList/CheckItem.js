@@ -1,13 +1,34 @@
-import { useContext } from "react"
+import { useContext,useState } from "react"
 import { DiaryDispatchContext } from "../../../App";
 import '../../../styles/HomexDiary/CheckList/CheckItem.css'
+import { useNavigate } from "react-router-dom";
 
 
-export default function CheckItem({id_ask, id_user,content, isdone, type}){
-    const {onListUpdate} = useContext(DiaryDispatchContext);
-    const onChangeCheckbox = () => {
-        onListUpdate(id_ask, id_user, content, !isdone, type);
+export default function CheckItem({id_askcheck, id_user,content, isdone, type}){
+    const [is_done, setIsDone] = useState(isdone);
+    const onChangeCheckbox = async() => {
+        const updatedIsDone = !is_done;
+        await fetch('http://localhost:4000/api/askcheck', {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id_askcheck: id_askcheck,
+                id_user: id_user,
+                content: content,
+                isdone: updatedIsDone,
+                type: type
+            })
+        }).then(async(res)=>{
+            setIsDone(updatedIsDone)
+            // navigate('/home')
+            if(!res.ok){
+                throw new Error(`error! status: ${res.status}`)
+            }}).catch(error=>console.log('Error:', error.meesage))
     };
+        
+    
     const sentence=()=>{
         switch(type){
             case "sleep": return `${content}시에 취침`;
@@ -24,7 +45,7 @@ export default function CheckItem({id_ask, id_user,content, isdone, type}){
     return(
         <div className="CheckItem">
             <div className='checkbox-col'>
-                <input onChange={onChangeCheckbox} type='checkbox' checked={isdone}></input>
+                <input onChange={onChangeCheckbox} type='checkbox' checked={is_done}></input>
             </div>
             <div className='content-col'>{sentence()}</div>
         </div>

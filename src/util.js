@@ -164,7 +164,7 @@ export const ListData1 = [
     },{
         id_ask:3,
         id_user:1,
-        content:5,
+        content:'5',
         isdone:0,
         type:"phone"
     },{
@@ -182,7 +182,7 @@ export const ListData1 = [
     },{
         id_ask:6,
         id_user:1,
-        content:3,
+        content:'3',
         isdone:0,
         type:"exercise"
     },{
