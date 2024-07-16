@@ -1,7 +1,7 @@
 
 .category-grid {
   display: grid;
-  grid-template-columns: 0.9fr 0.9fr;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
   width: 100%;
 }
