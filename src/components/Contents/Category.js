@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Category.css';
+import '../../styles/Contents/Category.css';
 
 const Category = ({ categories, onSelectCategory }) => {
   return (

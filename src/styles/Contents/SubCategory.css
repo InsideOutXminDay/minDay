@@ -1,12 +1,8 @@
 .sub-category-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: 0.9fr 0.9fr;
   gap: 20px;
   width: 100%;
-  padding: 20px;
-  position: relative;
-  max-width: 1920px;
-  margin: 0 auto;
 }
 
 

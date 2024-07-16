@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/SubCategory.css';
+import '../../styles/Contents/SubCategory.css';
 
 const SubCategory = ({ category, subCategories, onBack, onSelectSubCategory }) => {
   return (

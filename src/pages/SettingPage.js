@@ -1,7 +1,7 @@
 import React from 'react';
-import SettingAccount from '../components/SettingAccount';
+import SettingAccount from '../components/Setting/SettingAccount';
 import Header from '../components/Header';
-import '../styles/SettingPage.css';
+import '../styles/Setting/SettingPage.css';
 
 const SettingPage = () => {
   return (
