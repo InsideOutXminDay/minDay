@@ -1,11 +1,9 @@
-import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../../../styles/HomexDiary/CheckList/CheckList.css'
 import CheckItem from "./CheckItem";
 
 export default function CheckList({initData}){
     const navigate = useNavigate();
-    console.log("checklist",initData)
     const onClickUpdate=()=>{
         navigate("/ask")
     }
@@ -22,7 +20,8 @@ export default function CheckList({initData}){
                     initData.map(
                         (item) => (
                             <CheckItem
-                            key={item.id_askcheck}
+                            key={item.
+                                d_askcheck}
                             {...item}/>
                         ))
                 }

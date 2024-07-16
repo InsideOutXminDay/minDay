@@ -1,7 +1,5 @@
-import { useContext,useState } from "react"
-import { DiaryDispatchContext } from "../../../App";
+import { useState } from "react"
 import '../../../styles/HomexDiary/CheckList/CheckItem.css'
-import { useNavigate } from "react-router-dom";
 
 
 export default function CheckItem({id_askcheck, id_user,content, isdone, type}){

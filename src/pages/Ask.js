@@ -1,12 +1,10 @@
-import { useContext, useState, useEffect } from "react";
-import { DiaryStateContext, DiaryDispatchContext } from "../App";
+import { useState, useEffect } from "react";
 import StateCheck from "../components/Ask/StateCheck";
 import { FindData } from "../util";
 import axios from "axios";
 
 export default function Ask(){
-    const { onListUpdate,onListCreate } = useContext(DiaryDispatchContext);
-    const { data_l } = useContext(DiaryStateContext);
+
     const [initData, setInitData] = useState([]);
 
     const convertListDataToObject = (arr) => {
