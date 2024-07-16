@@ -20,8 +20,7 @@ export default function CheckList({initData}){
                     initData.map(
                         (item) => (
                             <CheckItem
-                            key={item.
-                                d_askcheck}
+                            key={item.id_askcheck}
                             {...item}/>
                         ))
                 }
