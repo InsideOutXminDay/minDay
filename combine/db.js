@@ -1,12 +1,12 @@
 const mysql = require('mysql2');
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 
 const mydb = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD, //로컬 db
-  database: process.env.insideout, //로컬 db
-  port: process.env.DB_PORT
+  host: process.env.REACT_APP_DB_HOST,
+  user: process.env.REACT_APP_DB_USER,
+  password: process.env.REACT_APP_DB_PASSWORD, 
+  database: process.env.REACT_APP_DB_DATABASE, 
+  port: process.env.REACT_APP_DB_PORT
 });
 
 mydb.connect((err) => {

@@ -7,7 +7,7 @@ export default function Paragraph(){
     const [paragraph, setParagraph] = useState(null);
     
     useEffect(() => {
-        axios.get('http://localhost:4000/api/paragraph')
+        axios.get(`${process.env.REACT_APP_API_URL}/paragraph`)
             .then((res) => {
                 setParagraph(res.data)
             }

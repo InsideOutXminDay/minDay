@@ -19,7 +19,7 @@ export default function SignUpForm() {
 
   const handleCheckDuplicate = async (e) => {
     const { userId } = inputForm;
-    const response = await axios.post('http://localhost:4000/api/checkid', {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/checkid`, {
       userId,
     });
     if (response.data.exist === true) {
@@ -45,7 +45,7 @@ export default function SignUpForm() {
     } else {
       setSubmit(true);
       setInputForm('');
-      await axios.post('http://localhost:4000/api/signup', {
+      await axios.post(`${process.env.REACT_APP_API_URL}/signup`, {
         userId: inputForm.userId,
         pw: inputForm.pw,
         nickname: inputForm.nickname,

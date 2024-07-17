@@ -7,13 +7,14 @@ const bcrypt = require('bcrypt');
 // setting
 const fs = require('fs');
 const path = require('path');
-const port = 4000; //proxy도 4000으로 해둠
 // db
 const mydb = require('./db.js');
+const pool = require('./db.js');
+
 
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: process.env.REACT_APP_FE_URL,
     credentials: true,
     optionsSuccessStatus: 200,
   })
@@ -325,11 +326,11 @@ app.post('/api/diary', (req, res) => {
 });
 //////////////////////////// foot ////////////////////////////////
 
-//http://localhost/:4000 에서 확인
+
 app.get('/', (req, res) => {
   res.json('hello this is the backend');
 });
 
-app.listen(4000, () => {
+app.listen(`${process.env.REACT_APP_BE_PORT}`, () => {
   console.log(`BE Server running`);
 });
