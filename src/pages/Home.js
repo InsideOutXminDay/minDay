@@ -23,7 +23,7 @@ export default function Home(){
         <div style={{display:"flex"}}>
             <Header/>
             <CalendarComponent/>
-            <div style={{width:"70%"}}>
+            <div style={{width:"70%", height:"100vh"}}>
                 <Paragraph />
                 <CheckList initData={initData}/>
             </div>

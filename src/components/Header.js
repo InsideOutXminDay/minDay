@@ -13,7 +13,7 @@ export default function Header(){
         navigate('/mind'); 
     }
     const goCommunityPost=()=>{
-        alert('/post'); 
+        navigate('/post'); 
     }
     const goRecommend=()=>{
         // 추천컨텐츠 어떻게할지 고민(임시 작성)
@@ -34,17 +34,19 @@ export default function Header(){
         <div className="Header">
             <div>
                 <div className='logo-icon' onClick={goHome}><img src="/logo_black.svg" className='LogoImg' alt=''/></div>
-                <div className='mid-icon' >
-                    <IoChatbubbleOutline size={"35"}/>
+                <div className='mid-icons'>
+                <div className='mid-icon'>
+                    <IoChatbubbleOutline size={"45%"}/>
                     <div className='dropdown-content'>
                         <p onClick={goCommunityMind}>고민</p>
                         <p onClick={goCommunityPost}>일반</p>
                     </div>
                 </div>
-                <div className='mid-icon' onClick={goRecommend}><BiLike size={"35"}/></div>
-                <div className='mid-icon' onClick={goContents}><IoBookOutline size={"35"}/></div>
-                <div className='mid-icon' onClick={goSetting}><IoSettingsOutline size={"35"}/></div>
-                <div className='end-icon' onClick={Logout}><IoLogOutOutline size={"35"}/></div>
+                <div className='mid-icon' onClick={goRecommend}><BiLike size={"45%"}/></div>
+                <div className='mid-icon' onClick={goContents}><IoBookOutline size={"45%"}/></div>
+                <div className='mid-icon' onClick={goSetting}><IoSettingsOutline size={"45%"}/></div>
+                </div>
+                <div className='end-icon' onClick={Logout}><IoLogOutOutline size={"45%"}/></div>
 
             </div>
         </div>

@@ -1,5 +1,5 @@
 .EmotionItem {
-  width: fit-content;
+  width: 5%;
   cursor: pointer;
   border-radius: 50px;
   display: flex;
@@ -7,34 +7,18 @@
   justify-content: center;
   align-items: center;
   /* margin: 10px; 작은 화면일 때 맞음*/ 
-  margin: 20px 40px;
-
-}
-
-.EmotionItem-small {
-  width: fit-content;
-  cursor: pointer;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  /* margin: 10px 40px; */
+  margin: 2% 3.5%;
 
 }
 
 .EmotionItem img {
   /* width: 50px; 작은 화면일 때 */
-  width: 70px;
-}
-
-.EmotionItem-small img {
-  width: 50px; 
+  width: 4.5vw;
 }
 
 .EmotionItem span {
-  font-size: 17px;
+  font-size: 90%;
+  font-weight: 600;
 }
 
 .EmotionItem-small span {
