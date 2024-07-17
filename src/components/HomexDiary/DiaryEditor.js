@@ -73,7 +73,7 @@ export default function DiaryEditor({initDate, initData, onSubmit}){
                     />
                 </div>
             </div>
-            <div className="editor-section bottom-section">
+            <div className="bottom-section">
                 <button onClick={handleOnGoBack}>취소하기</button>
                 <button onClick={handleSubmit}>작성하기</button>
             </div>
