@@ -302,6 +302,27 @@ app.post('/api/createchecklist', (req, res) => {
   });
 });
 
+//////////////////////////// diary ////////////////////////////////
+app.get('/api/diary', (req, res) => {
+  mydb.query('SELECT * from diary', (error, results) => {
+    if (error) {
+      return res.send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
+});
+
+app.post('/api/diary', (req, res) => {
+  const { id_emotion, id_user, contents } = req.body;
+  const q =
+    'insert into diary(id_emotion, id_user, contents) VALUES (?,?,?);';
+  mydb.query(q, [id_emotion, id_user, contents], (error, results) => {
+    if (error) {
+      return res.status(500).send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
+});
 //////////////////////////// foot ////////////////////////////////
 
 //http://localhost/:4000 에서 확인
