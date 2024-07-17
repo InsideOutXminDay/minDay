@@ -9,17 +9,24 @@
 }
 
 .contents-view .content {
-  background-color: rgba(252, 248, 227, 0.8);
+  background-color:lightgoldenrodyellow;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 12px;
   width: 100%;
   text-align: left;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.contents-view .react-player {
+  border-radius: 12px;
+}
 
 .contents-view h2 {
   margin-bottom: 50px;
   margin-top: 0;
+  color: #333;
+  text-align: center;
 }
 
 .back-button2 {
@@ -30,9 +37,84 @@
   border: none;
   font-size: 2em;
   cursor: pointer;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .back-button2:hover {
   background-color: #007BFF;
+  color: #fff;
   border-radius: 8px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.play-pause-button {
+  background: none;
+  border: none;
+  font-size: 2em;
+  cursor: pointer;
+  color: #007BFF;
+  transition: color 0.3s;
+}
+
+.play-pause-button:hover {
+  color: #0056b3;
+}
+
+.seek-slider {
+  width: 60%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  border-radius: 5px;
+  background: #ddd;
+  outline: none;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.seek-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #007BFF;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.seek-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #007BFF;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.seek-slider:hover {
+  opacity: 1;
+}
+
+.seek-slider:hover::-webkit-slider-thumb {
+  background: #0056b3;
+}
+
+.seek-slider:hover::-moz-range-thumb {
+  background: #0056b3;
+}
+
+.time {
+  font-size: 1em;
+  color: #333;
+  min-width: 100px;
+  text-align: center;
 }
