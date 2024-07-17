@@ -1,6 +1,8 @@
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { user_id } from "../../util";
+import '../../styles/Ask/StateCheck.css'
+
 
 export default function StateCheck({ initData, onUpdate}) {
     const navigate = useNavigate();
@@ -38,7 +40,7 @@ export default function StateCheck({ initData, onUpdate}) {
 
 
     return (
-        <div>
+        <div className="StateCheck">
             <div className="Question">
             <div className="q">
                 <p>취침시간을 언제로 정하고싶나요 ?</p>
