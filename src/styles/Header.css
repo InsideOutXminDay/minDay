@@ -33,7 +33,7 @@
 
 .dropdown-content{
     display : none;
-    margin: -45px 77px;
+    margin: -50% 100%;
     position : absolute;  
     z-index : 1; 
     font-weight: 500;
