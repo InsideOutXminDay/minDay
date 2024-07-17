@@ -10,7 +10,7 @@ export default function Post() {
     let myDB = [];
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/post')
+        axios.get(`${process.env.REACT_APP_API_URL}/post`)
             .then((res) => {
                 // console.log(res.data);
                 setPostdb([...res.data]);

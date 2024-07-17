@@ -7,13 +7,14 @@ const bcrypt = require('bcrypt');
 // setting
 const fs = require('fs');
 const path = require('path');
-const port = 4000; //proxy도 4000으로 해둠
 // db
 const mydb = require('./db.js');
+const pool = require('./db.js');
+
 
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: process.env.REACT_APP_FE_URL,
     credentials: true,
     optionsSuccessStatus: 200,
   })
@@ -302,13 +303,34 @@ app.post('/api/createchecklist', (req, res) => {
   });
 });
 
+//////////////////////////// diary ////////////////////////////////
+app.get('/api/diary', (req, res) => {
+  mydb.query('SELECT * from diary', (error, results) => {
+    if (error) {
+      return res.send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
+});
+
+app.post('/api/diary', (req, res) => {
+  const { id_emotion, id_user, contents } = req.body;
+  const q =
+    'insert into diary(id_emotion, id_user, contents) VALUES (?,?,?);';
+  mydb.query(q, [id_emotion, id_user, contents], (error, results) => {
+    if (error) {
+      return res.status(500).send('쿼리 실행 실패: ' + error.message);
+    }
+    res.json(results);
+  });
+});
 //////////////////////////// foot ////////////////////////////////
 
-//http://localhost/:4000 에서 확인
+
 app.get('/', (req, res) => {
   res.json('hello this is the backend');
 });
 
-app.listen(4000, () => {
+app.listen(`${process.env.REACT_APP_BE_PORT}`, () => {
   console.log(`BE Server running`);
 });

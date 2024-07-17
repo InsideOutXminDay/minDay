@@ -22,21 +22,21 @@ export default function Detail() {
     let nowPost = {};
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/postAll')
+        axios.get(`${process.env.REACT_APP_API_URL}/postAll`)
             .then((res) => {
                 setPostDB([...res.data]);
             }).catch(error => console.error('Error:', error));
     })
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/comment')
+        axios.get(`${process.env.REACT_APP_API_URL}/comment`)
             .then((res) => {
                 setCommentDB([...res.data]);
             }).catch(error => console.error('Error:', error));
     }, [])
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/postuser')
+        axios.get(`${process.env.REACT_APP_API_URL}/postuser`)
             .then((res) => {
                 setUserDB([...res.data]);
             }).catch(error => console.error('Error:', error));
@@ -116,7 +116,7 @@ export default function Detail() {
         let body = item.body;
         let id_user = 2;
         let id_post = nowPost.detail_post;
-        fetch('http://localhost:4000/api/comment', {
+        fetch(`${process.env.REACT_APP_API_URL}/comment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -141,7 +141,7 @@ export default function Detail() {
     const deleteComment = (item) => {
         let id_post = item.id_post;
         let id_comment = item.id_comment;
-        fetch('http://localhost:4000/api/delete', {
+        fetch(`${process.env.REACT_APP_API_URL}/delete`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -17,7 +17,7 @@ export default function Ask(){
       }
       
       useEffect(() => {
-        axios.get('http://localhost:4000/api/askcheck')
+        axios.get(`${process.env.REACT_APP_API_URL}/askcheck`)
             .then((res) => {
                 const foundData = FindData(res.data)
                 setInitData(convertListDataToObject(foundData))
@@ -28,7 +28,7 @@ export default function Ask(){
 
     const onUpdate = async(id_askcheck, id_user, content, isdone, type) => {
         const address = initData.sleep?'update':'create';
-        await fetch(`http://localhost:4000/api/${address}checklist`, {
+        await fetch(`${process.env.REACT_APP_API_URL}/${address}checklist`, {
             method:'POST',
             headers: {
                 'Content-Type': 'application/json'

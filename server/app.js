@@ -113,4 +113,4 @@ app.get('/api/users', (req, res) => {
   res.send(userInfo);
 });
 
-app.listen(4000, () => console.log('4000번 포트에서 서버 실행 중'));
+app.listen(`${process.env.REACT_APP_BE_PORT}`, () => console.log(`${process.env.REACT_APP_BE_PORT}번 포트에서 서버 실행 중`));
