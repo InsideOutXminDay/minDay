@@ -52,7 +52,11 @@ export default function Ask(){
 
     return (
         <div>
-            <div>
+            <div className="Ask">
+                <div className="logo-section">
+                    <img src="/logo_full.png"/>
+                    <p>목표를 설정해 만족스러운 하루를 만들어보세요!😊</p>
+                </div>
                 <StateCheck initData={initData}  onUpdate={onUpdate}/>
             </div>
         </div>
