@@ -2,19 +2,11 @@
     /* float:right; */
     /* margin-bottom: 30px; */
     border-radius: 20px;
-    margin: 15px 15px 15px 0px;
+    margin: 1% 1% 1% 0px;
     border: 3px solid #7DCCAC;
-    padding: 50px 50px 70px 50px;
+    padding: 4%;
     width: 87%;
-}
-.list-wrapper{
-    margin-top: 20px;
-    margin-bottom: 30px;
-    display: flex;
-    align-items: baseline;
-    gap: 20px;
-    padding: 20px 30px;
-    flex-direction: column; /* 자식 요소들을 수직 방향으로 정렬 */
+    height: 48.5%;
 }
 
 .list-wrapper-wide{
@@ -22,7 +14,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  gap: 10px;
+  gap: 3%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
@@ -31,6 +23,5 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    /* gap: 52%; */
-    padding: 0px 60px;
+    padding: 1% 5%;
 }
