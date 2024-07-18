@@ -14,7 +14,6 @@ export default function CheckList({initData}){
                 <h4> Checking for Me 🌱</h4>
                 <div className="button-section"><button onClick={onClickUpdate}>수정하기</button></div>
             </div>
-           
             <div className='list-wrapper-wide'>
                 {
                     initData.map(

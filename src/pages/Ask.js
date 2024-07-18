@@ -17,33 +17,33 @@ export default function Ask(){
       }
       
       useEffect(() => {
-        axios.get('http://localhost:4000/api/askcheck')
+        axios.get('http://localhost:5000/askchecks')
             .then((res) => {
                 const foundData = FindData(res.data)
+                console.log("founddata",foundData)
                 setInitData(convertListDataToObject(foundData))
             }
             ).catch(error => console.error('Error:', error));
     }, []);
 
 
-    const onUpdate = async(id_askcheck, id_user, content, isdone, type) => {
+    const onUpdate = async(id_user, content, isdone, type) => {
         const address = initData.sleep?'update':'create';
-        await fetch(`http://localhost:4000/api/${address}checklist`, {
+        await fetch(`http://localhost:5000/${address}checklist`, {
             method:'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id_askcheck: id_askcheck,
                 id_user: id_user,
                 content: content,
-                isdone: isdone,
+                isdone: Boolean(isdone),
                 type: type
             })
         }).then(async(res)=>{
             if(!res.ok){
                 throw new Error(`error! status: ${res.status}`)
-            }}).catch(error=>console.log('Error:', error.meesage))
+            }}).catch(error=>console.log('Error:', error.message))
 
 
         // onListUpdate(id_ask, id_user, content, isdone, type)

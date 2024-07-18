@@ -5,9 +5,9 @@ import '../../styles/Ask/StateCheck.css'
 
 
 export default function StateCheck({ initData, onUpdate}) {
+    console.log("initData",initData)
     const navigate = useNavigate();
     const [newUser,setNewUser] = useState(true);
-    const idRef = useRef(9);
 
     const [state, setState] = useState({sleep:{content:"22:00"},
                                 wake: {content:"06:00"},
@@ -27,15 +27,20 @@ export default function StateCheck({ initData, onUpdate}) {
     }, [initData]); // Adding initData as a dependency    
 
 
-    const onSubmit = () => {
-        Object.keys(state).map(key => {
-            if (newUser) {
-              onUpdate(idRef.current, user_id, state[key].content, 0, key);
-            } else {
-              onUpdate(state[key].id_askcheck, user_id, state[key].content, state[key].isdone, key);
+    const onSubmit = async () => {
+        try {
+            for (const key of Object.keys(state)) {
+                console.log("key", key);
+                if (newUser) {
+                    await onUpdate(user_id, state[key].content, 0, key);
+                } else {
+                    await onUpdate(user_id, state[key].content, state[key].isdone, key);
+                }
             }
-        });
-        navigate("/home");
+            navigate("/home");
+        } catch (error) {
+            console.error("Error:", error.message);
+        }
     };
 
 
@@ -55,7 +60,7 @@ export default function StateCheck({ initData, onUpdate}) {
             <div className="q">
                 <p>최대 디지털기기 사용시간을 얼마로 정하고싶나요 ?</p>
                 <input type="number" placeholder={state.phone.content}
-                    onChange={(e)=>setState(data=>({...data, phone:{...data.phone, content:e.target.value}}))}/>
+                    onChange={(e)=>setState(data=>({...data, phone:{...data.phone, content:String(e.target.value)}}))}/>
             </div>
             <div className="q">
                 <p>매일의 나에게 선물해주고싶은 일은 무엇인가요 ?</p>
@@ -72,7 +77,7 @@ export default function StateCheck({ initData, onUpdate}) {
             <div className="q">
                 <p>하루 운동량은 얼마인가요 ?</p>
                 <textarea type="number"placeholder={state.exercise.content} 
-                    onChange={(e)=>setState(data=>({...data, exercise:{...data.exercise, content:e.target.value}}))}/>
+                    onChange={(e)=>setState(data=>({...data, exercise:{...data.exercise, content:String(e.target.value)}}))}/>
                 
             </div>
             <button onClick={onSubmit}>완료</button>

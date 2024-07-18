@@ -11,7 +11,7 @@ export default function Home(){
     const [initData, setInitData] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/askcheck')
+        axios.get('http://localhost:5000/askchecks')
             .then((res) => {
                 const foundData = FindData(res.data)
                 setInitData(foundData)

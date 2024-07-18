@@ -2,17 +2,16 @@ import { useState } from "react"
 import '../../../styles/HomexDiary/CheckList/CheckItem.css'
 
 
-export default function CheckItem({id_askcheck, id_user,content, isdone, type}){
+export default function CheckItem({id_user,content, isdone, type}){
     const [is_done, setIsDone] = useState(isdone);
     const onChangeCheckbox = async() => {
         const updatedIsDone = !is_done;
-        await fetch('http://localhost:4000/api/updatechecklist', {
+        await fetch('http://localhost:5000/updatechecklist', {
             method:'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id_askcheck: id_askcheck,
                 id_user: id_user,
                 content: content,
                 isdone: updatedIsDone,
