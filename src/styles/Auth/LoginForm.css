@@ -15,84 +15,94 @@
   font-family: 'Montserrat', sans-serif;
 }
 .login-form img {
-  width: 20%;
+  display: block;
+  width: 100%;
   height: 20%;
-  object-fit: cover;
+  object-fit: contain;
 }
-.login-form h1 {
-  font-size: 2em;
+.login-input {
+  width: 100%;
+  height: 70%;
+  padding-bottom: 2em;
 }
-.form {
+.login-other {
+  height: 30%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-
-  width: 50%;
-  height: 40%;
-
-  position: relative;
+  align-items: center;
 }
-.form label {
-  font-size: 1.2em;
-  font-weight: 600;
-  margin-right: 0.3em;
+.login-input h1 {
+  font-size: 2em;
 }
-.form input {
-  width: 90%;
-  border-style: none;
-  outline: none;
-
-  font-size: 1.2em;
-  font-weight: 500;
-}
-.id-input,
-.pw-input {
-  border-bottom: 1px solid #7dccac;
+.input-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5rem;
 }
 .id-input {
-  margin-bottom: 2.2em;
+  border-bottom: 1px solid #7dccac;
+  margin-bottom: 1.5em;
 }
-.btns {
-  margin-bottom: 4em;
+.id-input label {
+  margin-right: 1em;
 }
-.btns button {
-  font-size: 1.3em;
+.id-input input {
+  border-style: none;
+  outline: none;
+  font-size: 1.5rem;
+}
+.pw-input {
+  border-bottom: 1px solid #7dccac;
+  margin-bottom: 5em;
+}
+.pw-input label {
+  margin-right: 1em;
+}
+.pw-input input {
+  border-style: none;
+  outline: none;
+  font-size: 1.5rem;
+}
+.input-form button {
+  border-style: none;
+  background-color: #7dccac;
+  color: white;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 25px;
+  width: 220px;
+  padding: 0.5em 0;
+}
+.input-form button:hover {
+  cursor: pointer;
+}
+.kakao-btn {
+  width: 220px;
+  background-color: #f7e600;
   border-style: none;
   border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 2.5em;
+  padding: 0.8em 0;
 }
-.login-btn,
 .kakao-btn:hover {
   cursor: pointer;
 }
-.login-btn {
-  color: white;
-  background-color: #7dccac;
-  padding: 0.5rem 3.3rem;
-  border-style: none;
-  border-radius: 10px;
-  margin-top: 2.5em;
-  font-size: 1.3em;
-  width: 30%;
-  position: absolute;
-  top: 7em;
-  left: 13em;
+.kakao-btn span {
+  margin-right: 0.5em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 25px;
 }
-.kakao-btn {
-  background-color: #f7e600;
-  display: flex;
-  gap: 1em;
-  box-sizing: border-box;
-  padding: 0.5rem 1rem;
-}
-.login-form span {
-  font-family: 'Pretendard-Regular';
-  font-size: 1.2em;
+.find-text {
   color: #878787;
 }
-.login-form span:hover {
+.find-text:hover {
   cursor: pointer;
-}
-.login-test {
-  position: absolute;
-  left: 0;
 }

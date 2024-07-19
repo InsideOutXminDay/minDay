@@ -57,9 +57,9 @@ export default function LoginForm({ setToken }) {
       <article className="login-form">
         <img src="/img/logo_full.png"></img>
 
-        <div>
+        <div className="login-input">
           <h1>Log In</h1>
-          <form className="form" onSubmit={submitHandler}>
+          <form className="input-form" onSubmit={submitHandler}>
             <div className="id-input">
               <label htmlFor="id">ID</label>
               <input
@@ -84,13 +84,13 @@ export default function LoginForm({ setToken }) {
           </form>
         </div>
 
-        <div className="btns">
+        <div className="login-other">
           <button className="kakao-btn">
-            Kakao Login
+            <span>Kakao Login</span>
             <ImBubble color="#3A1D1D" />
           </button>
+          <span className="find-text">회원 정보를 잊으셨나요?</span>
         </div>
-        <span>회원 정보를 잊으셨나요?</span>
       </article>
     </>
   );
