@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { IoCaretBackOutline } from "react-icons/io5";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import '../styles/community/new.css';
+// import dotenv from "dotenv";
+// dotenv.config();
 
 
 export default function New() {
@@ -28,7 +30,7 @@ export default function New() {
         let body = item.body;
         let anonymity = item.anonymity ? 1 : 0;
 
-        await fetch('http://localhost:4000/api/new', {
+        await fetch(`${process.env.REACT_APP_API_URL}/new`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

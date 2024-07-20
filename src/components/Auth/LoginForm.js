@@ -16,10 +16,10 @@ export default function LoginForm() {
   const navigate = useNavigate();
 
   const getData = async () => {
-    const response = await axios.get('http://localhost:4000/api/users');
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/users`);
     setUser(response.data);
 
-    const loggedInUser = await axios.get('http://localhost:4000/api/login');
+    const loggedInUser = await axios.get(`${process.env.REACT_APP_API_URL}/login`);
     setLogin(loggedInUser.data);
   };
 
@@ -35,7 +35,7 @@ export default function LoginForm() {
     console.log(userId, pw);
 
     try {
-      const response = await axios.post('http://localhost:4000/api/login', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
         userId,
         pw,
       });
@@ -56,7 +56,7 @@ export default function LoginForm() {
   };
 
   // const handleLogOut = async () => {
-  //   await axios.get('http://localhost:4000/api/logout');
+  //   await axios.get(`${process.env.REACT_APP_API_URL}/logout`);
   //   //navigate('/');
   // };
 

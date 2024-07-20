@@ -19,6 +19,7 @@ export default function Ask(){
       
       useEffect(() => {
         axios.get('http://localhost:5000/askchecks')
+
             .then((res) => {
                 const foundData = FindData(res.data)
                 console.log("ask foundData", foundData)
