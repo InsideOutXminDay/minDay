@@ -1,23 +1,20 @@
-import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { user_id } from "../../util";
 import '../../styles/Ask/StateCheck.css'
 
 
 export default function StateCheck({ initData, onUpdate}) {
-    console.log("initData",initData)
-    const navigate = useNavigate();
     const [newUser,setNewUser] = useState(true);
 
-    const [state, setState] = useState({sleep:{content:"22:00"},
-                                wake: {content:"06:00"},
-                                phone: {content:3},
-                                satisfaction: {content:"맛있는거 먹기"},
-                                hobby: {content:"달리기"},
-                                exercise: {content:3},
-                                meal:{content:"식사 잘 챙겨먹기"},
-                                rest: {content:"충분한 휴식 취하기"},
-                            })
+    const [state, setState] = useState({
+        sleep:{content:"22:00"},
+        wake: {content:"06:00"},
+        phone: {content:3},
+        satisfaction: {content:"맛있는거 먹기"},
+        hobby: {content:"달리기"},
+        exercise: {content:3},
+        meal:{content:"식사 잘 챙겨먹기"},
+        rest: {content:"충분한 휴식 취하기"}})
 
     useEffect(() => {
         if (initData.sleep) {
@@ -27,20 +24,16 @@ export default function StateCheck({ initData, onUpdate}) {
     }, [initData]); // Adding initData as a dependency    
 
 
-    const onSubmit = async () => {
-        try {
-            for (const key of Object.keys(state)) {
-                console.log("key", key);
-                if (newUser) {
-                    await onUpdate(user_id, state[key].content, 0, key);
-                } else {
-                    await onUpdate(user_id, state[key].content, state[key].isdone, key);
-                }
-            }
-            navigate("/home");
-        } catch (error) {
-            console.error("Error:", error.message);
+
+    const onSubmit = () => {
+        if(newUser){
+            onUpdate(state);
+        }else{
+            Object.keys(state).forEach(key => {
+                onUpdate(state[key].id_user, state[key].content, state[key].isdone, key, state[key].id_askcheck);
+            });
         }
+        window.location.href = "/home";
     };
 
 

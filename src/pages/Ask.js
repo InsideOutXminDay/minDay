@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import StateCheck from "../components/Ask/StateCheck";
-import { FindData } from "../util";
+import { FindData, user_id } from "../util";
 import axios from "axios";
 
 export default function Ask(){
@@ -10,7 +10,8 @@ export default function Ask(){
     const convertListDataToObject = (arr) => {
         const result = {};
         arr.forEach(item => {
-          const { type, ...rest } = item;
+          const { type, ...rest } = item.Askcheck;
+          rest.id_user = item.User.id_user;
           result[type] = rest;
         });
         return result;
@@ -20,34 +21,37 @@ export default function Ask(){
         axios.get('http://localhost:5000/askchecks')
             .then((res) => {
                 const foundData = FindData(res.data)
-                console.log("founddata",foundData)
+                console.log("ask foundData", foundData)
                 setInitData(convertListDataToObject(foundData))
             }
             ).catch(error => console.error('Error:', error));
     }, []);
 
 
-    const onUpdate = async(id_user, content, isdone, type) => {
-        const address = initData.sleep?'update':'create';
-        await fetch(`http://localhost:5000/${address}checklist`, {
-            method:'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id_user: id_user,
-                content: content,
-                isdone: Boolean(isdone),
-                type: type
-            })
-        }).then(async(res)=>{
-            if(!res.ok){
-                throw new Error(`error! status: ${res.status}`)
-            }}).catch(error=>console.log('Error:', error.message))
-
-
-        // onListUpdate(id_ask, id_user, content, isdone, type)
-        // :onListCreate(id_ask, id_user, content, isdone, type)
+    const onUpdate = async(id_user, content, isdone, type, id_askcheck=null) => {
+        const address = id_askcheck ?'update':'create';
+        try{
+            const res = await axios.post(`http://localhost:5000/${address}checklist`, 
+                {
+                    id_user,
+                    content,
+                    isdone,
+                    type,
+                    id_askcheck 
+                }
+              );
+            console.log(res.data)
+        }catch(err){
+            console.error(err)
+        }
+    }
+    const onCreate = async(state) => {
+        try{
+            const res = await axios.post(`http://localhost:5000/createchecklist`, {user_id,state});
+            console.log(res.data)
+        }catch(err){
+            console.error(err)
+        }
     }
 
     return (
@@ -57,7 +61,7 @@ export default function Ask(){
                     <img src="/logo_full.png"/>
                     <p>목표를 설정해 만족스러운 하루를 만들어보세요!😊</p>
                 </div>
-                <StateCheck initData={initData}  onUpdate={onUpdate}/>
+                <StateCheck initData={initData}  onUpdate={initData.sleep?onUpdate:onCreate}/>
             </div>
         </div>
     );

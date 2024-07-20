@@ -18,6 +18,7 @@ export default function Home(){
             }
             ).catch(error => console.error('Error:', error));
     }, []);
+    console.log(initData, "initdata")
 
     return(
         <div style={{display:"flex"}}>
