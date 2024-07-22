@@ -1,5 +1,5 @@
 // 임시 사용자 id
-export const user_id = 1;
+export const user_id = 3;
 
 // 감정 데이터
 export const emotionList = [
@@ -70,35 +70,6 @@ export const emotionList = [
     },
 ];
 
-//글귀 데이터
-export const ParagraphDatas = [
-    {
-        id_paragraph:1,
-        article:"Success is not final, failure is not fatal: It is the courage to continue that counts.",
-        ver_ko: "성공은 최종적이지 않고, 실패는 치명적이지 않습니다: 계속하는 용기가 중요합니다.",
-        writer:"Winston Churchill"
-    },{
-        id_paragraph:2,
-        article:"The only true wisdom is in knowing you know nothing.",
-        ver_ko: "진정한 지혜는 네가 아무 것도 모른다는 것을 알 때 나타납니다.",
-        writer:"Socrates"
-    },{
-        id_paragraph:3,
-        article:"Be yourself; everyone else is already taken.",
-        ver_ko: "네 자신이 되어라; 다른 사람들은 이미 누군가입니다.",
-        writer:"Oscar Wilde"
-    },{
-        id_paragraph:4,
-        article:"To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
-        ver_ko: "계속해서 너를 다른 무언가로 만들려는 세상에서 자신을 유지하는 것이 가장 큰 성취입니다.",
-        writer:"Ralph Waldo Emerso"
-    },{
-        id_paragraph:5,
-        article:"The greatest glory in living lies not in never falling, but in rising every time we fall.",
-        ver_ko: "살아가는 데 있어 가장 큰 영광은 결코 넘어지지 않는 데가 아니라 넘어질 때마다 일어나는 데 있습니다.",
-        writer:"Nelson Mandela"
-    },
-]
 
 // diary 데이터
 export const diaryDatas = [
