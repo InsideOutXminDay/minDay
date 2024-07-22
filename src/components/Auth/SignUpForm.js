@@ -18,13 +18,13 @@ export default function SignUpForm() {
   };
 
   const handleCheckDuplicate = async (e) => {
-    const { userId } = inputForm;
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/checkid`, {
-      userId,
+    const { username } = inputForm;
+    const response = await axios.post('http://localhost:5000/api/join/check', {
+      username,
     });
     if (response.data.exist === true) {
       setModalContent('이미 사용중인 아이디입니다.');
-      setInputForm({ ...inputForm, userId: '' });
+      setInputForm({ ...inputForm, username: '' });
     } else {
       setModalContent('사용 가능한 아이디입니다.');
     }
@@ -38,20 +38,25 @@ export default function SignUpForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (inputForm.pw !== inputForm.pwCheck) {
+    if (inputForm.password !== inputForm.passwordCheck) {
       setModalContent('비밀번호를 다시 확인해주세요.');
       setIsModalOpen(true);
-      setInputForm({ ...inputForm, pw: '', pwCheck: '' });
+      setInputForm({ ...inputForm, password: '', passwordCheck: '' });
     } else {
       setSubmit(true);
       setInputForm('');
-      await axios.post(`${process.env.REACT_APP_API_URL}/signup`, {
-        userId: inputForm.userId,
-        pw: inputForm.pw,
+      console.log('inputForm:', inputForm);
+      await axios.post('http://localhost:5000/api/join', {
+        username: inputForm.username,
+        password: inputForm.password,
         nickname: inputForm.nickname,
         email: inputForm.email,
       });
     }
+  };
+
+  const gotoLogin = () => {
+    navigate('/login');
   };
 
   return (
@@ -64,7 +69,9 @@ export default function SignUpForm() {
             <span className="signup-ok-text">
               바로 로그인해서 minDay를 만들어보세요!
             </span>
-            <button className="signup-ok-btn">로그인 하러 가기</button>
+            <button className="signup-ok-btn" onClick={gotoLogin}>
+              로그인 하러 가기
+            </button>
           </div>
         ) : (
           <form className="signup-form" onSubmit={handleSubmit}>
@@ -73,8 +80,8 @@ export default function SignUpForm() {
               <input
                 id="id"
                 type="text"
-                name="userId"
-                value={inputForm.userId || ''}
+                name="username"
+                value={inputForm.username || ''}
                 onChange={handleInputForm}
                 autoFocus
                 required
@@ -115,8 +122,8 @@ export default function SignUpForm() {
               <input
                 id="pw"
                 type="password"
-                value={inputForm.pw || ''}
-                name="pw"
+                value={inputForm.password || ''}
+                name="password"
                 onChange={handleInputForm}
                 required
               ></input>
@@ -126,8 +133,8 @@ export default function SignUpForm() {
               <input
                 id="pw-sure"
                 type="password"
-                name="pwCheck"
-                value={inputForm.pwCheck || ''}
+                name="passwordCheck"
+                value={inputForm.passwordCheck || ''}
                 onChange={handleInputForm}
                 required
               ></input>
