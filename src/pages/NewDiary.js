@@ -1,19 +1,20 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import DiaryEditor from "../components/HomexDiary/DiaryEditor"
 import Header from "../components/Header"
-import { useContext } from "react";
+import axios from "axios";
 // 다이어리 데이터
-import { DiaryDispatchContext } from "../App";
 
 export default function NewDiary(){
     const location = useLocation();
     const { date } = location.state || {}; 
-    const {onCreate} = useContext(DiaryDispatchContext);
-    const navigate = useNavigate();
     
-    const onSubmit = (data) => {
-        onCreate(data);
-        navigate('/home',{replace:true});
+    const onSubmit = async(data) => {
+        // onCreate(data);
+        try{
+            const res = await axios.post(`http://localhost:5000/creatediary`, {data});
+        }catch(err){
+            console.error(err)
+        }
     }
     return (
         <div style={{display:"flex"}}>

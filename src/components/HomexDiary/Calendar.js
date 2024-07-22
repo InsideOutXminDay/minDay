@@ -1,11 +1,13 @@
+
+
 import '../../styles/HomexDiary/Calendar.css'
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import moment from 'moment';
 import { IoPencilOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
-import { DiaryStateContext } from '../../App';
 import { FindData } from '../../util';
+import axios from 'axios';
 
 export default function CalendarComponent(){
   const [date, setDate] = useState(new Date());
@@ -14,16 +16,20 @@ export default function CalendarComponent(){
   const [Isview, setView] = useState(true);
   const navigate = useNavigate();
   // 데이터 불러오기
-  const {data} = useContext(DiaryStateContext);
-
   useEffect(() => {
-    const foundData = FindData(data)
-    setDiaryData(foundData)
-  }, []);
+    axios.get('http://localhost:5000/diarys')
+        .then((res) => {
+            const foundData = FindData(res.data)
+            setDiaryData(foundData)
+        }
+        ).catch(error => console.error('Error:', error));
+}, []);
+
+
   // 오늘 날짜 일기 바로 보여줌
   useEffect(()=>{
     const dateStr = moment(date).format('YYYY-MM-DD');
-    const matching = diaryData.find((value)=>value.date === dateStr) 
+    const matching = diaryData.find((value)=>value.Diary.date === dateStr) 
     setNowDiary(matching);
   },[diaryData])
 
@@ -32,7 +38,7 @@ export default function CalendarComponent(){
     setView(true)
     setDate(day)
     const dateStr = moment(day).format('YYYY-MM-DD');
-    const matching = diaryData.find((value)=>value.date === dateStr)
+    const matching = diaryData.find((value)=>value.Diary.date === dateStr)
     if(matching){
       setNowDiary(matching)
     }else{setNowDiary(null)}
@@ -43,11 +49,11 @@ export default function CalendarComponent(){
   const tileContent = ({ date, view }) => {
     if (view==='month' ){
     const dateStr = moment(date).format('YYYY-MM-DD');
-    const matching = diaryData.find((value)=>value.date === dateStr);
+    const matching = diaryData.find((value)=>value.Diary.date === dateStr);
      if (matching) { 
       return (
         <div>
-          <img style={{width:"30px"}} src={`/emotion${matching.id_emotion}.png`} />
+          <img style={{width:"30px"}} src={`/emotion${matching.Diary.id_emotion}.png`} />
         </div>
         
       );
@@ -82,10 +88,10 @@ export default function CalendarComponent(){
           {nowDiary ? (
             <>
               <div className='emotion-section'>
-                <img style={{ width: "60px" }} src={`/emotion${nowDiary.id_emotion}.png`} alt="Emotion" />
+                <img style={{ width: "60px" }} src={`/emotion${nowDiary.Diary.id_emotion}.png`} alt="Emotion" />
               </div>
               <div className='diary-section'>
-                <p>{nowDiary.contents.slice(0,20)}</p>
+                <p>{nowDiary.Diary.content.slice(0,20)}</p>
               </div>
             </>
           ) : null}

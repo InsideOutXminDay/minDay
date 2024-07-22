@@ -8,24 +8,26 @@ import '../../styles/HomexDiary/DiaryEditor.css'
 
 export default function DiaryEditor({initDate, initData, onSubmit}){
     const navigate = useNavigate();
-    
+
+
     //생성 시 기본 값
     const [state, setState] = useState({
-        id_diary:parseInt(moment(new Date(initDate)).format('YYYYMMDD')+user_id),
         date:  moment(new Date(initDate)).format('YYYY-MM-DD'),
         id_emotion: 3,
         id_user:user_id,
-        contents: "",
+        content: "",
     });
 
     useEffect(() => {
-        if (initData) {
+        if (initData&&initData.Diary) {
           setState({
-            ...initData,
-            date: moment(new Date(initData.date)).format('YYYY-MM-DD'),
+            id_diary:initData.Diary.id_diary,
+            date: moment(new Date(initData.Diary.date)).format('YYYY-MM-DD'),
+            id_emotion: initData.Diary.id_emotion,
+            id_user: initData.id_user,
+            content:initData.Diary.content
           });
         }
-
       }, [initData]);
 
     const handleChangeEmotion = useCallback((id_emotion) => {
@@ -37,13 +39,13 @@ export default function DiaryEditor({initDate, initData, onSubmit}){
     const handleChangeContent = (e) => {
         setState({
           ...state,
-          contents: e.target.value,
+          content: e.target.value,
         });
 
       };
     const handleSubmit = () => {
         onSubmit(state);
-
+        window.location.href = "/home";
     };
     const handleOnGoBack = () => {
         navigate(-1);
@@ -68,7 +70,7 @@ export default function DiaryEditor({initDate, initData, onSubmit}){
                 <div className="input-wrapper">
                     <textarea
                         placeholder="오늘은 어땠나요?"
-                        defaultValue={state.contents}
+                        defaultValue={state.content}
                         onChange={handleChangeContent}
                     />
                 </div>
