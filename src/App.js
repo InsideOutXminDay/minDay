@@ -15,6 +15,7 @@ import Contents from './pages/Contents.js';
 //import Login from './pages/Login.js';
 import LoginForm from './components/Auth/LoginForm.js';
 import SignUp from './pages/SignUp.js';
+import axios from 'axios';
 
 // diary 데이터
 import Ask from './pages/Ask.js';
@@ -35,10 +36,10 @@ function App() {
   const setAuthToken = (token) => {
     if (token) {
       localStorage.setItem('token', token);
-      //axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      axios.defaults.headers.common['authorization'] = `Bearer ${token}`;
     } else {
       localStorage.removeItem('token');
-      //delete axios.defaults.headers.common['Authorization'];
+      delete axios.defaults.headers.common['authorization'];
     }
     setToken(token);
   };
@@ -57,7 +58,7 @@ function App() {
         )}
         <Routes>
           <Route path="/" element={<Intro />} />
-          <Route path="/home" element={<Home />} />{' '}
+          <Route path="/home" element={<Home token={token} />} />{' '}
           {/* /home/:userid >> 개인별 홈화면 구현 */}
           {
             <Route
@@ -68,7 +69,8 @@ function App() {
           {<Route path="/join" element={<SignUp />} />}
           <Route path="/ask" element={<Ask />} /> {/* /ask/:id */}
           {/* <Route path='/find' element={<회원정보 찾기 />}/> */}
-          <Route path="/diary/:id" element={<Diary />} /> {/* /diary/:id */}
+          <Route path="/diary/:id" element={<Diary token={token} />} />{' '}
+          {/* /diary/:id */}
           <Route path="/newdiary" element={<NewDiary />} /> {/* /diary/:id */}
           <Route path="/contents" element={<Contents />} />
           <Route path="/setting" element={<SettingPage />} />
