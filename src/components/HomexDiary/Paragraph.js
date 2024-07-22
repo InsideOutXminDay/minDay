@@ -1,18 +1,14 @@
 import { useEffect, useState } from 'react';
 import '../../styles/HomexDiary/Paragraph.css'
 import axios from 'axios';
-
 export default function Paragraph(){
     const [paragraph, setParagraph] = useState(null);
     const [lenOfparagraph,setLength] = useState(0);
-
-    console.log("Paragraph component")
     
     useEffect(() => {
         axios.get('http://localhost:5000/paragraphs')
             .then((res) => {
                 setParagraph(res.data)
-                console.log("paragraph", paragraph);
             }
             ).catch(error => console.error('Error:', error));        
     }, []);
