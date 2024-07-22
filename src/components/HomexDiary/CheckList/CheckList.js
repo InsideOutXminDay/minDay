@@ -7,14 +7,17 @@ export default function CheckList({initData}){
     const onClickUpdate=()=>{
         navigate("/ask")
     }
+
+
     
     return(
         <div className="CheckList">
             <div className="title-wrapper">
                 <h4> Checking for Me 🌱</h4>
                 <div className="button-section"><button onClick={onClickUpdate}>수정하기</button></div>
+
+
             </div>
-           
             <div className='list-wrapper-wide'>
                 {
                     initData.map(
@@ -24,9 +27,6 @@ export default function CheckList({initData}){
                             {...item}/>
                         ))
                 }
-               
-                
-                  
             </div>
         </div>
     )

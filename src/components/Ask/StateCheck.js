@@ -1,23 +1,20 @@
-import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { user_id } from "../../util";
 import '../../styles/Ask/StateCheck.css'
 
 
 export default function StateCheck({ initData, onUpdate}) {
-    const navigate = useNavigate();
     const [newUser,setNewUser] = useState(true);
-    const idRef = useRef(9);
 
-    const [state, setState] = useState({sleep:{content:"22:00"},
-                                wake: {content:"06:00"},
-                                phone: {content:3},
-                                satisfaction: {content:"맛있는거 먹기"},
-                                hobby: {content:"달리기"},
-                                exercise: {content:3},
-                                meal:{content:"식사 잘 챙겨먹기"},
-                                rest: {content:"충분한 휴식 취하기"},
-                            })
+    const [state, setState] = useState({
+        sleep:{content:"22:00"},
+        wake: {content:"06:00"},
+        phone: {content:3},
+        satisfaction: {content:"맛있는거 먹기"},
+        hobby: {content:"달리기"},
+        exercise: {content:3},
+        meal:{content:"식사 잘 챙겨먹기"},
+        rest: {content:"충분한 휴식 취하기"}})
 
     useEffect(() => {
         if (initData.sleep) {
@@ -27,15 +24,16 @@ export default function StateCheck({ initData, onUpdate}) {
     }, [initData]); // Adding initData as a dependency    
 
 
+
     const onSubmit = () => {
-        Object.keys(state).map(key => {
-            if (newUser) {
-              onUpdate(idRef.current, user_id, state[key].content, 0, key);
-            } else {
-              onUpdate(state[key].id_askcheck, user_id, state[key].content, state[key].isdone, key);
-            }
-        });
-        navigate("/home");
+        if(newUser){
+            onUpdate(state);
+        }else{
+            Object.keys(state).forEach(key => {
+                onUpdate(state[key].id_user, state[key].content, state[key].isdone, key, state[key].id_askcheck);
+            });
+        }
+        window.location.href = "/home";
     };
 
 
@@ -55,7 +53,7 @@ export default function StateCheck({ initData, onUpdate}) {
             <div className="q">
                 <p>최대 디지털기기 사용시간을 얼마로 정하고싶나요 ?</p>
                 <input type="number" placeholder={state.phone.content}
-                    onChange={(e)=>setState(data=>({...data, phone:{...data.phone, content:e.target.value}}))}/>
+                    onChange={(e)=>setState(data=>({...data, phone:{...data.phone, content:String(e.target.value)}}))}/>
             </div>
             <div className="q">
                 <p>매일의 나에게 선물해주고싶은 일은 무엇인가요 ?</p>
@@ -72,7 +70,7 @@ export default function StateCheck({ initData, onUpdate}) {
             <div className="q">
                 <p>하루 운동량은 얼마인가요 ?</p>
                 <textarea type="number"placeholder={state.exercise.content} 
-                    onChange={(e)=>setState(data=>({...data, exercise:{...data.exercise, content:e.target.value}}))}/>
+                    onChange={(e)=>setState(data=>({...data, exercise:{...data.exercise, content:String(e.target.value)}}))}/>
                 
             </div>
             <button onClick={onSubmit}>완료</button>

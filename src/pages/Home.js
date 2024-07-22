@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+
+import { useEffect, useState } from "react";
 import CalendarComponent from "../components/HomexDiary/Calendar";
 import CheckList from "../components/HomexDiary/CheckList/CheckList";
 import Header from "../components/Header";
-import { DiaryStateContext } from "../App";
 import axios from "axios";
 import { FindData } from "../util";
 import Paragraph from "../components/HomexDiary/Paragraph";
@@ -11,7 +11,7 @@ export default function Home(){
     const [initData, setInitData] = useState([])
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/askcheck`)
+        axios.get('http://localhost:5000/askchecks')
             .then((res) => {
                 const foundData = FindData(res.data)
                 setInitData(foundData)

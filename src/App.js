@@ -17,28 +17,10 @@ import LoginForm from './components/Auth/LoginForm.js';
 import SignUp from './pages/SignUp.js';
 
 // diary 데이터
-import {
-  diaryDatas,
-  ListData1,
-  Reducer,
-  onDiaryCreate,
-  onDiaryUpdate,
-  onListUpdate,
-  onListCreate,
-} from './util.js';
 import Ask from './pages/Ask.js';
-export const DiaryStateContext = React.createContext();
-export const DiaryDispatchContext = React.createContext();
+
 
 function App() {
-  // diary 데이터
-  const [data, dispatch] = useReducer(Reducer, diaryDatas);
-  const [data_l, dispatch_list] = useReducer(Reducer, ListData1);
-
-  const handleCreate = onDiaryCreate(dispatch);
-  const handleUpdate = onDiaryUpdate(dispatch);
-  const handleListUpdate = onListUpdate(dispatch_list);
-  const handleListCreate = onListCreate(dispatch_list);
 
   //인증 관련
   const [token, setToken] = useState(localStorage.getItem('token') || '');
@@ -68,15 +50,6 @@ function App() {
   };
 
   return (
-    <DiaryStateContext.Provider value={{ data, data_l }}>
-      <DiaryDispatchContext.Provider
-        value={{
-          onCreate: handleCreate,
-          onUpdate: handleUpdate,
-          onListUpdate: handleListUpdate,
-          onListCreate: handleListCreate,
-        }}
-      >
         <BrowserRouter>
           <div className="App">
             {token && (
@@ -110,9 +83,6 @@ function App() {
             </Routes>
           </div>
         </BrowserRouter>
-      </DiaryDispatchContext.Provider>
-    </DiaryStateContext.Provider>
-  );
-}
+);
 
 export default App;
