@@ -47,7 +47,7 @@ export default function Mind(props) {
     }
 
     const goToNew = () => {
-        navigate(`/new/${userID}`, { state: { lastPage: "/mind" } })
+        navigate(`/new/${userID}`, { state: { userid:userID, lastPage: "/mind" } })
     }
 
     for (let i = 0; i < postdb.length; i++) {
