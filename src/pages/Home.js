@@ -5,9 +5,11 @@ import Header from '../components/Header';
 import axios from 'axios';
 import { FindData } from '../util';
 import Paragraph from '../components/HomexDiary/Paragraph';
+import { useParams } from 'react-router-dom';
 
 export default function Home({ token }) {
   const [initData, setInitData] = useState([]);
+  const userId = useParams();
 
   useEffect(() => {
     axios
@@ -15,7 +17,7 @@ export default function Home({ token }) {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        const foundData = FindData(res.data);
+        const foundData = FindData(res.data,userId.id);
         setInitData(foundData);
       })
       .catch((error) => console.error('Error:', error));
@@ -23,11 +25,11 @@ export default function Home({ token }) {
 
   return (
     <div style={{ display: 'flex' }}>
-      <Header />
-      <CalendarComponent token={token} />
+      <Header userId={userId}/>
+      <CalendarComponent token={token} userId={userId} />
       <div style={{ width: '70%', height: '100vh' }}>
         <Paragraph token={token} />
-        <CheckList token={token} initData={initData} />
+        <CheckList token={token} initData={initData} userId={userId} />
       </div>
     </div>
   );

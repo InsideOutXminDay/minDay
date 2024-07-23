@@ -1,5 +1,5 @@
 // 임시 사용자 id
-export const user_id = 4;
+// export const user_id = 4;
 
 // 감정 데이터
 export const emotionList = [
@@ -71,6 +71,6 @@ export const emotionList = [
 ];
 
 
-export function FindData(datas){
-    return datas.filter(item => item.id_user === user_id);
+export function FindData(datas,user_id){
+    return datas.filter(item => item.id_user == user_id);
 }

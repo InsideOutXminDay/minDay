@@ -2,12 +2,12 @@ import '../styles/Header.css'
 import { IoChatbubbleOutline, IoBookOutline, IoSettingsOutline, IoLogOutOutline } from "react-icons/io5";
 import { BiLike } from "react-icons/bi";
 import { useNavigate } from 'react-router-dom';
-export default function Header(){
+export default function Header({userId}){
     const navigate = useNavigate();
 
     const goHome=()=>{
         // user테이블 연결 후 /home/:userid 로 변경
-        navigate('/home'); 
+        navigate(`/home/${userId.id}`); 
     }
     const goCommunityMind=()=>{
         navigate('/mind'); 

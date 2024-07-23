@@ -16,15 +16,13 @@ export default function LoginForm({ setToken }) {
     const password = e.target.password.value;
 
     console.log('로그인 요청 보냄', username, password);
-
     try {
       const response = await axios.post('http://localhost:5000/api/login', {
         username,
         password,
       });
       setToken(response.data.token);
-      console.log('Login successful');
-      navigate('/home');
+      navigate(`/home/${response.data.id_user}`);
       // if (response.status === 200) {
       //   navigate('/home');
       // }

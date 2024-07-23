@@ -2,19 +2,18 @@ import moment from "moment";
 import { useEffect, useCallback } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { emotionList, user_id } from "../../util";
+import { emotionList } from "../../util";
 import EmotionItem from "./EmotionItem";
 import '../../styles/HomexDiary/DiaryEditor.css'
 
-export default function DiaryEditor({initDate, initData, onSubmit}){
+export default function DiaryEditor({initDate, initData, onSubmit,userId}){
     const navigate = useNavigate();
-
 
     //생성 시 기본 값
     const [state, setState] = useState({
         date:  moment(new Date(initDate)).format('YYYY-MM-DD'),
         id_emotion: 3,
-        id_user:user_id,
+        id_user:userId.id,
         content: "",
     });
 
@@ -45,7 +44,7 @@ export default function DiaryEditor({initDate, initData, onSubmit}){
       };
     const handleSubmit = () => {
         onSubmit(state);
-        window.location.href = "/home";
+        window.location.href = `/home/${userId.id}`;
     };
     const handleOnGoBack = () => {
         navigate(-1);

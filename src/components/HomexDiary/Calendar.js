@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { FindData } from '../../util';
 import axios from 'axios';
 
-export default function CalendarComponent({ token }) {
+export default function CalendarComponent({ token,userId }) {
   const [date, setDate] = useState(new Date());
   const [diaryData, setDiaryData] = useState([]);
   const [nowDiary, setNowDiary] = useState(null);
@@ -20,7 +20,7 @@ export default function CalendarComponent({ token }) {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        const foundData = FindData(res.data);
+        const foundData = FindData(res.data,userId.id);
         setDiaryData(foundData);
       })
       .catch((error) => console.error('Error:', error));
@@ -68,7 +68,7 @@ export default function CalendarComponent({ token }) {
   // 수정 버튼 클릭으로 일기 수정
   const onClickUpdate = () => {
     const moveTo = nowDiary ? `/diary/${nowDiary.id_diary}` : '/newdiary';
-    navigate(moveTo, { state: { date: date } });
+    navigate(moveTo, { state: { date: date, userId:userId } });
   };
   return (
     <div className="container">
