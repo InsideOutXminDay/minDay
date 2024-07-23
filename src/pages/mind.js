@@ -3,6 +3,7 @@ import '../styles/community/post.css';
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaRegPenToSquare } from "react-icons/fa6";
 import axios from 'axios';
+import Header from '../components/Header';
 
 export default function Mind() {
 
@@ -57,17 +58,20 @@ export default function Mind() {
     let _userid = 11;
 
     return (
-        <div className="post-page">
-            {myDB.slice(-1)}
-            <div className="guide-card">
-                <h3>고민 커뮤니티</h3>
-                <p>익명으로 서로의 고민을 나눠보며 숨은 위로와 힐링을 받아보세요!</p>
-                <button id="new-post-create"><NavLink to={"/new/" + _userid}
-                    onClick={(e) => { e.preventDefault(); goToNew() }}>
-                    <FaRegPenToSquare id="post-create-icon">작성</FaRegPenToSquare>
-                </NavLink></button>
+        <>
+            <Header />
+            <div className="post-page">
+                {myDB.slice(-1)}
+                <div className="guide-card">
+                    <h3>고민 커뮤니티</h3>
+                    <p>익명으로 서로의 고민을 나눠보며 숨은 위로와 힐링을 받아보세요!</p>
+                    <button id="new-post-create"><NavLink to={"/new/" + _userid}
+                        onClick={(e) => { e.preventDefault(); goToNew() }}>
+                        <FaRegPenToSquare id="post-create-icon">작성</FaRegPenToSquare>
+                    </NavLink></button>
+                </div>
+                {myDB.slice(0, (myDB.length - 1)).reverse()}
             </div>
-            {myDB.slice(0, (myDB.length - 1)).reverse()}
-        </div>
+        </>
     )
 }

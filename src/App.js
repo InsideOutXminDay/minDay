@@ -74,7 +74,7 @@ function App() {
           <Route path="/newdiary" element={<NewDiary />} /> {/* /diary/:id */}
           <Route path="/contents" element={<Contents />} />
           <Route path="/setting" element={<SettingPage />} />
-          <Route path="/post" element={<Post />} />
+          <Route path="/post" element={<Post token={token} />} />
           <Route path="/mind" element={<Mind />} />
           <Route path="/new/:id" element={<New />} />
           <Route path="/edit/:id" element={<Edit />} />
