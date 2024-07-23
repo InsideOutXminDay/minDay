@@ -74,11 +74,11 @@ function App() {
           <Route path="/newdiary" element={<NewDiary token={token}/>} />{' '} {/* /diary/:id */}
           <Route path="/contents" element={<Contents />} />
           <Route path="/setting" element={<SettingPage />} />
-          <Route path="/post" element={<Post />} />
-          <Route path="/mind" element={<Mind />} />
-          <Route path="/new/:id" element={<New />} />
-          <Route path="/edit/:id" element={<Edit />} />
-          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/post" element={<Post token={token} />} />
+          <Route path="/mind" element={<Mind token={token}/>} />
+          <Route path="/new/:id" element={<New token={token}/>} />
+          <Route path="/edit/:id" element={<Edit token={token}/>} />
+          <Route path="/detail/:id" element={<Detail token={token}/>} />
         </Routes>
       </div>
     </BrowserRouter>
