@@ -59,12 +59,12 @@ const ContentsView = ({ subCategory, onBack }) => {
   return (
     <div className="contents-view">
       <button onClick={onBack} className="back-button2">🔙</button>
-      <h2>{subCategory.name}</h2>
+      <h2>{subCategory.subcontent_name}</h2>
       <div className="content">
         <div className="player-wrapper">
           <ReactPlayer
             ref={playerRef}
-            url={subCategory.video}
+            url={subCategory.content_link}
             playing={playing}
             onProgress={handleProgress}
             onDuration={handleDuration}
