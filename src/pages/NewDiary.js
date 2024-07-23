@@ -6,7 +6,7 @@ import axios from "axios";
 
 export default function NewDiary({token}){
     const location = useLocation();
-    const { date } = location.state || {}; 
+    const { date,userId } = location.state || {}; 
     
     const onSubmit = async(data) => {
         // onCreate(data);
@@ -21,8 +21,8 @@ export default function NewDiary({token}){
     }
     return (
         <div style={{display:"flex"}}>
-            <Header/>
-            <DiaryEditor initDate={date} onSubmit={onSubmit}/>
+            <Header userId={userId}/>
+            <DiaryEditor initDate={date} onSubmit={onSubmit} userId={userId}/>
         </div>
     )
 }

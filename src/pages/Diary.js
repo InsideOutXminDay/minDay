@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import DiaryEditor from '../components/HomexDiary/DiaryEditor';
 import Header from '../components/Header';
 import { useState, useEffect } from 'react';
@@ -9,6 +9,9 @@ export default function Diary({token}) {
   const [predata, setPreData] = useState([]);
   const diaryId = useParams();
   const [diaryData, setDiaryData] = useState([]);
+  const location = useLocation();
+  const { userId } = location.state || {}; 
+
 
   useEffect(() => {
     axios
@@ -16,7 +19,7 @@ export default function Diary({token}) {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        const foundData = FindData(res.data);
+        const foundData = FindData(res.data,userId.id);
         setDiaryData(foundData);
       })
       .catch((error) => console.error('Error:', error));
@@ -45,7 +48,7 @@ export default function Diary({token}) {
   return (
     <div style={{ display: 'flex' }}>
       <Header />
-      <DiaryEditor initData={predata} onSubmit={onSubmit} />
+      <DiaryEditor initData={predata} onSubmit={onSubmit} userId={userId} />
     </div>
   );
 }

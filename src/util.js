@@ -1,5 +1,5 @@
 // 임시 사용자 id
-export const user_id = 4;
+// export const user_id = 4;
 
 // 감정 데이터
 export const emotionList = [
