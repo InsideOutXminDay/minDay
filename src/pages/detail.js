@@ -24,17 +24,6 @@ export default function Detail(props) {
     const [userNick, setUserNick] = useState("");
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/postuser`, {
-            headers: {
-                'Content-Type': 'application/json',
-                authorization: `Bearer ${props.token}`
-            },
-        }).then((res) => {
-            setUserID(res.data[0].id_user);
-        }).catch(error => console.error('Error:', error));
-    }, [])
-
-    useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/postAll`, {
             headers: {
                 authorization: `Bearer ${props.token}`
@@ -63,6 +52,7 @@ export default function Detail(props) {
                 authorization: `Bearer ${props.token}`
             },
         }).then((res) => {
+            setUserDB([...res.data]);
             setUserNick(res.data[0].nickname);
             setUserID(res.data[0].id_user);
         }).catch(error => console.error('Error:', error));
