@@ -72,7 +72,7 @@ function App() {
           <Route path="/diary/:id" element={<Diary token={token} />} />{' '}
           {/* /diary/:id */}
           <Route path="/newdiary" element={<NewDiary token={token}/>} />{' '} {/* /diary/:id */}
-          <Route path="/contents" element={<Contents />} />
+          <Route path="/contents" element={<Contents token={token}/>} />{' '}
           <Route path="/setting" element={<SettingPage />} />
           <Route path="/post" element={<Post token={token} />} />
           <Route path="/mind" element={<Mind token={token}/>} />
