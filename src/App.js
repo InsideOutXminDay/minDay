@@ -75,7 +75,7 @@ function App() {
           <Route path="/contents" element={<Contents />} />
           <Route path="/setting" element={<SettingPage />} />
           <Route path="/post" element={<Post token={token} />} />
-          <Route path="/mind" element={<Mind />} />
+          <Route path="/mind" element={<Mind token={token}/>} />
           <Route path="/new/:id" element={<New />} />
           <Route path="/edit/:id" element={<Edit />} />
           <Route path="/detail/:id" element={<Detail />} />

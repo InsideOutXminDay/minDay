@@ -5,26 +5,40 @@ import { FaRegPenToSquare } from "react-icons/fa6";
 import axios from 'axios';
 import Header from '../components/Header';
 
-export default function Mind() {
+export default function Mind(props) {
 
     const navigate = useNavigate();
     const [postdb, setPostdb] = useState([]);
+    const [userID, setUserID] = useState([]);
     let myDB = [];
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/mind`)
+        axios.get(`${process.env.REACT_APP_API_URL}/mind`,{
+            headers: {
+                authorization:`Bearer ${props.token}`
+            },
+        })
             .then((res) => {
                 setPostdb([...res.data]);
-            }
-            ).catch(error => console.error('Error:', error));
+            }).catch(error => console.error('Error:', error));
     }, [])
 
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_API_URL}/postuser`,{
+            headers: {
+                'Content-Type': 'application/json',
+                authorization:`Bearer ${props.token}`
+            },
+        }).then((res) => {
+                setUserID(res.data[0].id_user);
+            }).catch(error => console.error('Error:', error));
+    }, [])
 
     const goTodetail = (item) => {
         navigate(`/detail/${item.id_post}`, {
             state: {
                 id_post: item.id_post,
-                id_user: item.id_user,
+                id_user: userID,
                 title: item.title,
                 body: item.body,
                 anonymity: item.anonymity
@@ -33,7 +47,7 @@ export default function Mind() {
     }
 
     const goToNew = () => {
-        navigate(`/new/${_userid}`, { state: { lastPage: "/mind" } })
+        navigate(`/new/${userID}`, { state: { lastPage: "/mind" } })
     }
 
     for (let i = 0; i < postdb.length; i++) {
@@ -54,9 +68,6 @@ export default function Mind() {
         else { continue }
     }
 
-    //로그인 유저 임시 id 값
-    let _userid = 11;
-
     return (
         <>
             <Header />
@@ -65,7 +76,7 @@ export default function Mind() {
                 <div className="guide-card">
                     <h3>고민 커뮤니티</h3>
                     <p>익명으로 서로의 고민을 나눠보며 숨은 위로와 힐링을 받아보세요!</p>
-                    <button id="new-post-create"><NavLink to={"/new/" + _userid}
+                    <button id="new-post-create"><NavLink to={"/new/" + userID}
                         onClick={(e) => { e.preventDefault(); goToNew() }}>
                         <FaRegPenToSquare id="post-create-icon">작성</FaRegPenToSquare>
                     </NavLink></button>

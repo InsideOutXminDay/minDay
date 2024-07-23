@@ -29,10 +29,9 @@ export default function Post(props) {
             },
         }).then((res) => {
                 setUserID(res.data[0].id_user);
-                console.log('User info:', res.data[0].id_user);
             }).catch(error => console.error('Error:', error));
     }, [])
-
+    
     const navigate = useNavigate();
     const goTodetail = (item) => {
         navigate(`/detail/${item.id_post}`, {
