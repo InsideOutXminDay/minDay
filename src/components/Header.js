@@ -21,7 +21,7 @@ export default function Header({userId}){
         alert("/recommend");
     }
     const goContents=()=>{
-         navigate('/contents');
+         navigate('/contents', {state:{userId:userId}});
     }
     const goSetting=()=>{
         navigate("/setting");
