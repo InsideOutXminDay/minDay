@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { FindData } from '../util';
 import axios from 'axios';
 
-export default function Diary(token, data) {
+export default function Diary({token}) {
   const [predata, setPreData] = useState([]);
   const diaryId = useParams();
   const [diaryData, setDiaryData] = useState([]);
@@ -33,9 +33,11 @@ export default function Diary(token, data) {
 
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post(`http://localhost:5000/updatediary`, {
-        data,
-      });
+      const res = await axios.post(`http://localhost:5000/updatediary`, 
+        {data},
+        {
+          headers: { authorization: `Bearer ${token}` },
+        });
     } catch (err) {
       console.error(err);
     }

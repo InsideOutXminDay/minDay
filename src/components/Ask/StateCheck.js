@@ -4,7 +4,6 @@ import '../../styles/Ask/StateCheck.css'
 
 
 export default function StateCheck({ initData, onUpdate}) {
-    const [newUser,setNewUser] = useState(true);
 
     const [state, setState] = useState({
         sleep:{content:"22:00"},
@@ -18,7 +17,6 @@ export default function StateCheck({ initData, onUpdate}) {
 
     useEffect(() => {
         if (initData.sleep) {
-            setNewUser(false);
             setState(initData)   
         }
     }, [initData]); // Adding initData as a dependency    
@@ -26,13 +24,7 @@ export default function StateCheck({ initData, onUpdate}) {
 
 
     const onSubmit = () => {
-        if(newUser){
-            onUpdate(state);
-        }else{
-            Object.keys(state).forEach(key => {
-                onUpdate(state[key].id_user, state[key].content, state[key].isdone, key, state[key].id_askcheck);
-            });
-        }
+        onUpdate(state);
         window.location.href = "/home";
     };
 
