@@ -19,20 +19,10 @@
   height: 100%;
   object-fit: contain;
 }
-.intro-header button {
-  background-color: white;
-  border-style: none;
-  border-radius: 25px;
-  width: 5em;
-  height: 3em;
-
-  font-family: 'Pretendard-Regular';
-  font-size: 1.7em;
-  font-weight: 700;
-
-  position: absolute;
-  top: 3em;
-  right: 0.6em;
+.intro-header-btns {
+  width: 70%;
+  display: flex;
+  justify-content: flex-end;
 }
 .intro-header button:hover {
   background-color: #7dccac;
@@ -41,4 +31,37 @@
   height: 3em;
   cursor: pointer;
   color: white;
+}
+.intro-header-logout {
+  font-family: 'Pretendard-Regular';
+  font-size: 1.7em;
+  font-weight: 700;
+
+  background-color: white;
+  border-style: none;
+  border-radius: 25px;
+  width: 5em;
+  height: 3em;
+}
+.intro-header-home {
+  font-family: 'Pretendard-Regular';
+  font-size: 1.7em;
+  font-weight: 700;
+
+  background-color: white;
+  border-style: none;
+  border-radius: 25px;
+  width: 5em;
+  height: 3em;
+}
+.intro-header-login {
+  font-family: 'Pretendard-Regular';
+  font-size: 1.7em;
+  font-weight: 700;
+
+  background-color: white;
+  border-style: none;
+  border-radius: 25px;
+  width: 5em;
+  height: 3em;
 }
