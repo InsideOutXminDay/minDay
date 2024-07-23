@@ -78,7 +78,7 @@ function App() {
           <Route path="/mind" element={<Mind token={token}/>} />
           <Route path="/new/:id" element={<New token={token}/>} />
           <Route path="/edit/:id" element={<Edit token={token}/>} />
-          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/detail/:id" element={<Detail token={token}/>} />
         </Routes>
       </div>
     </BrowserRouter>

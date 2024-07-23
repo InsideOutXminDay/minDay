@@ -6,7 +6,7 @@ import { LuDelete } from "react-icons/lu";
 import axios from 'axios';
 import Header from '../components/Header';
 
-export default function Detail() {
+export default function Detail(props) {
 
     let myComment = [];
     const navigate = useNavigate();
@@ -20,7 +20,8 @@ export default function Detail() {
     const [postDB, setPostDB] = useState([]);
     const params = useParams();
     let nowPost = {};
-    const [userID, setUserID] = useState([]);
+    const [userID, setUserID] = useState("");
+    const [userNick, setUserNick] = useState("");
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/postuser`, {
@@ -42,7 +43,7 @@ export default function Detail() {
             .then((res) => {
                 setPostDB([...res.data]);
             }).catch(error => console.error('Error:', error));
-    })
+    }, [])
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/comment`, {
@@ -56,20 +57,21 @@ export default function Detail() {
     }, [])
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/postuser`, {
+        axios.get(`${process.env.REACT_APP_API_URL}/postuser`,{
             headers: {
-                authorization: `Bearer ${props.token}`
+                'Content-Type': 'application/json',
+                authorization:`Bearer ${props.token}`
             },
-        })
-            .then((res) => {
-                setUserDB([...res.data]);
+        }).then((res) => {
+            setUserNick(res.data[0].nickname);
+                setUserID(res.data[0].id_user);
             }).catch(error => console.error('Error:', error));
     }, [])
 
     for (let i = 0; i < commentDB.length; i++) {
         if (Number(params.id) === commentDB[i].id_post) {
             let commentX = null;
-            if (commentDB[i].id_user === 2) {
+            if (commentDB[i].id_user === Number(userID)) {
                 commentX = <button onClick={(e) => {
                     e.preventDefault();
                     let item = {
@@ -99,7 +101,7 @@ export default function Detail() {
     }
 
     for (let t = 0; t < userDB.length; t++) {
-        if (userID === userDB[t].id_user) {
+        if (Number(userID) === userDB[t].id_user) {
             userNickname = userDB[t].nickname
         }
     }
@@ -141,7 +143,8 @@ export default function Detail() {
         fetch(`${process.env.REACT_APP_API_URL}/comment`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${props.token}`
             },
             body: JSON.stringify({
                 body: body,
@@ -165,7 +168,8 @@ export default function Detail() {
         fetch(`${process.env.REACT_APP_API_URL}/delete`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${props.token}`
             },
             body: JSON.stringify({
                 id_post: id_post,
@@ -190,10 +194,10 @@ export default function Detail() {
                 <div className="detail-bar">
                     <NavLink to={backButton}><IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
                     <div className="button-right">
-                        <span><input type="submit" value={userNickname} id="detail-submit"
+                        <span><input type="submit" value={userNick} id="detail-submit"
                             onClick={(e) => {
                                 e.preventDefault()
-                                if (nowPost.detail_user === userID) {
+                                if (nowPost.detail_user === Number(userID)) {
                                     goToEdit(nowPost)
                                 }
                             }} /></span>
