@@ -3,10 +3,13 @@ import '../../styles/Auth/LoginForm.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Modal from './Modal';
 
 export default function LoginForm({ setToken }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState('');
 
   const navigate = useNavigate();
 
@@ -16,26 +19,21 @@ export default function LoginForm({ setToken }) {
     const password = e.target.password.value;
 
     console.log('로그인 요청 보냄', username, password);
-    try {
-      const response = await axios.post('http://localhost:5000/api/login', {
-        username,
-        password,
-      });
+
+    const response = await axios.post('http://localhost:5000/api/login', {
+      username,
+      password,
+    });
+
+    if (response.data.success === false) {
+      setModalContent(response.data.message);
+      setIsModalOpen(true);
+      setUsername('');
+      setPassword('');
+    } else {
       setToken(response.data.token);
       navigate(`/home/${response.data.id_user}`);
-      // if (response.status === 200) {
-      //   navigate('/home');
-      // }
-    } catch (error) {
-      // if (error.response && error.response.status === 400) {
-      //   alert('비밀번호를 다시 확인해주세요.');
-      // } else {
-      //   alert('가입되지 않은 회원입니다.');
-      // }
     }
-
-    setUsername('');
-    setPassword('');
   };
 
   // const handleLogOut = async () => {
@@ -49,12 +47,19 @@ export default function LoginForm({ setToken }) {
   const changePwHandler = (e) => {
     setPassword(e.target.value);
   };
+  const handleCloseModal = (e) => {
+    setIsModalOpen(false);
+  };
 
   return (
     <>
       <article className="login-form">
         <img src="/img/logo_full.png"></img>
-
+        <Modal
+          isOpen={isModalOpen}
+          content={modalContent}
+          onClose={handleCloseModal}
+        ></Modal>
         <div className="login-input">
           <h1>Log In</h1>
           <form className="input-form" onSubmit={submitHandler}>
