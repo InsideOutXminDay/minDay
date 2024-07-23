@@ -3,7 +3,7 @@ import { user_id } from "../../util";
 import '../../styles/Ask/StateCheck.css'
 
 
-export default function StateCheck({ initData, onUpdate}) {
+export default function StateCheck({ initData, onUpdate, userId}) {
 
     const [state, setState] = useState({
         sleep:{content:"22:00"},
@@ -25,7 +25,7 @@ export default function StateCheck({ initData, onUpdate}) {
 
     const onSubmit = () => {
         onUpdate(state);
-        window.location.href = "/home";
+        window.location.href = `/home/${userId.id}`;
     };
 
 

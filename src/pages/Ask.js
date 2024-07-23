@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import StateCheck from "../components/Ask/StateCheck";
-import { FindData, user_id } from "../util";
+import { FindData } from "../util";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export default function Ask({ token }){
-
+    const userId = useParams();
     const [initData, setInitData] = useState([]);
 
     const convertListDataToObject = (arr) => {
@@ -23,7 +24,7 @@ export default function Ask({ token }){
           })
 
             .then((res) => {
-                const foundData = FindData(res.data)
+                const foundData = FindData(res.data,userId.id)
                 setInitData(convertListDataToObject(foundData))
             }
             ).catch(error => console.error('Error:', error));
@@ -46,7 +47,7 @@ export default function Ask({ token }){
     const onCreate = async(state) => {
         try{
             const res = await axios.post(`http://localhost:5000/createchecklist`, 
-                {user_id,state},
+                {userId,state},
                 {
                     headers: { authorization: `Bearer ${token}` },
                 }
@@ -65,7 +66,7 @@ export default function Ask({ token }){
                     <img src="/logo_full.png"/>
                     <p>목표를 설정해 만족스러운 하루를 만들어보세요!😊</p>
                 </div>
-                <StateCheck initData={initData}  onUpdate={initData.sleep?onUpdate:onCreate}/>
+                <StateCheck initData={initData} userId={userId} onUpdate={initData.sleep?onUpdate:onCreate}/>
             </div>
         </div>
     );

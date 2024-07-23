@@ -2,10 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import '../../../styles/HomexDiary/CheckList/CheckList.css';
 import CheckItem from './CheckItem';
 
-export default function CheckList({ token, initData }) {
+export default function CheckList({ token, initData, userId }) {
   const navigate = useNavigate();
   const onClickUpdate = () => {
-    navigate('/ask');
+    navigate(`/ask/${userId.id}`);
   };
 
   return (
