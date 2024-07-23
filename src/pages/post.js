@@ -12,26 +12,26 @@ export default function Post(props) {
     let myDB = [];
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/post`,{
+        axios.get(`${process.env.REACT_APP_API_URL}/post`, {
             headers: {
-                authorization:`Bearer ${props.token}`
+                authorization: `Bearer ${props.token}`
             },
         }).then((res) => {
-                setPostdb([...res.data]);
-            }).catch(error => console.error('Error:', error));
+            setPostdb([...res.data]);
+        }).catch(error => console.error('Error:', error));
     }, [])
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/postuser`,{
+        axios.get(`${process.env.REACT_APP_API_URL}/postuser`, {
             headers: {
                 'Content-Type': 'application/json',
-                authorization:`Bearer ${props.token}`
+                authorization: `Bearer ${props.token}`
             },
         }).then((res) => {
-                setUserID(res.data[0].id_user);
-            }).catch(error => console.error('Error:', error));
+            setUserID(res.data[0].id_user);
+        }).catch(error => console.error('Error:', error));
     }, [])
-    
+
     const navigate = useNavigate();
     const goTodetail = (item) => {
         navigate(`/detail/${item.id_post}`, {
@@ -46,7 +46,7 @@ export default function Post(props) {
     }
 
     const goToNew = () => {
-        navigate(`/new/${userID}`, { state: { userid:userID, lastPage: "/post" } })
+        navigate(`/new/${userID}`, { state: { userid: userID, lastPage: "/post" } })
     }
 
     for (let i = 0; i < postdb.length; i++) {

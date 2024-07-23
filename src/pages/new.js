@@ -25,14 +25,14 @@ export default function New(props) {
     }
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/postuser`,{
+        axios.get(`${process.env.REACT_APP_API_URL}/postuser`, {
             headers: {
                 'Content-Type': 'application/json',
-                authorization:`Bearer ${props.token}`
+                authorization: `Bearer ${props.token}`
             },
         }).then((res) => {
-                setUserID(res.data[0].id_user);
-            }).catch(error => console.error('Error:', error));
+            setUserID(res.data[0].id_user);
+        }).catch(error => console.error('Error:', error));
     }, [])
 
     const newSave = async (item) => {
@@ -66,8 +66,8 @@ export default function New(props) {
         })
 
     }
-        return (
-            <>
+    return (
+        <>
             <Header></Header>
             <div className="new-page">
                 <form name="newCreate" onSubmit={(e) => {
@@ -101,7 +101,7 @@ export default function New(props) {
                     </div>
                 </form>
             </div>
-            </>
-        )
-    }
+        </>
+    )
+}
 

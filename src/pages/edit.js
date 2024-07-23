@@ -18,14 +18,14 @@ export default function Edit(props) {
     const [userID, setUserID] = useState([]);
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/postuser`,{
+        axios.get(`${process.env.REACT_APP_API_URL}/postuser`, {
             headers: {
                 'Content-Type': 'application/json',
-                authorization:`Bearer ${props.token}`
+                authorization: `Bearer ${props.token}`
             },
         }).then((res) => {
-                setUserID(res.data[0].id_user);
-            }).catch(error => console.error('Error:', error));
+            setUserID(res.data[0].id_user);
+        }).catch(error => console.error('Error:', error));
     }, [])
 
     const goTodetail = (item) => {
@@ -48,10 +48,10 @@ export default function Edit(props) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                authorization:`Bearer ${props.token}`
+                authorization: `Bearer ${props.token}`
             },
             body: JSON.stringify({
-                id_post : id_post,
+                id_post: id_post,
                 title: title,
                 body: body
             })
@@ -61,14 +61,14 @@ export default function Edit(props) {
             }
             return response.json();
         }).catch(error => console.error('Error:', error.message)).then(
-               alert("저장되었습니다")
+            alert("저장되었습니다")
         );
         navigate(`/detail/${id_post}`);
     }
 
     return (
         <div>
-            <Header/>
+            <Header />
             <div className="edit-page">
                 <form name="editCreate"
                     onSubmit={(e) => { e.preventDefault(); }}
@@ -81,15 +81,16 @@ export default function Edit(props) {
                             <span><input type="submit" value="저장하기" id="new-submit"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    if(Number(postInfo.id_user) === Number(userID)){
-                                    let item = {
-                                        id_post: postInfo.id_post,
-                                        id_user: postInfo.id_user,
-                                        title: newTitle,
-                                        body: newBody,
-                                        anonymity: postInfo.anonymity
+                                    if (Number(postInfo.id_user) === Number(userID)) {
+                                        let item = {
+                                            id_post: postInfo.id_post,
+                                            id_user: postInfo.id_user,
+                                            title: newTitle,
+                                            body: newBody,
+                                            anonymity: postInfo.anonymity
+                                        }
+                                        editSave(item);
                                     }
-                                    editSave(item);}
                                 }} /></span>
                         </div>
                     </div>
