@@ -3,7 +3,7 @@ import StateCheck from "../components/Ask/StateCheck";
 import { FindData, user_id } from "../util";
 import axios from "axios";
 
-export default function Ask(){
+export default function Ask({ token }){
 
     const [initData, setInitData] = useState([]);
 
@@ -18,29 +18,26 @@ export default function Ask(){
       }
       
       useEffect(() => {
-        axios.get('http://localhost:5000/askchecks')
+        axios.get('http://localhost:5000/askchecks', {
+            headers: { authorization: `Bearer ${token}` },
+          })
 
             .then((res) => {
                 const foundData = FindData(res.data)
-                console.log("ask foundData", foundData)
                 setInitData(convertListDataToObject(foundData))
             }
             ).catch(error => console.error('Error:', error));
     }, []);
 
 
-    const onUpdate = async(id_user, content, isdone, type, id_askcheck=null) => {
-        const address = id_askcheck ?'update':'create';
+    const onUpdate = async(state) => {
         try{
-            const res = await axios.post(`http://localhost:5000/${address}checklist`, 
+            const res = await axios.post(`http://localhost:5000/updatechecklist`, 
+                {state},
                 {
-                    id_user,
-                    content,
-                    isdone,
-                    type,
-                    id_askcheck 
+                    headers: { authorization: `Bearer ${token}` },
                 }
-              );
+            );
             console.log(res.data)
         }catch(err){
             console.error(err)
@@ -48,12 +45,18 @@ export default function Ask(){
     }
     const onCreate = async(state) => {
         try{
-            const res = await axios.post(`http://localhost:5000/createchecklist`, {user_id,state});
+            const res = await axios.post(`http://localhost:5000/createchecklist`, 
+                {user_id,state},
+                {
+                    headers: { authorization: `Bearer ${token}` },
+                }
+            );
             console.log(res.data)
         }catch(err){
             console.error(err)
         }
     }
+    console.log(initData)
 
     return (
         <div>

@@ -4,28 +4,36 @@ import axios from 'axios';
 
 export default function CheckItem({ token, Askcheck, User }) {
   const [is_done, setIsDone] = useState(Askcheck.isdone);
-  const onChangeCheckbox = async () => {
-    const updatedIsDone = !is_done;
-    setIsDone(updatedIsDone);
-    try {
-      const res = await axios.post(
-        'http://localhost:5000/updatechecklist',
-        {
-          headers: { authorization: `Bearer ${token}` },
-        },
-        {
-          id_askcheck: Askcheck.id_askcheck,
-          id_user: User.id_user,
-          content: Askcheck.content,
-          isdone: updatedIsDone,
-          type: Askcheck.type,
+  const [prevstate, setprevState] = useState({[Askcheck.type]:{id_askcheck: Askcheck.id_askcheck,
+    id_user: User.id_user,
+    content: Askcheck.content,
+    isdone: Askcheck.isdone,
+    }})
+
+  
+    const onChangeCheckbox = async (checked) => {  
+      setIsDone(checked);
+      const state = {
+        [Askcheck.type]: {
+          ...prevstate[Askcheck.type],
+          isdone: !is_done
         }
-      );
-      console.log('res.data : ', res.data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+      };
+      setprevState(state);
+      try {
+        const res = await axios.post(
+          'http://localhost:5000/updatechecklist',
+          {state},
+          {
+            headers: { authorization: `Bearer ${token}` },
+          }
+        );
+        console.log('res.data : ', res.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+  
 
   const sentence = () => {
     switch (Askcheck.type) {
@@ -50,7 +58,7 @@ export default function CheckItem({ token, Askcheck, User }) {
     <div className="CheckItem">
       <div className="checkbox-col">
         <input
-          onChange={onChangeCheckbox}
+          onChange={()=>{onChangeCheckbox(!is_done)}}
           type="checkbox"
           checked={is_done}
         ></input>

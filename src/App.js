@@ -67,11 +67,11 @@ function App() {
             />
           }
           {<Route path="/join" element={<SignUp />} />}
-          <Route path="/ask" element={<Ask />} /> {/* /ask/:id */}
+          <Route path="/ask" element={<Ask token={token} />} />{' '} {/* /ask/:id */}
           {/* <Route path='/find' element={<회원정보 찾기 />}/> */}
           <Route path="/diary/:id" element={<Diary token={token} />} />{' '}
           {/* /diary/:id */}
-          <Route path="/newdiary" element={<NewDiary />} /> {/* /diary/:id */}
+          <Route path="/newdiary" element={<NewDiary token={token}/>} />{' '} {/* /diary/:id */}
           <Route path="/contents" element={<Contents />} />
           <Route path="/setting" element={<SettingPage />} />
           <Route path="/post" element={<Post />} />
