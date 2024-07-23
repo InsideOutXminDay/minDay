@@ -11,7 +11,7 @@ export default function NewDiary({token}){
     const onSubmit = async(data) => {
         // onCreate(data);
         try{
-            const res = await axios.post(`http://localhost:5000/creatediary`, {data},
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/creatediary`, {data},
                 {
                     headers: { authorization: `Bearer ${token}` },
                 });

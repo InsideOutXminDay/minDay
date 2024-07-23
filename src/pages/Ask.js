@@ -19,7 +19,7 @@ export default function Ask({ token }){
       }
       
       useEffect(() => {
-        axios.get('http://localhost:5000/askchecks', {
+        axios.get(`${process.env.REACT_APP_API_URL}/askchecks`, {
             headers: { authorization: `Bearer ${token}` },
           })
 
@@ -33,7 +33,7 @@ export default function Ask({ token }){
 
     const onUpdate = async(state) => {
         try{
-            const res = await axios.post(`http://localhost:5000/updatechecklist`, 
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/updatechecklist`, 
                 {state},
                 {
                     headers: { authorization: `Bearer ${token}` },
@@ -46,7 +46,7 @@ export default function Ask({ token }){
     }
     const onCreate = async(state) => {
         try{
-            const res = await axios.post(`http://localhost:5000/createchecklist`, 
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/createchecklist`, 
                 {userId,state},
                 {
                     headers: { authorization: `Bearer ${token}` },
