@@ -15,7 +15,7 @@ export default function Diary({token}) {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/diarys', {
+      .get(`${process.env.REACT_APP_API_URL}/diarys`, {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -36,7 +36,7 @@ export default function Diary({token}) {
 
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post(`http://localhost:5000/updatediary`, 
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/updatediary`, 
         {data},
         {
           headers: { authorization: `Bearer ${token}` },

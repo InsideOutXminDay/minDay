@@ -22,7 +22,7 @@ export default function CheckItem({ token, Askcheck, User }) {
       setprevState(state);
       try {
         const res = await axios.post(
-          'http://localhost:5000/updatechecklist',
+          `${process.env.REACT_APP_API_URL}/updatechecklist`,
           {state},
           {
             headers: { authorization: `Bearer ${token}` },

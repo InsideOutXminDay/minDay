@@ -16,7 +16,7 @@ export default function CalendarComponent({ token,userId }) {
   // 데이터 불러오기
   useEffect(() => {
     axios
-      .get('http://localhost:5000/diarys', {
+      .get(`${process.env.REACT_APP_API_URL}/diarys`, {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {

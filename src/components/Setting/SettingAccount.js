@@ -81,7 +81,7 @@ const SettingAccount = () => {
       } catch (error) {
 
         setNotification('올바른 비밀번호를 입력해주세요.');
-        setTimeout(() => setNotification(''), 5000);
+        setTimeout(() => setNotification(''), );
       }
     }
   };

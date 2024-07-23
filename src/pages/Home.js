@@ -13,7 +13,7 @@ export default function Home({ token }) {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/askchecks', {
+      .get(`${process.env.REACT_APP_API_URL}/askchecks`, {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {

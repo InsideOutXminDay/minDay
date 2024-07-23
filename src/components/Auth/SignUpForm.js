@@ -19,7 +19,7 @@ export default function SignUpForm() {
 
   const handleCheckDuplicate = async (e) => {
     const { username } = inputForm;
-    const response = await axios.post('http://localhost:5000/api/join/check', {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/join/check`, {
       username,
     });
     if (response.data.exist === true) {
@@ -46,7 +46,7 @@ export default function SignUpForm() {
       setSubmit(true);
       setInputForm('');
       console.log('inputForm:', inputForm);
-      await axios.post('http://localhost:5000/api/join', {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/join`, {
         username: inputForm.username,
         password: inputForm.password,
         nickname: inputForm.nickname,
