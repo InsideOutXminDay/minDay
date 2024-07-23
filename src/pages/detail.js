@@ -212,8 +212,7 @@ export default function Detail() {
                                 e.preventDefault();
                                 let item = {
                                     id_post: nowPost.detail_post,
-                                    // 임시 user id 값
-                                    id_user: userId,
+                                    id_user: userID,
                                     body: e.target.body.value
                                 }
                                 newSaveComment(item);
