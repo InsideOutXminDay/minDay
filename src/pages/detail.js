@@ -193,7 +193,7 @@ export default function Detail() {
                         <span><input type="submit" value={userNickname} id="detail-submit"
                             onClick={(e) => {
                                 e.preventDefault()
-                                if (nowPost.detail_user === userId) {
+                                if (nowPost.detail_user === userID) {
                                     goToEdit(nowPost)
                                 }
                             }} /></span>
