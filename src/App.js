@@ -58,7 +58,7 @@ function App() {
         )}
         <Routes>
           <Route path="/" element={<Intro />} />
-          <Route path="/home" element={<Home token={token} />} />{' '}
+          <Route path="/home/:id" element={<Home token={token} />} />{' '}
           {/* /home/:userid >> 개인별 홈화면 구현 */}
           {
             <Route
@@ -67,7 +67,7 @@ function App() {
             />
           }
           {<Route path="/join" element={<SignUp />} />}
-          <Route path="/ask" element={<Ask token={token} />} />{' '} {/* /ask/:id */}
+          <Route path="/ask/:id" element={<Ask token={token} />} />{' '} {/* /ask/:id */}
           {/* <Route path='/find' element={<회원정보 찾기 />}/> */}
           <Route path="/diary/:id" element={<Diary token={token} />} />{' '}
           {/* /diary/:id */}
