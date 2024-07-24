@@ -23,6 +23,10 @@ import Ask from './pages/Ask.js';
 function App() {
   //인증 관련
   const [token, setToken] = useState(localStorage.getItem('token') || '');
+  const [authUser, setAuthUser] = useState(() => {
+    const savedUser = localStorage.getItem('authUser');
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
 
   const navigate = useNavigate();
 
@@ -48,15 +52,30 @@ function App() {
 
   const handleLogout = () => {
     setAuthToken('');
+    setAuthUser(null);
+    localStorage.removeItem('authUser');
     navigate('/');
   };
+  const handleLogin = (userId) => {
+    console.log('로그인한 사용자 식별번호: ', userId);
+    setAuthUser(userId);
+  };
+  useEffect(() => {
+    if (authUser) {
+      localStorage.setItem('authUser', JSON.stringify(authUser));
+    } else {
+      localStorage.removeItem('authUser');
+    }
+  }, [authUser]);
 
   return (
     <div className="App">
       <Routes>
         <Route
           path="/"
-          element={<Intro token={token} logout={handleLogout} />}
+          element={
+            <Intro token={token} logout={handleLogout} authUser={authUser} />
+          }
         />
         <Route
           path="/home/:id"
@@ -65,7 +84,9 @@ function App() {
         {
           <Route
             path="/login"
-            element={<LoginForm setToken={setAuthToken} />}
+            element={
+              <LoginForm setToken={setAuthToken} onLogin={handleLogin} />
+            }
           />
         }
         {<Route path="/join" element={<SignUp />} />}
