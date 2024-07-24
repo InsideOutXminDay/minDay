@@ -1,6 +1,6 @@
 import { ImBubble } from 'react-icons/im';
 import '../../styles/Auth/LoginForm.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../Auth/Modal';

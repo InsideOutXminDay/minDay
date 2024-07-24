@@ -63,8 +63,6 @@ const SettingAccount = ({token, userId}) => {
           currentPassword,
           newPassword
         };
-
-        console.log('front : ', requestData);
         await axios.post('http://localhost:5000/updateuser', {requestData},
           {
               headers: { authorization: `Bearer ${token}` },

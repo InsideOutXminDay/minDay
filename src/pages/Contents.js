@@ -24,7 +24,6 @@ const Contents = ({ token, logout }) => {
       })
       .catch((error) => console.error('Error:', error));
   }, []);
-  console.log(contents);
 
   return (
     <div style={{ display: 'flex' }}>

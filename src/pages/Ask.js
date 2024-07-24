@@ -39,7 +39,6 @@ export default function Ask({ token }){
                     headers: { authorization: `Bearer ${token}` },
                 }
             );
-            console.log(res.data)
         }catch(err){
             console.error(err)
         }
@@ -52,12 +51,10 @@ export default function Ask({ token }){
                     headers: { authorization: `Bearer ${token}` },
                 }
             );
-            console.log(res.data)
         }catch(err){
             console.error(err)
         }
     }
-    console.log(initData)
 
     return (
         <div>

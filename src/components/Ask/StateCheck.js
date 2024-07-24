@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { user_id } from "../../util";
 import '../../styles/Ask/StateCheck.css'
 
 

@@ -28,7 +28,6 @@ export default function CheckItem({ token, Askcheck, User }) {
             headers: { authorization: `Bearer ${token}` },
           }
         );
-        console.log('res.data : ', res.data);
       } catch (err) {
         console.error(err);
       }
