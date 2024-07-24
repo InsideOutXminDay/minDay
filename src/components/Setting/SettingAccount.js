@@ -13,16 +13,16 @@ const SettingAccount = ({ token, userId }) => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/postuser`, {
+      .get(`${process.env.REACT_APP_API_URL}/getusername`, {
         headers: {
           'Content-Type': 'application/json',
           authorization: `Bearer ${token}`
         },
       })
       .then((res) => {
-        setUsername(res.data[0].username);
-        setNickname(res.data[0].nickname);
-        setEmail(res.data[0].email);
+        setUsername(res.data.username);
+        setNickname(res.data.nickname);
+        setEmail(res.data.email);
       })
       .catch((error) => console.error('사용자 정보를 가져오는 중 오류 발생:', error));
   }, []);
