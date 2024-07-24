@@ -54,7 +54,10 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Intro logout={handleLogout} />} />
+        <Route
+          path="/"
+          element={<Intro token={token} logout={handleLogout} />}
+        />
         <Route
           path="/home/:id"
           element={<Home token={token} logout={handleLogout} />}
