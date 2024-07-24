@@ -11,7 +11,7 @@ export default function Header({ userId, logout }) {
   const navigate = useNavigate();
   
   const goHome = () => {
-    navigate(`/home/${userId.id}`);
+    navigate(`/home/${userId}`);
   };
   const goCommunityMind = () => {
     navigate('/mind', { state: { userId: userId } });
@@ -23,7 +23,7 @@ export default function Header({ userId, logout }) {
     navigate('/contents', { state: { userId: userId } });
   };
   const goSetting = () => {
-    navigate(`/setting/${userId.id}`);
+    navigate(`/setting/${userId}`);
   };
   const Logout = () => {
     navigate('/');
