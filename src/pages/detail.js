@@ -5,6 +5,7 @@ import { IoCaretBackOutline } from "react-icons/io5";
 import { LuDelete } from "react-icons/lu";
 import axios from 'axios';
 import Header from '../components/Header';
+import Snackbar from '@mui/material/Snackbar';
 
 export default function Detail(props) {
 
@@ -22,6 +23,8 @@ export default function Detail(props) {
     let nowPost = {};
     const [userID, setUserID] = useState("");
     const [userNick, setUserNick] = useState("");
+    const [open, setOpen] = useState(false);
+
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/postAll`, {
@@ -118,7 +121,8 @@ export default function Detail(props) {
             id_post: nowPost.detail_post
         }
         if (body == '') {
-            alert("입력 내용을 확인하세요");
+            setSnackbarMsg("내용을 입력해주세요.");
+            setOpen(true);
         }
         else {
             newSaveCommentFunc(_item);
@@ -147,9 +151,8 @@ export default function Detail(props) {
             }
             return response.json();
         }).catch(error => console.error('Error:', error.message)).then(
-            alert("저장되었습니다")
+            setOpen(true)
         );
-        window.location.replace(`/detail/${nowPost.detail_post}`);
     }
 
     const deleteComment = (item) => {
@@ -170,17 +173,39 @@ export default function Detail(props) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
-        }).catch(error => console.error('Error:', error.message)).then(
-            alert("삭제되었습니다")
+        }).catch(error => console.error('Error:', error.message)).then(() => {
+            setSnackbarMsg("삭제되었습니다.")
+            setOpen(true)
+        }
         );
-        // navigate(`/detail/${nowPost.detail_post}`);
         window.location.replace(`/detail/${nowPost.detail_post}`);
     }
 
+    const [snackbarMsg, setSnackbarMsg] = useState("저장되었습니다.");
+
+    const CloseButton = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        } setOpen(false);
+    };
     return (
         <>
             <Header />
             <div className="detail-page">
+                <Snackbar
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    open={open}
+                    message={snackbarMsg}
+                    onClose={CloseButton}
+                    action={
+                        <button color="secondary" size="small" onClick={(e) => {
+                            e.preventDefault();
+                            CloseButton();
+                            window.location.replace(`/detail/${nowPost.detail_post}`);
+                        }}>
+                            닫기
+                        </button>
+                    } />
                 <div className="detail-bar">
                     <NavLink to={backButton}><IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
                     <div className="button-right">

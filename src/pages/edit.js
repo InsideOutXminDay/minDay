@@ -4,9 +4,8 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import '../styles/community/edit.css';
 import axios from 'axios';
 import Header from '../components/Header';
+import Snackbar from '@mui/material/Snackbar';
 
-//로그인 유저 임시 id 값 (첫번째 글)
-var myId = 5;
 
 export default function Edit(props) {
     const location = useLocation();
@@ -16,6 +15,8 @@ export default function Edit(props) {
     let backButton = postInfo.id_post;
     const navigate = useNavigate();
     const [userID, setUserID] = useState([]);
+    const [open, setOpen] = useState(false);
+    const [editNav, setEditNav] = useState('');
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/postuser`, {
@@ -61,15 +62,36 @@ export default function Edit(props) {
             }
             return response.json();
         }).catch(error => console.error('Error:', error.message)).then(
-            alert("저장되었습니다")
+            setOpen(true)
         );
-        navigate(`/detail/${id_post}`);
+        setEditNav(id_post)
+        // navigate(`/detail/${id_post}`);    
     }
+
+    const CloseButton = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        } setOpen(false);
+    };
 
     return (
         <div>
             <Header />
             <div className="edit-page">
+            <Snackbar
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    open={open}
+                    message="저장되었습니다."
+                    onClose={CloseButton}
+                    action={
+                        <button color="secondary" size="small" onClick={(e) => {
+                            e.preventDefault();
+                            CloseButton();
+                            navigate(`/detail/${editNav}`);}
+                        }>
+                            닫기
+                        </button>
+                        }/>
                 <form name="editCreate"
                     onSubmit={(e) => { e.preventDefault(); }}
                 >

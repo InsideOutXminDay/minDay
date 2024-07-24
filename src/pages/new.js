@@ -4,6 +4,8 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import '../styles/community/new.css';
 import axios from 'axios';
 import Header from '../components/Header';
+import Snackbar from '@mui/material/Snackbar';
+
 
 export default function New(props) {
     const [community, setCommunity] = useState("post");
@@ -12,6 +14,8 @@ export default function New(props) {
     const postInfo = { ...location.state };
     let backButton = postInfo.lastPage;
     const [userID, setUserID] = useState([]);
+    const [open, setOpen] = useState(false);
+    const [detailNav, setDetailNav] = useState('');
 
     const navigate = useNavigate();
     const MyCheckbox = (checked) => {
@@ -35,6 +39,7 @@ export default function New(props) {
         }).catch(error => console.error('Error:', error));
     }, [])
 
+    
     const newSave = async (item) => {
         let id_user = item.id_user;
         let title = item.title;
@@ -60,16 +65,37 @@ export default function New(props) {
             }
             else {
                 const data = await response.json();
-                alert("저장되었습니다");
-                navigate(`/detail/${Number(data.id_post)}`);
+                setDetailNav(Number(data.id_post));
+                setOpen(true)
             }
+
         })
 
     }
+    const CloseButton = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        } setOpen(false);
+    };
+
     return (
         <>
             <Header></Header>
             <div className="new-page">
+                <Snackbar
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    open={open}
+                    message="저장되었습니다."
+                    onClose={CloseButton}
+                    action={
+                        <button color="secondary" size="small" onClick={(e) => {
+                            e.preventDefault();
+                            CloseButton();
+                            navigate(`/detail/${detailNav}`);}
+                        }>
+                            닫기
+                        </button>
+                        }/>
                 <form name="newCreate" onSubmit={(e) => {
                     e.preventDefault();
                     let item = {
@@ -78,7 +104,7 @@ export default function New(props) {
                         body: e.target.body.value,
                         anonymity: e.target.anonymity.value
                     }
-                    newSave(item)
+                    newSave(item);
                 }}>
                     <div className="new-bar">
                         <NavLink to={backButton}><IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
