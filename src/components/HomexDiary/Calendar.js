@@ -56,7 +56,7 @@ export default function CalendarComponent({ token,userId }) {
           <div>
             <img
               style={{ width: '30px' }}
-              src={`/emotion${matching.Diary.id_emotion}.png`}
+              src={`/img/emotions/emotion${matching.Diary.id_emotion}.png`}
             />
           </div>
         );
@@ -95,7 +95,7 @@ export default function CalendarComponent({ token,userId }) {
               <div className="emotion-section">
                 <img
                   style={{ width: '60px' }}
-                  src={`/emotion${nowDiary.Diary.id_emotion}.png`}
+                  src={`/img/emotions/emotion${nowDiary.Diary.id_emotion}.png`}
                   alt="Emotion"
                 />
               </div>
