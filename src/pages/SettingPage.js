@@ -1,14 +1,17 @@
 import React from 'react';
+import { useParams } from "react-router-dom";
 import SettingAccount from '../components/Setting/SettingAccount';
 import Header from '../components/Header';
 import '../styles/Setting/SettingPage.css';
 
-const SettingPage = () => {
+const SettingPage = ({token}) => {
+  const userId = useParams();
+
   return (
     <div style={{ display: "flex" }}>
-      <Header />
+      <Header userId={userId}/>
       <div className="setting-page">
-        <SettingAccount />
+        <SettingAccount token={token} userId={userId}/>
       </div>
     </div>
   );
