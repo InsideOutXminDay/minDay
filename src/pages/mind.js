@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/community/post.css';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaRegPenToSquare } from 'react-icons/fa6';
 import axios from 'axios';
 import Header from '../components/Header';
@@ -10,10 +10,7 @@ export default function Mind(props) {
   const [postdb, setPostdb] = useState([]);
   const [userID, setUserID] = useState([]);
   let myDB = [];
-  const location = useLocation();
-  const { userId } = location.state || {};
-  console.log(userId)
-
+  
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/mind`, {
@@ -49,14 +46,13 @@ export default function Mind(props) {
         title: item.title,
         body: item.body,
         anonymity: item.anonymity,
-        userId: userId
       },
     });
   };
 
   const goToNew = () => {
     navigate(`/new/${userID}`, {
-      state: { userid: userID, lastPage: '/mind', userId:userId },
+      state: { userid: userID, lastPage: '/mind' },
     });
   };
 
@@ -70,21 +66,17 @@ export default function Mind(props) {
             onClick={(e) => {
               e.preventDefault();
               goTodetail(p);
-            }}
-          >
+            }}>
             <h2>{p.title}</h2>
             <p>{p.body}</p>
           </NavLink>
         </div>
-      );
-    } else {
-      continue;
-    }
+      ); } else { continue; }
   }
 
   return (
     <>
-      <Header userId={userId} logout={props.logout} />
+      <Header userId={userID} logout={props.logout} />
       <div className="post-page">
         {myDB.slice(-1)}
         <div className="guide-card">

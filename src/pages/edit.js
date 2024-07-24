@@ -19,32 +19,30 @@ export default function Edit(props) {
     const [open, setOpen] = useState(false);
     const [editNav, setEditNav] = useState('');
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/postuser`, {
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: `Bearer ${props.token}`,
-        },
-      })
-      .then((res) => {
-        setUserID(res.data[0].id_user);
-      })
-      .catch((error) => console.error('Error:', error));
-  }, []);
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_API_URL}/postuser`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    authorization: `Bearer ${props.token}`,
+                },
+            })
+            .then((res) => {
+                setUserID(res.data[0].id_user);
+            })
+            .catch((error) => console.error('Error:', error));
+    }, []);
 
-  const goTodetail = (item) => {
-    navigate(`/detail/${item.id_post}`, {
-      state: {
-        id_post: item.id_post,
-        id_user: item.id_user,
-        title: item.title,
-        body: item.body,
-        anonymity: item.anonymity,
-        userId:postInfo.userId
-      },
-    });
-  };
+    const goTodetail = (item) => {
+        navigate(`/detail/${item.id_post}`, {
+            state: {
+                id_post: item.id_post,
+                id_user: item.id_user,
+                title: item.title,
+                body: item.body,
+                anonymity: item.anonymity,
+            },
+        });
+    };
 
 
     const editSave = (item) => {
@@ -64,7 +62,7 @@ export default function Edit(props) {
             })
         }).then(response => {
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`Error! status: ${response.status}`);
             }
             return response.json();
         }).catch(error => console.error('Error:', error.message)).then(
@@ -78,12 +76,12 @@ export default function Edit(props) {
             return;
         } setOpen(false);
     };
-  
+
     return (
         <div>
-            <Header userId={postInfo.userId} logout={props.logout} />
+            <Header userId={userID} logout={props.logout} />
             <div className="edit-page">
-            <Snackbar
+                <Snackbar
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                     open={open}
                     message="게시글이 수정되었습니다."
@@ -92,14 +90,15 @@ export default function Edit(props) {
                         <button color="secondary" size="small" onClick={(e) => {
                             e.preventDefault();
                             CloseButton();
-                            navigate(`/detail/${editNav}`);}
-                        }>
+                            navigate(`/detail/${editNav}`);
+                        }}>
                             닫기
                         </button>
-                        }/>
+                    } />
                 <form name="editCreate"
-                    onSubmit={(e) => { e.preventDefault(); }}
-                >
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                    }}>
                     <div className="edit-bar">
                         <NavLink to={"/detail/" + backButton} onClick={(e) => {
                             e.preventDefault(); goTodetail(postInfo);
@@ -134,7 +133,7 @@ export default function Edit(props) {
                             }}></textarea></p>
                     </div>
                 </form>
-      </div>
-    </div>
-  );
+            </div>
+        </div>
+    );
 }
