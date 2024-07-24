@@ -63,7 +63,7 @@ export default function Diary({ token, logout }) {
   };
   return (
     <div style={{ display: 'flex' }}>
-      <Header userId={userId} logout={logout}/>
+      <Header userId={userId.id} logout={logout}/>
       <DiaryEditor initData={predata} onSubmit={onSubmit} userId={userId} emotionData={emotionData} />
 
     </div>

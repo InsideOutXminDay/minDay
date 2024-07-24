@@ -16,7 +16,7 @@ const Contents = ({ token, logout }) => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/contents', {
+      .get(`${process.env.REACT_APP_API_URL}/contents`, {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {

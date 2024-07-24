@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const SettingAccount = ({token, userId}) => {
+const SettingAccount = ({ token, userId }) => {
   const [username, setUsername] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
@@ -10,10 +10,14 @@ const SettingAccount = ({token, userId}) => {
   const [notification, setNotification] = useState('');
   const [errors, setErrors] = useState({});
 
+
   useEffect(() => {
     axios
-      .get('http://localhost:5000/getusername', {
-        headers: { authorization: `Bearer ${token}` },
+      .get(`${process.env.REACT_APP_API_URL}/getusername`, {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${token}`
+        },
       })
       .then((res) => {
         setUsername(res.data.username);
@@ -63,16 +67,17 @@ const SettingAccount = ({token, userId}) => {
           currentPassword,
           newPassword
         };
-        await axios.post('http://localhost:5000/updateuser', {requestData},
+        await axios.post(`${process.env.REACT_APP_API_URL}/updateuser`, { requestData },
           {
-              headers: { authorization: `Bearer ${token}` },
+            headers: {  'Content-Type': 'application/json',
+              authorization: `Bearer ${token}` },
           });
         setNotification('저장되었습니다.');
         setTimeout(() => setNotification(''), 5000);
       } catch (error) {
         console.error(error)
         setNotification('올바른 비밀번호를 입력해주세요.');
-        setTimeout(() => setNotification(''), );
+        setTimeout(() => setNotification(''),);
       }
     }
   };

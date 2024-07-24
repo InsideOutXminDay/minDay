@@ -35,7 +35,7 @@ export default function NewDiary({ token, logout }){
         }}
     return (
         <div style={{display:"flex"}}>
-            <Header userId={userId} logout={logout} />
+            <Header userId={userId.id} logout={logout} />
             <DiaryEditor initDate={date} onSubmit={onSubmit} userId={userId} emotionData={emotionData}/>
         </div>
     )
