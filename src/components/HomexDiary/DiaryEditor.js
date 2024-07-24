@@ -2,7 +2,6 @@ import moment from "moment";
 import { useEffect, useCallback } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { emotionList } from "../../util";
 import EmotionItem from "./EmotionItem";
 import '../../styles/HomexDiary/DiaryEditor.css'
 

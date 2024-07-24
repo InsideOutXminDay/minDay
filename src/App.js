@@ -62,7 +62,6 @@ function App() {
           path="/home/:id"
           element={<Home token={token} logout={handleLogout} />}
         />{' '}
-        {/* /home/:userid >> 개인별 홈화면 구현 */}
         {
           <Route
             path="/login"
@@ -71,18 +70,14 @@ function App() {
         }
         {<Route path="/join" element={<SignUp />} />}
         <Route path="/ask/:id" element={<Ask token={token} />} />{' '}
-        {/* /ask/:id */}
-        {/* <Route path='/find' element={<회원정보 찾기 />}/> */}
         <Route
           path="/diary/:id"
           element={<Diary token={token} logout={handleLogout} />}
         />{' '}
-        {/* /diary/:id */}
         <Route
           path="/newdiary"
           element={<NewDiary token={token} logout={handleLogout} />}
         />{' '}
-        {/* /diary/:id */}
         <Route
           path="/contents"
           element={<Contents token={token} logout={handleLogout} />}

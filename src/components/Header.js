@@ -11,7 +11,6 @@ export default function Header({ userId, logout }) {
   const navigate = useNavigate();
 
   const goHome = () => {
-    // user테이블 연결 후 /home/:userid 로 변경
     navigate(`/home/${userId.id}`);
   };
   const goCommunityMind = () => {
@@ -19,11 +18,6 @@ export default function Header({ userId, logout }) {
   };
   const goCommunityPost = () => {
     navigate('/post');
-  };
-  const goRecommend = () => {
-    // 추천컨텐츠 어떻게할지 고민(임시 작성)
-    // navigate('/recommend');
-    alert('/recommend');
   };
   const goContents = () => {
     navigate('/contents', { state: { userId: userId } });
@@ -47,9 +41,6 @@ export default function Header({ userId, logout }) {
               <p onClick={goCommunityMind}>고민</p>
               <p onClick={goCommunityPost}>일반</p>
             </div>
-          </div>
-          <div className="mid-icon" onClick={goRecommend}>
-            <BiLike size={'45%'} />
           </div>
           <div className="mid-icon" onClick={goContents}>
             <IoBookOutline size={'45%'} />

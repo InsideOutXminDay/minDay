@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import DiaryEditor from "../components/HomexDiary/DiaryEditor"
 import Header from "../components/Header"
 import axios from "axios";
