@@ -88,7 +88,7 @@ function App() {
           element={<Contents token={token} logout={handleLogout} />}
         />{' '}
         <Route
-          path="/setting"
+          path="/setting/:id"
           element={<SettingPage logout={handleLogout} />}
         />
         <Route
