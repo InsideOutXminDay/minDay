@@ -1,7 +1,7 @@
 import '../../styles/HomexDiary/EmotionItem.css'
-export default function EmotionItem({ id, img, name, onClick, isSelected }){
+export default function EmotionItem({ id_emotionlist, emotionimg, emotionname, onClick, isSelected }){
     const handleOnClick = () => {
-        onClick(id);
+        onClick(id_emotionlist);
     };
     return(
         <div className={[
@@ -10,8 +10,8 @@ export default function EmotionItem({ id, img, name, onClick, isSelected }){
           ].join(" ")}
           onClick={handleOnClick}
         >
-          <span>{name}</span>
-          <img alt={`emotion${id}`} src={img} />
+          <span>{emotionname}</span>
+          <img alt={`emotion${id_emotionlist}`} src={emotionimg} />
           
         </div>
     )

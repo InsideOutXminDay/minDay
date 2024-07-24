@@ -8,6 +8,7 @@ export default function Paragraph({ token }) {
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/paragraphs`, {
+
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {
