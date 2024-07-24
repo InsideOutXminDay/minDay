@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const SettingAccount = () => {
-  const [id, setId] = useState('');
+const SettingAccount = ({token, userId}) => {
+  const [username, setUsername] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
@@ -11,18 +11,16 @@ const SettingAccount = () => {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get('/user');
-        setId(response.data.id);
-        setNickname(response.data.nickname);
-        setEmail(response.data.email);
-      } catch (error) {
-        console.error('사용자 정보를 가져오는 중 오류 발생:', error);
-      }
-    };
-
-    fetchUserData();
+    axios
+      .get('http://localhost:5000/getusername', {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setUsername(res.data.username);
+        setNickname(res.data.nickname);
+        setEmail(res.data.email);
+      })
+      .catch((error) => console.error('사용자 정보를 가져오는 중 오류 발생:', error));
   }, []);
 
   const validateNickname = (nickname) => {
@@ -47,39 +45,34 @@ const SettingAccount = () => {
     if (!validateEmail(email)) {
       errors.email = '유효한 이메일 형식이 아닙니다.';
     }
-    if (!validatePassword(currentPassword)){
-      errors.currentPassword = '비밀번호를 입력해주세요.';
+    if (!validatePassword(currentPassword)) {
+      errors.currentPassword = '비밀번호를 입력해주세요. (4자리 이상)';
     }
-    if (!validatePassword(newPassword)){
+    if (!validatePassword(newPassword)) {
       errors.newPassword = '새 비밀번호 / 비밀번호 확인을 입력해주세요. (4자리 이상)';
     }
-    if (currentPassword != currentPassword){
-      errors.currentPassword = '올바른 비밀번호를 입력해주세요. (4자리 이상)';
-    }
+
     setErrors(errors);
 
     if (Object.keys(errors).length === 0) {
       try {
         const requestData = {
-          id,
+          id_user: userId.id,
           nickname,
           email,
           currentPassword,
           newPassword
         };
 
-
-        console.log('front : ',requestData);
-
-        await axios.put('/user', requestData,{
-          headers:{
-            'Content-Type': 'application/json'
-          }
-        });
+        console.log('front : ', requestData);
+        await axios.post('http://localhost:5000/updateuser', {requestData},
+          {
+              headers: { authorization: `Bearer ${token}` },
+          });
         setNotification('저장되었습니다.');
         setTimeout(() => setNotification(''), 5000);
       } catch (error) {
-
+        console.error(error)
         setNotification('올바른 비밀번호를 입력해주세요.');
         setTimeout(() => setNotification(''), );
       }
@@ -94,7 +87,7 @@ const SettingAccount = () => {
       <h2>회원 정보 변경</h2>
       <div className="form-group">
         <label>아이디</label>
-        <input type="text" value={id} disabled />
+        <input type="text" value={username} disabled />
       </div>
       <div className="form-group">
         <label>닉네임</label>
