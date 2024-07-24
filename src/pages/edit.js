@@ -65,7 +65,6 @@ export default function Edit(props) {
             setOpen(true)
         );
         setEditNav(id_post)
-        // navigate(`/detail/${id_post}`);    
     }
 
     const CloseButton = (event, reason) => {

@@ -68,9 +68,7 @@ export default function New(props) {
                 setDetailNav(Number(data.id_post));
                 setOpen(true)
             }
-
         })
-
     }
     const CloseButton = (event, reason) => {
         if (reason === 'clickaway') {
