@@ -80,7 +80,7 @@ export default function Edit(props) {
             <Snackbar
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                     open={open}
-                    message="저장되었습니다."
+                    message="게시글이 수정되었습니다."
                     onClose={CloseButton}
                     action={
                         <button color="secondary" size="small" onClick={(e) => {
