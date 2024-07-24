@@ -32,7 +32,7 @@ export default function NewDiary({ token, logout }){
           );
         } catch (err) {
           console.error(err);
-        }
+        }}
     return (
         <div style={{display:"flex"}}>
             <Header userId={userId} logout={logout} />
