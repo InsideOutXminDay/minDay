@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/community/post.css';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaRegPenToSquare } from 'react-icons/fa6';
 import axios from 'axios';
 import Header from '../components/Header';
@@ -9,16 +9,13 @@ export default function Post(props) {
   const [postdb, setPostdb] = useState([]);
   const [userID, setUserID] = useState([]);
   let myDB = [];
-  const location = useLocation();
-  const { userId } = location.state || {};
 
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/post`, {
         headers: {
           authorization: `Bearer ${props.token}`,
-        },
-      })
+        },})
       .then((res) => {
         setPostdb([...res.data]);
       })
@@ -31,8 +28,7 @@ export default function Post(props) {
         headers: {
           'Content-Type': 'application/json',
           authorization: `Bearer ${props.token}`,
-        },
-      })
+        },})
       .then((res) => {
         setUserID(res.data[0].id_user);
       })
@@ -48,14 +44,13 @@ export default function Post(props) {
         title: item.title,
         body: item.body,
         anonymity: item.anonymity,
-        userId:userId
       },
     });
   };
 
   const goToNew = () => {
     navigate(`/new/${userID}`, {
-      state: { userid: userID, lastPage: '/post',userId:userId },
+      state: { userid: userID, lastPage: '/post' },
     });
   };
 
@@ -69,21 +64,19 @@ export default function Post(props) {
             onClick={(e) => {
               e.preventDefault();
               goTodetail(p);
-            }}
-          >
+            }}>
             <h2>{p.title}</h2>
             <p>{p.body}</p>
           </NavLink>
         </div>
       );
-    } else {
-      continue;
-    }
+    } else { continue; }
+  
   }
 
   return (
     <>
-      <Header userId={userId} logout={props.logout} />
+      <Header userId={userID} logout={props.logout} />
       <div className="post-page">
         {myDB.slice(-1)}
         <div className="guide-card">
@@ -95,8 +88,7 @@ export default function Post(props) {
               onClick={(e) => {
                 e.preventDefault();
                 goToNew();
-              }}
-            >
+              }}>
               <FaRegPenToSquare id="post-create-icon">작성</FaRegPenToSquare>
             </NavLink>
           </button>
