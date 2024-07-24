@@ -190,7 +190,7 @@ export default function Detail(props) {
     };
     return (
         <>
-            <Header />
+            <Header userId={postInfo.userId}logout={props.logout}></Header>
             <div className="detail-page">
                 <Snackbar
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
