@@ -39,6 +39,7 @@ export default function Edit(props) {
         title: item.title,
         body: item.body,
         anonymity: item.anonymity,
+        userId:postInfo.userId
       },
     });
   };
@@ -72,7 +73,7 @@ export default function Edit(props) {
 
   return (
     <div>
-      <Header logout={props.logout} />
+      <Header userId={postInfo.userId} logout={props.logout} />
       <div className="edit-page">
         <form
           name="editCreate"

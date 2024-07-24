@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/community/post.css';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { FaRegPenToSquare } from 'react-icons/fa6';
 import axios from 'axios';
 import Header from '../components/Header';
@@ -9,6 +9,8 @@ export default function Post(props) {
   const [postdb, setPostdb] = useState([]);
   const [userID, setUserID] = useState([]);
   let myDB = [];
+  const location = useLocation();
+  const { userId } = location.state || {};
 
   useEffect(() => {
     axios
@@ -46,13 +48,14 @@ export default function Post(props) {
         title: item.title,
         body: item.body,
         anonymity: item.anonymity,
+        userId:userId
       },
     });
   };
 
   const goToNew = () => {
     navigate(`/new/${userID}`, {
-      state: { userid: userID, lastPage: '/post' },
+      state: { userid: userID, lastPage: '/post',userId:userId },
     });
   };
 
@@ -80,7 +83,7 @@ export default function Post(props) {
 
   return (
     <>
-      <Header logout={props.logout} />
+      <Header userId={userId} logout={props.logout} />
       <div className="post-page">
         {myDB.slice(-1)}
         <div className="guide-card">

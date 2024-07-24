@@ -118,6 +118,7 @@ export default function Detail(props) {
         title: item.detail_title,
         body: item.detail_body,
         anonymity: item.detail_anonymity,
+        userId: postInfo.userId
       },
     });
   };
@@ -191,7 +192,7 @@ export default function Detail(props) {
 
   return (
     <>
-      <Header logout={props.logout} />
+      <Header userId={postInfo.userId} logout={props.logout} />
       <div className="detail-page">
         <div className="detail-bar">
           <NavLink to={backButton}>

@@ -12,6 +12,8 @@ export default function New(props) {
   );
   const location = useLocation();
   const postInfo = { ...location.state };
+  console.log("!!!!", postInfo)
+
   let backButton = postInfo.lastPage;
   const [userID, setUserID] = useState([]);
 
@@ -72,7 +74,7 @@ export default function New(props) {
   };
   return (
     <>
-      <Header logout={props.logout}></Header>
+      <Header userId={postInfo.userId}logout={props.logout}></Header>
       <div className="new-page">
         <form
           name="newCreate"

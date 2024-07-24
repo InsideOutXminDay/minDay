@@ -9,21 +9,21 @@ import { BiLike } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 export default function Header({ userId, logout }) {
   const navigate = useNavigate();
-
+  
   const goHome = () => {
     navigate(`/home/${userId.id}`);
   };
   const goCommunityMind = () => {
-    navigate('/mind');
+    navigate('/mind', { state: { userId: userId } });
   };
   const goCommunityPost = () => {
-    navigate('/post');
+    navigate('/post', { state: { userId: userId } });
   };
   const goContents = () => {
     navigate('/contents', { state: { userId: userId } });
   };
   const goSetting = () => {
-    navigate('/setting/${userId.id}');
+    navigate(`/setting/${userId.id}`);
   };
   const Logout = () => {
     navigate('/');
