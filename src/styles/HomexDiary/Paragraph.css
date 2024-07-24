@@ -3,11 +3,12 @@
     flex-direction: column;
     justify-content: center;
     border-radius: 20px;
-    margin: 1.5% 1.5% 1.5% 0px;
-    border: 3px solid #E7F998;
+    margin: 4% 1.5% 1.5% 3%;
     padding: 4%;
-    width: 87%;
+    width: 80%;
     height: 20%;
+    box-shadow: 0px 0px 15px #d9d9d9; 
+
 }
 
 .para{

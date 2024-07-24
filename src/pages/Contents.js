@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Category from '../components/Contents/Category';
 import SubCategory from '../components/Contents/SubCategory';
 import ContentsView from '../components/Contents/ContentsView';
-import '../styles/Contents/Contents.css';
+import '../styles/Contents/Category.css';
 import Header from '../components/Header';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';

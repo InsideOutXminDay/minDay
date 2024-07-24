@@ -5,7 +5,6 @@ import {
   IoSettingsOutline,
   IoLogOutOutline,
 } from 'react-icons/io5';
-import { BiLike } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 export default function Header({ userId, logout }) {
   const navigate = useNavigate();
@@ -41,12 +40,15 @@ export default function Header({ userId, logout }) {
               <p onClick={goCommunityMind}>고민</p>
               <p onClick={goCommunityPost}>일반</p>
             </div>
+            <p className='pagename'>커뮤니티</p>
           </div>
           <div className="mid-icon" onClick={goContents}>
             <IoBookOutline size={'45%'} />
+            <p className='pagename'>컨탠츠</p>
           </div>
           <div className="mid-icon" onClick={goSetting}>
             <IoSettingsOutline size={'45%'} />
+            <p className='pagename'>정보변경</p>
           </div>
         </div>
 
