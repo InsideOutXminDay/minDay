@@ -1,11 +1,10 @@
 .Header{
     display: flex;
-    width: 5%;
-    height: 95vh;
+    width: 5.5%;
+    height: 100vh;
     justify-content: center;
-    border-radius: 20px;
-    margin: 1%;
-    background-color: #7DCCAC;
+    /* border-radius: 20px; */
+    background-color: #F1F1F1;
     position: fixed;
 }
 
@@ -15,8 +14,8 @@
     margin: 80% 0px;
 }
 .LogoImg{
-    width: 60%;
-    height: 60%;
+    width: 70%;
+    height: 70%;
 }
 
 .mid-icons{
@@ -24,18 +23,23 @@
 }
 
 .mid-icon{
-    margin: 3vh 0px;
+    padding: 0.7vh 0px;
+    margin: 0.7vh 0px;
+
+}
+.pagename{
+    visibility: hidden;
+    margin-top: 0px;
 }
 
 .end-icon{
-    margin-top: 300%;
+    margin-top: 170%;
 }
 
 .dropdown-content{
     display : none;
-    margin: -50% 100%;
+    margin: -65% 100%;
     position : absolute;  
-    z-index : 1; 
     font-weight: 500;
     background-color: #7dccacea;
     width: 100px;
@@ -53,6 +57,9 @@
 
 .mid-icon:hover .dropdown-content{
     display: block;
+}
+.mid-icon:hover .pagename{
+    visibility: visible;
 }
 
 .dropdown-content p:hover{

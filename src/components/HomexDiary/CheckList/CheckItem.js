@@ -56,13 +56,15 @@ export default function CheckItem({ token, Askcheck, User }) {
   return (
     <div className="CheckItem">
       <div className="checkbox-col">
-        <input
+        <input className='checkbox'
           onChange={()=>{onChangeCheckbox(!is_done)}}
           type="checkbox"
           checked={is_done}
         ></input>
       </div>
-      <div className="content-col">{sentence()}</div>
+      <div className="content-col" style={{ color: is_done ? '#d5d5d5' : 'black' }}>
+        {sentence()}
+        </div>
     </div>
   );
 }

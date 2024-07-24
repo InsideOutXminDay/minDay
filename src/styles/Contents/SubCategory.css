@@ -1,14 +1,17 @@
 .sub-category-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  width: 100%;
+  gap: 40px;
+  width: 70%;
 }
 
+.sub-category-header h2{
+  margin-bottom: 20%;
+}
 
 .sub-category-item {
-  background-color: rgba(217, 237, 247, 0.8);
-  padding: 20px;
+  box-shadow: 0px 0px 15px #d9d9d9; 
+  padding: 30px;
   cursor: pointer;
   border-radius: 8px;
   transition: transform 0.2s;
@@ -19,12 +22,14 @@
 }
 
 .sub-category-item:hover {
+  box-shadow: 0px 0px 15px #7dccacd7; 
   transform: scale(1.05);
 }
 
 .sub-category-image {
-  width: 400px;
-  height: 300px;
+  
+  width: 300px;
+  height: 250px;
   object-fit: cover;
   border-radius: 8px;
 }
@@ -39,7 +44,7 @@
 
 .back-button1 {
   position: absolute;
-  margin-left: 330px;
+  margin-left: 500px;
   top: 25px;
   right: auto;
   background: none;
@@ -49,6 +54,6 @@
 }
 
 .back-button1:hover {
-  background-color: #007BFF;
+  background-color: #7dccac4a;
   border-radius: 8px;
 }

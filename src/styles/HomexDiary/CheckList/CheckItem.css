@@ -14,3 +14,11 @@
     height: 4vh;
     flex: 1;
     overflow: hidden;}
+
+.checkbox-col .checkbox{
+    width: 15px;
+    height: 15px;
+}
+
+  
+
