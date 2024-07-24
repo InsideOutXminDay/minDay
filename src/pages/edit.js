@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { IoCaretBackOutline } from "react-icons/io5";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { IoCaretBackOutline } from 'react-icons/io5';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import '../styles/community/edit.css';
 import axios from 'axios';
 import Header from '../components/Header';
@@ -8,6 +8,7 @@ import Snackbar from '@mui/material/Snackbar';
 
 
 export default function Edit(props) {
+
     const location = useLocation();
     const postInfo = { ...location.state };
     const [newTitle, setTitle] = useState(postInfo.title);
@@ -18,28 +19,33 @@ export default function Edit(props) {
     const [open, setOpen] = useState(false);
     const [editNav, setEditNav] = useState('');
 
-    useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/postuser`, {
-            headers: {
-                'Content-Type': 'application/json',
-                authorization: `Bearer ${props.token}`
-            },
-        }).then((res) => {
-            setUserID(res.data[0].id_user);
-        }).catch(error => console.error('Error:', error));
-    }, [])
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/postuser`, {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${props.token}`,
+        },
+      })
+      .then((res) => {
+        setUserID(res.data[0].id_user);
+      })
+      .catch((error) => console.error('Error:', error));
+  }, []);
 
-    const goTodetail = (item) => {
-        navigate(`/detail/${item.id_post}`, {
-            state: {
-                id_post: item.id_post,
-                id_user: item.id_user,
-                title: item.title,
-                body: item.body,
-                anonymity: item.anonymity
-            }
-        })
-    }
+  const goTodetail = (item) => {
+    navigate(`/detail/${item.id_post}`, {
+      state: {
+        id_post: item.id_post,
+        id_user: item.id_user,
+        title: item.title,
+        body: item.body,
+        anonymity: item.anonymity,
+        userId:postInfo.userId
+      },
+    });
+  };
+
 
     const editSave = (item) => {
         let id_post = item.id_post;
@@ -72,10 +78,10 @@ export default function Edit(props) {
             return;
         } setOpen(false);
     };
-
+  
     return (
         <div>
-            <Header />
+            <Header userId={postInfo.userId} logout={props.logout} />
             <div className="edit-page">
             <Snackbar
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
@@ -128,7 +134,7 @@ export default function Edit(props) {
                             }}></textarea></p>
                     </div>
                 </form>
-            </div>
-        </div>
-    )
-};
+      </div>
+    </div>
+  );
+}

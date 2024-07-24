@@ -2,11 +2,10 @@ import moment from "moment";
 import { useEffect, useCallback } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { emotionList } from "../../util";
 import EmotionItem from "./EmotionItem";
 import '../../styles/HomexDiary/DiaryEditor.css'
 
-export default function DiaryEditor({initDate, initData, onSubmit,userId}){
+export default function DiaryEditor({initDate, initData, onSubmit, userId, emotionData}){
     const navigate = useNavigate();
 
     //생성 시 기본 값
@@ -54,12 +53,12 @@ export default function DiaryEditor({initDate, initData, onSubmit,userId}){
             <div className="emotion-selector">
                 <h4>{`${state.date}의 감정을 선택하세요.`}</h4>
                 <div className="emotions">
-                    {emotionList.map((it) => (
+                    {emotionData.map((it) => (
                         <EmotionItem
-                        key={it.id}
+                        key={it.id_emotionlist}
                         {...it}
                         onClick={handleChangeEmotion}
-                        isSelected={state.id_emotion === it.id}
+                        isSelected={state.id_emotion === it.id_emotionlist}
                         />
                     ))}
                 </div>

@@ -7,11 +7,11 @@ import Header from '../components/Header';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
-const Contents = ({token}) => {
+const Contents = ({ token, logout }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   const location = useLocation();
-  const { userId } = location.state || {}; 
+  const { userId } = location.state || {};
   const [contents, setContents] = useState([]);
 
   useEffect(() => {
@@ -24,21 +24,24 @@ const Contents = ({token}) => {
       })
       .catch((error) => console.error('Error:', error));
   }, []);
-  console.log(contents)
 
   return (
-
-      <div style={{ display: "flex" }}>
-        <Header userId={userId}/>
+    <div style={{ display: 'flex' }}>
+      <Header userId={userId} logout={logout} />
 
       <div className="contents">
         {!selectedCategory && (
-          <Category categories={contents.filter(sub => sub.subcontent_id === 1)} onSelectCategory={setSelectedCategory} />
+          <Category
+            categories={contents.filter((sub) => sub.subcontent_id === 1)}
+            onSelectCategory={setSelectedCategory}
+          />
         )}
         {selectedCategory && !selectedSubCategory && (
           <SubCategory
             category={selectedCategory}
-            subCategories={contents.filter(sub => sub.content_id === selectedCategory.content_id)}
+            subCategories={contents.filter(
+              (sub) => sub.content_id === selectedCategory.content_id
+            )}
             onBack={() => setSelectedCategory(null)}
             onSelectSubCategory={setSelectedSubCategory}
           />

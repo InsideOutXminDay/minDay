@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { IoCaretBackOutline } from "react-icons/io5";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { IoCaretBackOutline } from 'react-icons/io5';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import '../styles/community/new.css';
 import axios from 'axios';
 import Header from '../components/Header';
@@ -8,6 +8,7 @@ import Snackbar from '@mui/material/Snackbar';
 
 
 export default function New(props) {
+
     const [community, setCommunity] = useState("post");
     const [unCheck, setUnCheck] = useState(<input type="hidden" name="anonymity" value="post" />);
     const location = useLocation();
@@ -16,29 +17,33 @@ export default function New(props) {
     const [userID, setUserID] = useState([]);
     const [open, setOpen] = useState(false);
     const [detailNav, setDetailNav] = useState('');
-
+    const [userID, setUserID] = useState([]);
+    let backButton = postInfo.lastPage;
     const navigate = useNavigate();
-    const MyCheckbox = (checked) => {
-        if (checked) {
-            setCommunity("mind");
-            setUnCheck(null);
-        } else if (!checked) {
-            setCommunity("post")
-            setUnCheck(<input type="hidden" name="anonymity" value="post" />);
-        }
+
+  const MyCheckbox = (checked) => {
+    if (checked) {
+      setCommunity('mind');
+      setUnCheck(null);
+    } else if (!checked) {
+      setCommunity('post');
+      setUnCheck(<input type="hidden" name="anonymity" value="post" />);
     }
+  };
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/postuser`, {
-            headers: {
-                'Content-Type': 'application/json',
-                authorization: `Bearer ${props.token}`
-            },
-        }).then((res) => {
-            setUserID(res.data[0].id_user);
-        }).catch(error => console.error('Error:', error));
-    }, [])
-
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/postuser`, {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${props.token}`,
+        },
+      })
+      .then((res) => {
+        setUserID(res.data[0].id_user);
+      })
+      .catch((error) => console.error('Error:', error));
+  }, []);
     
     const newSave = async (item) => {
         let id_user = item.id_user;
@@ -78,7 +83,7 @@ export default function New(props) {
 
     return (
         <>
-            <Header></Header>
+            <Header userId={postInfo.userId}logout={props.logout}></Header>
             <div className="new-page">
                 <Snackbar
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
@@ -124,8 +129,7 @@ export default function New(props) {
                         <p><textarea placeholder='contents' name="body"></textarea></p>
                     </div>
                 </form>
-            </div>
-        </>
-    )
+      </div>
+    </>
+  );
 }
-
