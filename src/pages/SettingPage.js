@@ -4,12 +4,13 @@ import SettingAccount from '../components/Setting/SettingAccount';
 import Header from '../components/Header';
 import '../styles/Setting/SettingPage.css';
 
-const SettingPage = ({token}) => {
+
+const SettingPage = ({token, logout}) => {
   const userId = useParams();
 
   return (
     <div style={{ display: "flex" }}>
-      <Header userId={userId}/>
+      <Header userId={userId} logout={logout}/>
       <div className="setting-page">
         <SettingAccount token={token} userId={userId}/>
       </div>
