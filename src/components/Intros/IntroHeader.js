@@ -1,14 +1,14 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/Intros/IntroHeader.css';
-export default function IntroHeader({ token, logout }) {
+import { useState } from 'react';
+export default function IntroHeader({ token, logout, authUser }) {
   const navigate = useNavigate();
-  const userId = useParams();
 
   const handleClick = () => {
     navigate('/login');
   };
   const goHome = () => {
-    navigate(`/home/${userId.id}`);
+    navigate(`/home/${authUser}`);
   };
   return (
     <header className="intro-header">

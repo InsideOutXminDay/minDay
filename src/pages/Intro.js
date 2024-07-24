@@ -11,10 +11,10 @@ import { FaArrowUp } from 'react-icons/fa';
 //css
 import '../styles/Intros/Intro.css';
 
-export default function Intro({ token, logout }) {
+export default function Intro({ token, logout, authUser }) {
   return (
     <div id="intro" className="intro">
-      <IntroHeader token={token} logout={logout} />
+      <IntroHeader token={token} logout={logout} authUser={authUser} />
       <main>
         <a href="#intro" class="top-btn">
           <span>위로</span>

@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../Auth/Modal';
 
-export default function LoginForm({ setToken }) {
+export default function LoginForm({ setToken, onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -35,6 +35,7 @@ export default function LoginForm({ setToken }) {
       setPassword('');
     } else {
       setToken(response.data.token);
+      onLogin(response.data.id_user);
       navigate(`/home/${response.data.id_user}`);
     }
   };
