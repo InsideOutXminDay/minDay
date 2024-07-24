@@ -67,9 +67,10 @@ const SettingAccount = ({ token, userId }) => {
           currentPassword,
           newPassword
         };
-        await axios.post('http://localhost:5000/updateuser', { requestData },
+        await axios.post(`${process.env.REACT_APP_API_URL}/updateuser`, { requestData },
           {
-            headers: { authorization: `Bearer ${token}` },
+            headers: {  'Content-Type': 'application/json',
+              authorization: `Bearer ${token}` },
           });
         setNotification('저장되었습니다.');
         setTimeout(() => setNotification(''), 5000);
