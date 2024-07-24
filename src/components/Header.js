@@ -24,7 +24,7 @@ export default function Header({userId}){
          navigate('/contents', {state:{userId:userId}});
     }
     const goSetting=()=>{
-        navigate("/setting");
+        navigate(`/setting/${userId.id}`);
     }
     const Logout=()=>{
         navigate("/");
