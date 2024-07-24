@@ -13,7 +13,7 @@ export default function Header({ userId, logout }) {
     navigate(`/home/${userId}`);
   };
   const goCommunityMind = () => {
-    navigate('/mind', { state: { userId: userId } });
+    navigate('/mind', { state: { userId: userId} });
   };
   const goCommunityPost = () => {
     navigate('/post', { state: { userId: userId } });

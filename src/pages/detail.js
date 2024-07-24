@@ -20,7 +20,7 @@ export default function Detail(props) {
     const [postDB, setPostDB] = useState([]);
     const params = useParams();
     let nowPost = {};
-    const [userID, setUserID] = useState('');
+    const [userID, setUserID] = useState(postInfo.id_user);
     const [userNick, setUserNick] = useState('');
     const [open, setOpen] = useState(false);
     const [snackbarMsg, setSnackbarMsg] = useState("저장되었습니다.");
@@ -62,7 +62,6 @@ export default function Detail(props) {
             .then((res) => {
                 setUserDB([...res.data]);
                 setUserNick(res.data[0].nickname);
-                setUserID(res.data[0].id_user);
             })
             .catch((error) => console.error('Error:', error));
     }, []);
@@ -214,7 +213,7 @@ export default function Detail(props) {
                         </button>
                     } />
                 <div className="detail-bar">
-                    <NavLink to={backButton}>
+                    <NavLink to={backButton} state={{userId:userID}}>
                         <IoCaretBackOutline id="post-back"></IoCaretBackOutline>
                     </NavLink>
                     <div className="button-right">

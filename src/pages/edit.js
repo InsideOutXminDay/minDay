@@ -15,22 +15,9 @@ export default function Edit(props) {
     const [newBody, setBody] = useState(postInfo.body);
     let backButton = postInfo.id_post;
     const navigate = useNavigate();
-    const [userID, setUserID] = useState([]);
+    const [userID, setUserID] = useState(postInfo.id_user);
     const [open, setOpen] = useState(false);
     const [editNav, setEditNav] = useState('');
-
-    useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/postuser`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    authorization: `Bearer ${props.token}`,
-                },
-            })
-            .then((res) => {
-                setUserID(res.data[0].id_user);
-            })
-            .catch((error) => console.error('Error:', error));
-    }, []);
 
     const goTodetail = (item) => {
         navigate(`/detail/${item.id_post}`, {

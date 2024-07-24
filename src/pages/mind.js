@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/community/post.css';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { FaRegPenToSquare } from 'react-icons/fa6';
 import axios from 'axios';
 import Header from '../components/Header';
 
 export default function Mind(props) {
+  const location = useLocation();
+  const {userId} = location.state;
   const navigate = useNavigate();
   const [postdb, setPostdb] = useState([]);
-  const [userID, setUserID] = useState([]);
+  const [userID, setUserID] = useState(userId);
   let myDB = [];
   
   useEffect(() => {
@@ -20,20 +22,6 @@ export default function Mind(props) {
       })
       .then((res) => {
         setPostdb([...res.data]);
-      })
-      .catch((error) => console.error('Error:', error));
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/postuser`, {
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: `Bearer ${props.token}`,
-        },
-      })
-      .then((res) => {
-        setUserID(res.data[0].id_user);
       })
       .catch((error) => console.error('Error:', error));
   }, []);
