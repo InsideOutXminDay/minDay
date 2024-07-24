@@ -5,6 +5,7 @@ import { IoCaretBackOutline } from 'react-icons/io5';
 import { LuDelete } from 'react-icons/lu';
 import axios from 'axios';
 import Header from '../components/Header';
+import Snackbar from '@mui/material/Snackbar';
 
 export default function Detail(props) {
   let myComment = [];
@@ -21,6 +22,7 @@ export default function Detail(props) {
   let nowPost = {};
   const [userID, setUserID] = useState('');
   const [userNick, setUserNick] = useState('');
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     axios
@@ -126,74 +128,99 @@ export default function Detail(props) {
   const newSaveComment = (item) => {
     let body = item.body;
 
-    let _item = {
-      body: item.body,
-      id_user: userID,
-      id_post: nowPost.detail_post,
-    };
-    if (body == '') {
-      alert('입력 내용을 확인하세요');
-    } else {
-      newSaveCommentFunc(_item);
+        let _item = {
+            body: item.body,
+            id_user: userID,
+            id_post: nowPost.detail_post
+        }
+        if (body == '') {
+            setSnackbarMsg("내용을 입력해주세요.");
+            setOpen(true);
+        }
+        else {
+            newSaveCommentFunc(_item);
+        }
     }
   };
 
-  const newSaveCommentFunc = (item) => {
-    let body = item.body;
-    let id_user = userID;
-    let id_post = nowPost.detail_post;
-    fetch(`${process.env.REACT_APP_API_URL}/comment`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${props.token}`,
-      },
-      body: JSON.stringify({
-        body: body,
-        id_user: id_user,
-        id_post: id_post,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .catch((error) => console.error('Error:', error.message))
-      .then(alert('저장되었습니다'));
-    window.location.replace(`/detail/${nowPost.detail_post}`);
-  };
+    const newSaveCommentFunc = (item) => {
 
-  const deleteComment = (item) => {
-    let id_post = item.id_post;
-    let id_comment = item.id_comment;
-    fetch(`${process.env.REACT_APP_API_URL}/delete`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${props.token}`,
-      },
-      body: JSON.stringify({
-        id_post: id_post,
-        id_comment: id_comment,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        let body = item.body;
+        let id_user = userID;
+        let id_post = nowPost.detail_post;
+        fetch(`${process.env.REACT_APP_API_URL}/comment`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${props.token}`
+            },
+            body: JSON.stringify({
+                body: body,
+                id_user: id_user,
+                id_post: id_post
+            })
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        }).catch(error => console.error('Error:', error.message)).then(
+            setOpen(true)
+        );
+    }
+
+    const deleteComment = (item) => {
+        let id_post = item.id_post;
+        let id_comment = item.id_comment;
+        fetch(`${process.env.REACT_APP_API_URL}/delete`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${props.token}`
+            },
+            body: JSON.stringify({
+                id_post: id_post,
+                id_comment: id_comment
+            })
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        }).catch(error => console.error('Error:', error.message)).then(() => {
+            setSnackbarMsg("삭제되었습니다.")
+            setOpen(true)
         }
-        return response.json();
-      })
-      .catch((error) => console.error('Error:', error.message))
-      .then(alert('삭제되었습니다'));
-    window.location.replace(`/detail/${nowPost.detail_post}`);
-  };
+        );
+        window.location.replace(`/detail/${nowPost.detail_post}`);
+    }
+
+    const [snackbarMsg, setSnackbarMsg] = useState("저장되었습니다.");
+
+    const CloseButton = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        } setOpen(false);
+    };
 
   return (
     <>
       <Header userId={postInfo.userId} logout={props.logout} />
       <div className="detail-page">
+                        <Snackbar
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    open={open}
+                    message={snackbarMsg}
+                    onClose={CloseButton}
+                    action={
+                        <button color="secondary" size="small" onClick={(e) => {
+                            e.preventDefault();
+                            CloseButton();
+                            window.location.replace(`/detail/${nowPost.detail_post}`);
+                        }}>
+                            닫기
+                        </button>
+                    } />
         <div className="detail-bar">
           <NavLink to={backButton}>
             <IoCaretBackOutline id="post-back"></IoCaretBackOutline>
