@@ -14,7 +14,7 @@ export default function New(props) {
     const location = useLocation();
     const postInfo = { ...location.state };
     let backButton = postInfo.lastPage;
-    const [userID, setUserID] = useState([]);
+    const [userID, setUserID] = useState(postInfo.userid);
     const [open, setOpen] = useState(false);
     const [detailNav, setDetailNav] = useState('');
     const navigate = useNavigate();
@@ -28,20 +28,6 @@ export default function New(props) {
             setUnCheck(<input type="hidden" name="anonymity" value="post" />);
         }
     };
-
-    useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_API_URL}/postuser`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    authorization: `Bearer ${props.token}`,
-                },
-            })
-            .then((res) => {
-                setUserID(res.data[0].id_user);
-            })
-            .catch((error) => console.error('Error:', error));
-    }, []);
 
     const newSave = async (item) => {
         let id_user = item.id_user;
