@@ -5,13 +5,12 @@ import { useState, useEffect } from 'react';
 import { FindData } from '../util';
 import axios from 'axios';
 
-export default function Diary({token}) {
+export default function Diary({ token, logout }) {
   const [predata, setPreData] = useState([]);
   const diaryId = useParams();
   const [diaryData, setDiaryData] = useState([]);
   const location = useLocation();
-  const { userId } = location.state || {}; 
-
+  const { userId } = location.state || {};
 
   useEffect(() => {
     axios
@@ -19,7 +18,7 @@ export default function Diary({token}) {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        const foundData = FindData(res.data,userId.id);
+        const foundData = FindData(res.data, userId.id);
         setDiaryData(foundData);
       })
       .catch((error) => console.error('Error:', error));
@@ -36,18 +35,20 @@ export default function Diary({token}) {
 
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/updatediary`, 
-        {data},
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/updatediary`,
+        { data },
         {
           headers: { authorization: `Bearer ${token}` },
-        });
+        }
+      );
     } catch (err) {
       console.error(err);
     }
   };
   return (
     <div style={{ display: 'flex' }}>
-      <Header />
+      <Header logout={logout} />
       <DiaryEditor initData={predata} onSubmit={onSubmit} userId={userId} />
     </div>
   );

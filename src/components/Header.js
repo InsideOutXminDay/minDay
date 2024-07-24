@@ -1,9 +1,15 @@
-import '../styles/Header.css'
-import { IoChatbubbleOutline, IoBookOutline, IoSettingsOutline, IoLogOutOutline } from "react-icons/io5";
-import { BiLike } from "react-icons/bi";
+import '../styles/Header.css';
+import {
+  IoChatbubbleOutline,
+  IoBookOutline,
+  IoSettingsOutline,
+  IoLogOutOutline,
+} from 'react-icons/io5';
+import { BiLike } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
-export default function Header({userId}){
-    const navigate = useNavigate();
+
+export default function Header({ userId, logout }) {
+  const navigate = useNavigate();
 
     const goHome=()=>{
         // user테이블 연결 후 /home/:userid 로 변경
@@ -47,8 +53,7 @@ export default function Header({userId}){
                 <div className='mid-icon' onClick={goSetting}><IoSettingsOutline size={"45%"}/></div>
                 </div>
                 <div className='end-icon' onClick={Logout}><IoLogOutOutline size={"45%"}/></div>
-
-            </div>
-        </div>
-    )
+      </div>
+    </div>
+  );
 }
