@@ -6,13 +6,12 @@ import axios from 'axios';
 import Header from '../components/Header';
 
 export default function Mind(props) {
-  const location = useLocation();
-  const {userId} = location.state;
-  const navigate = useNavigate();
   const [postdb, setPostdb] = useState([]);
-  const [userID, setUserID] = useState(userId);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { userId } = location.state;
   let myDB = [];
-  
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/mind`, {
@@ -30,17 +29,17 @@ export default function Mind(props) {
     navigate(`/detail/${item.id_post}`, {
       state: {
         id_post: item.id_post,
-        id_user: userID,
+        id_user: userId,
         title: item.title,
         body: item.body,
-        anonymity: item.anonymity,
+        lastPage: "/mind"
       },
     });
   };
 
   const goToNew = () => {
-    navigate(`/new/${userID}`, {
-      state: { userid: userID, lastPage: '/mind' },
+    navigate(`/new/${userId}`, {
+      state: { userid: userId, lastPage: '/mind' },
     });
   };
 
@@ -59,12 +58,13 @@ export default function Mind(props) {
             <p>{p.body}</p>
           </NavLink>
         </div>
-      ); } else { continue; }
+      );
+    } else { continue; }
   }
 
   return (
     <>
-      <Header userId={userID} logout={props.logout} />
+      <Header userId={userId} logout={props.logout} />
       <div className="post-page">
         {myDB.slice(-1)}
         <div className="guide-card">
@@ -72,12 +72,11 @@ export default function Mind(props) {
           <p>익명으로 서로의 고민을 나눠보며 숨은 위로와 힐링을 받아보세요!</p>
           <button id="new-post-create">
             <NavLink
-              to={'/new/' + userID}
+              to={'/new/' + userId}
               onClick={(e) => {
                 e.preventDefault();
                 goToNew();
-              }}
-            >
+              }}>
               <FaRegPenToSquare id="post-create-icon">작성</FaRegPenToSquare>
             </NavLink>
           </button>

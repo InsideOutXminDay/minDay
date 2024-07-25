@@ -6,18 +6,24 @@ import axios from 'axios';
 import Header from '../components/Header';
 
 export default function Post(props) {
-  const location = useLocation();
-  const {userId} = location.state;
   const [postdb, setPostdb] = useState([]);
-  const [userID, setUserID] = useState(userId);
+  const [authUser, setAuthUser] = useState('');
+  const location = useLocation();
+  const { userId } = location.state ? location.state : authUser;
   let myDB = [];
+
+  useEffect(() => {
+    const authUser = localStorage.getItem('authUser');
+    setAuthUser(authUser);
+  }, []);
 
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/post`, {
         headers: {
           authorization: `Bearer ${props.token}`,
-        },})
+        },
+      })
       .then((res) => {
         setPostdb([...res.data]);
       })
@@ -29,17 +35,17 @@ export default function Post(props) {
     navigate(`/detail/${item.id_post}`, {
       state: {
         id_post: item.id_post,
-        id_user: userID,
+        id_user: userId,
         title: item.title,
         body: item.body,
-        anonymity: item.anonymity,
+        lastPage: "/post"
       },
     });
   };
 
   const goToNew = () => {
-    navigate(`/new/${userID}`, {
-      state: { userid: userID, lastPage: '/post' },
+    navigate(`/new/${userId}`, {
+      state: { userid: userId, lastPage: '/post' },
     });
   };
 
@@ -60,12 +66,12 @@ export default function Post(props) {
         </div>
       );
     } else { continue; }
-  
+
   }
 
   return (
     <>
-      <Header userId={userID} logout={props.logout} />
+      <Header userId={userId} logout={props.logout} />
       <div className="post-page">
         {myDB.slice(-1)}
         <div className="guide-card">
@@ -73,7 +79,7 @@ export default function Post(props) {
           <p>서로의 멘탈 관리에 도움이 될 수 있도록 이야기를 공유해 보세요!</p>
           <button id="new-post-create">
             <NavLink
-              to={'/new/' + userID}
+              to={'/new/' + userId}
               onClick={(e) => {
                 e.preventDefault();
                 goToNew();

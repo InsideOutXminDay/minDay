@@ -8,22 +8,20 @@ import Header from '../components/Header';
 import Snackbar from '@mui/material/Snackbar';
 
 export default function Detail(props) {
-    let myComment = [];
+    const params = useParams();
     const navigate = useNavigate();
     const location = useLocation();
-    const postInfo = { ...location.state };
-    let backButton = postInfo.anonymity ? '/mind' : '/post';
-    let userNickname = '';
-
-    const [commentDB, setCommentDB] = useState([]);
     const [userDB, setUserDB] = useState([]);
     const [postDB, setPostDB] = useState([]);
-    const params = useParams();
-    let nowPost = {};
-    const [userID, setUserID] = useState(postInfo.id_user);
-    const [userNick, setUserNick] = useState('');
+    const [commentDB, setCommentDB] = useState([]);
     const [open, setOpen] = useState(false);
+    const [userID, setUserID] = useState('');
     const [snackbarMsg, setSnackbarMsg] = useState("저장되었습니다.");
+    const postInfo = { ...location.state };
+    let backButton = postInfo.lastPage;
+    let myComment = [];
+    let userNickname = '';
+    let nowPost = {};
 
     useEffect(() => {
         axios
@@ -61,9 +59,13 @@ export default function Detail(props) {
             })
             .then((res) => {
                 setUserDB([...res.data]);
-                setUserNick(res.data[0].nickname);
             })
             .catch((error) => console.error('Error:', error));
+    }, []);
+
+    useEffect(() => {
+        const authUser = localStorage.getItem('authUser');
+        setUserID(authUser);
     }, []);
 
     for (let i = 0; i < commentDB.length; i++) {
@@ -103,7 +105,7 @@ export default function Detail(props) {
     }
 
     for (let t = 0; t < userDB.length; t++) {
-        if (Number(userID) === userDB[t].id_user) {
+        if (Number(userID) === Number(userDB[t].id_user)) {
             userNickname = userDB[t].nickname;
         }
     }
@@ -142,6 +144,7 @@ export default function Detail(props) {
         let body = item.body;
         let id_user = userID;
         let id_post = nowPost.detail_post;
+
         fetch(`${process.env.REACT_APP_API_URL}/comment`, {
             method: 'POST',
             headers: {
@@ -213,19 +216,25 @@ export default function Detail(props) {
                         </button>
                     } />
                 <div className="detail-bar">
-                    <NavLink to={backButton} state={{userId:userID}}>
+                    <NavLink to={backButton} state={{ userId: userID, lastPage: postInfo.lastPage }}>
                         <IoCaretBackOutline id="post-back"></IoCaretBackOutline>
                     </NavLink>
                     <div className="button-right">
                         <span>
                             <input
                                 type="submit"
-                                value={userNick}
+                                value={userNickname}
                                 id="detail-submit"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    if (nowPost.detail_user === Number(userID)) {
+                                    console.log(`포스트 유저: ${nowPost.detail_user},  로그인유저: ${userID}`)
+                                    if (Number(nowPost.detail_user) === Number(userID)) {
+                                        setSnackbarMsg("수정하시겠습니까?");
+                                        setOpen(true);
                                         goToEdit(nowPost);
+                                    } else {
+                                        setSnackbarMsg("수정 권한이 없습니다.")
+                                        setOpen(true)
                                     }
                                 }} />
                         </span>

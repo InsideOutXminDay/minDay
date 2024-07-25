@@ -10,14 +10,21 @@ import Snackbar from '@mui/material/Snackbar';
 export default function New(props) {
 
     const [community, setCommunity] = useState("post");
+    const [detailNav, setDetailNav] = useState('');
+    const [authUser, setAuthUser] = useState('');
+    const [open, setOpen] = useState(false);
     const [unCheck, setUnCheck] = useState(<input type="hidden" name="anonymity" value="post" />);
     const location = useLocation();
-    const postInfo = { ...location.state };
-    let backButton = postInfo.lastPage;
-    const [userID, setUserID] = useState(postInfo.userid);
-    const [open, setOpen] = useState(false);
-    const [detailNav, setDetailNav] = useState('');
     const navigate = useNavigate();
+    const postInfo = { ...location.state };
+    const userID = postInfo.userid ? postInfo.userid : authUser;
+    let backButton = postInfo.lastPage;    
+
+    console.log(postInfo)
+    useEffect(() => {
+        const authUser = localStorage.getItem('authUser');
+        setAuthUser(authUser);
+    }, []);
 
     const MyCheckbox = (checked) => {
         if (checked) {
@@ -56,7 +63,8 @@ export default function New(props) {
                 const data = await response.json();
                 setDetailNav(Number(data.id_post));
                 setOpen(true)
-            }})
+            }
+        })
     }
 
     const CloseButton = (event, reason) => {
@@ -78,7 +86,8 @@ export default function New(props) {
                         <button color="secondary" size="small" onClick={(e) => {
                             e.preventDefault();
                             CloseButton();
-                            navigate(`/detail/${detailNav}`);
+                            navigate(`/detail/${detailNav}`, {
+                                state:{lastPage: postInfo.lastPage, userId:userID}});
                         }
                         }>
                             닫기
@@ -95,7 +104,8 @@ export default function New(props) {
                     newSave(item);
                 }}>
                     <div className="new-bar">
-                        <NavLink to={backButton}><IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
+                        <NavLink to={backButton} state={{ userId: userID, lastPage: postInfo.lastPage }}>
+                            <IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
                         <div className="button-right">
                             <label className="checkbox-right">
                                 <input type="checkbox" id="checkboxId" value={community}
