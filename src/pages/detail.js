@@ -6,6 +6,7 @@ import { LuDelete } from 'react-icons/lu';
 import axios from 'axios';
 import Header from '../components/Header';
 import Snackbar from '@mui/material/Snackbar';
+import { FaUserLock } from "react-icons/fa6";
 
 export default function Detail(props) {
     const params = useParams();
@@ -18,7 +19,8 @@ export default function Detail(props) {
     const [userID, setUserID] = useState('');
     const [snackbarMsg, setSnackbarMsg] = useState("저장되었습니다.");
     const postInfo = { ...location.state };
-    let backButton = postInfo.lastPage;
+    let backButton = postInfo.lastPage ? postInfo.lastPage : "/post";
+    let secret = '';
     let myComment = [];
     let userNickname = '';
     let nowPost = {};
@@ -105,7 +107,13 @@ export default function Detail(props) {
     }
 
     for (let t = 0; t < userDB.length; t++) {
-        if (Number(userID) === Number(userDB[t].id_user)) {
+        if ( Number(nowPost.detail_anonymity) === 1 ){
+            userNickname = '';
+            secret = <FaUserLock id="secret"></FaUserLock>;
+        }
+        else if ( Number(nowPost.detail_user) === Number(userDB[t].id_user)) 
+        {
+            secret = '';
             userNickname = userDB[t].nickname;
         }
     }
@@ -220,9 +228,10 @@ export default function Detail(props) {
                         <IoCaretBackOutline id="post-back"></IoCaretBackOutline>
                     </NavLink>
                     <div className="button-right">
-                        <span>
+                        <span>{secret}
                             <input
                                 type="submit"
+
                                 value={userNickname}
                                 id="detail-submit"
                                 onClick={(e) => {
@@ -236,7 +245,7 @@ export default function Detail(props) {
                                         setSnackbarMsg("수정 권한이 없습니다.")
                                         setOpen(true)
                                     }
-                                }} />
+                                }}/> 
                         </span>
                     </div>
                 </div>

@@ -44,7 +44,7 @@
     border-radius: 18px;
     outline: none;
     font-size: 19px;
-    overflow-y :scroll;
+    overflow-y: scroll;
     resize: none;
     border-right: 15px;
     text-align: left;
@@ -60,16 +60,16 @@
     background-clip: padding-box;
 }
 
-.detail-textarea ::-webkit-scrollbar{
+.detail-textarea ::-webkit-scrollbar {
     display: none;
 }
 
 .detail-textarea p {
-    scrollbar-width : none;
+    scrollbar-width: none;
     overflow-wrap: break-word;
     word-break: keep-all;
 }
- 
+
 #detail-submit {
     background-color: #B9ED90;
     border: none;
@@ -143,7 +143,7 @@
     cursor: pointer;
 }
 
-.detail-comment-bar button{
+.detail-comment-bar button {
     cursor: pointer;
     background-color: #B9ED90;
     border: 3px solid #B9ED90;
@@ -153,3 +153,15 @@
     align-items: center;
 }
 
+#secret {
+    position: absolute;
+    z-index: 2px;
+    font-size: x-large;
+    margin-left: 34px;
+    margin-top: 2px;
+    justify-content: center;
+}
+
+.button-right span {
+    position: relative;
+}
