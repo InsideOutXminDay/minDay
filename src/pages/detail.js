@@ -144,7 +144,7 @@ export default function Detail(props) {
         let body = item.body;
         let id_user = userID;
         let id_post = nowPost.detail_post;
-        console.log(body, id_user, id_post)
+
         fetch(`${process.env.REACT_APP_API_URL}/comment`, {
             method: 'POST',
             headers: {
