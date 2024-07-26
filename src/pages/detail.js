@@ -18,8 +18,9 @@ export default function Detail(props) {
     const [open, setOpen] = useState(false);
     const [userID, setUserID] = useState('');
     const [snackbarMsg, setSnackbarMsg] = useState("저장되었습니다.");
+    const [nowAnonymity, setNowAnonymity] = useState('/post');
     const postInfo = { ...location.state };
-    let backButton = postInfo.lastPage ? postInfo.lastPage : "/post";
+    let backButton = postInfo.lastPage ? postInfo.lastPage : nowAnonymity;
     let secret = '';
     let myComment = [];
     let userNickname = '';
@@ -70,6 +71,12 @@ export default function Detail(props) {
         setUserID(authUser);
     }, []);
 
+    useEffect(() => {
+        if (Number(nowPost.detail_anonymity) === 1){
+            setNowAnonymity('/mind')
+        }
+    }, [nowPost]);
+
     for (let i = 0; i < commentDB.length; i++) {
         if (Number(params.id) === commentDB[i].id_post) {
             let commentX = null;
@@ -93,7 +100,7 @@ export default function Detail(props) {
             );
         }
     }
-
+    
     for (let t = 0; t < postDB.length; t++) {
         if (Number(params.id) === postDB[t].id_post) {
             nowPost = {
@@ -105,6 +112,8 @@ export default function Detail(props) {
             };
         }
     }
+
+
 
     for (let t = 0; t < userDB.length; t++) {
         if (Number(nowPost.detail_anonymity) === 1) {
