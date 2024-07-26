@@ -108,7 +108,7 @@ export default function New(props) {
                         <NavLink to={backButton} state={{ userId: userID, lastPage: postInfo.lastPage }}>
                             <IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>
                         <div className="button-right">
-                            <label className="checkbox-right">
+                            <label className="checkbox-right" for="checkboxId">
                                 <input type="checkbox" id="checkboxId" value={community}
                                     onClick={(e) => {
                                         MyCheckbox(e.target.checked);
