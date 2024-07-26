@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { IoCaretBackOutline } from 'react-icons/io5';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import '../styles/community/new.css';
-import axios from 'axios';
 import Header from '../components/Header';
 import Snackbar from '@mui/material/Snackbar';
 
@@ -18,7 +17,7 @@ export default function New(props) {
     const navigate = useNavigate();
     const postInfo = { ...location.state };
     const userID = postInfo.userid ? postInfo.userid : authUser;
-    let backButton = postInfo.lastPage;    
+    let backButton = postInfo.lastPage;
 
     console.log(postInfo)
     useEffect(() => {
@@ -87,7 +86,8 @@ export default function New(props) {
                             e.preventDefault();
                             CloseButton();
                             navigate(`/detail/${detailNav}`, {
-                                state:{lastPage: postInfo.lastPage, userId:userID}});
+                                state: { lastPage: postInfo.lastPage, userId: userID }
+                            });
                         }
                         }>
                             닫기
@@ -103,6 +103,7 @@ export default function New(props) {
                     }
                     newSave(item);
                 }}>
+                    <div id="new-omg"></div>
                     <div className="new-bar">
                         <NavLink to={backButton} state={{ userId: userID, lastPage: postInfo.lastPage }}>
                             <IoCaretBackOutline id="post-back"></IoCaretBackOutline></NavLink>

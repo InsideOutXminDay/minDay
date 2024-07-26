@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { IoCaretBackOutline } from 'react-icons/io5';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import '../styles/community/edit.css';
-import axios from 'axios';
 import Header from '../components/Header';
 import Snackbar from '@mui/material/Snackbar';
 
@@ -86,6 +85,7 @@ export default function Edit(props) {
                     onSubmit={(e) => {
                         e.preventDefault();
                     }}>
+                    <div id="edit-omg"></div>
                     <div className="edit-bar">
                         <NavLink to={"/detail/" + backButton} onClick={(e) => {
                             e.preventDefault(); goTodetail(postInfo);
