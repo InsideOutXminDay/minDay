@@ -5,6 +5,7 @@
     border-radius: 15px;
     background-color: #E7F998;
     align-items:center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .new-title-bar{
@@ -16,6 +17,7 @@
     background-color: #E7F998;
     align-items: center;
     text-align: left;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 #post-back{
@@ -65,12 +67,12 @@
 
 .new-textarea {
     display: grid;
-    border: 5px solid #B9ED90;
     border-radius: 18px;
     margin:0% 5% 5% 110px;
     height: 600px;
     box-sizing: border-box;
     background-clip: padding-box; 
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 14px -1px, #7dccac 0px 1px 3px -1px;
 }
 
 #new-submit{
@@ -84,4 +86,8 @@
 
 #new-submit:hover{
     background-color:#B9ED90;
+}
+
+#new-omg{
+    padding-top: 3%;
 }
