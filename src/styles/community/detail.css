@@ -54,6 +54,7 @@
     resize: none;
     border-right: 15px;
     text-align: left;
+    white-space: pre;
 }
 
 .detail-textarea {
