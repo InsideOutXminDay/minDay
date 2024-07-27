@@ -50,7 +50,7 @@ export default function Detail(props) {
                 setCommentDB([...res.data]);
             })
             .catch((error) => console.error('Error:', error));
-    }, []);
+    }, [commentDB]);
 
     useEffect(() => {
         axios
@@ -204,7 +204,6 @@ export default function Detail(props) {
             setSnackbarMsg("삭제되었습니다.")
             setOpen(true)
         });
-        window.location.replace(`/detail/${nowPost.detail_post}`);
     }
 
     const CloseButton = (event, reason) => {
