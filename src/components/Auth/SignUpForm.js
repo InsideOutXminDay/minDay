@@ -18,12 +18,24 @@ export default function SignUpForm() {
   };
 
   const handleCheckDuplicate = async (e) => {
-    const { username } = inputForm;
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/join/check`, {
-      username,
-    });
+    const { username = '' } = inputForm;
+    //공백은 서버에 요청보내지 않음
+    if (!username.trim()) {
+      setModalContent('아이디를 입력해주세요.');
+      setIsModalOpen(true);
+      return;
+    }
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/api/join/check`,
+      {
+        username,
+      }
+    );
     if (response.data.exist === true) {
       setModalContent('이미 사용중인 아이디입니다.');
+      setInputForm({ ...inputForm, username: '' });
+    } else if (response.data.error === 'blank') {
+      setModalContent('아이디를 입력해주세요.');
       setInputForm({ ...inputForm, username: '' });
     } else {
       setModalContent('사용 가능한 아이디입니다.');
