@@ -44,7 +44,9 @@ export default function StateCheck({ initData, onUpdate, userId}) {
             <div className="q">
                 <p>최대 디지털기기 사용시간을 얼마로 정하고싶나요 ?</p>
                 <input type="number" placeholder={state.phone.content}
-                    onChange={(e)=>setState(data=>({...data, phone:{...data.phone, content:String(e.target.value)}}))}/>
+                    min={1}
+                    max={6}
+                    onChange={(e)=>setState(data=>({...data, phone:{...data.phone, content:String(e.target.value<1?1:e.target.value)}}))}/>
             </div>
             <div className="q">
                 <p>매일의 나에게 선물해주고싶은 일은 무엇인가요 ?</p>
@@ -60,8 +62,10 @@ export default function StateCheck({ initData, onUpdate, userId}) {
             </div>
             <div className="q">
                 <p>하루 운동량은 얼마인가요 ?</p>
-                <textarea type="number"placeholder={state.exercise.content} 
-                    onChange={(e)=>setState(data=>({...data, exercise:{...data.exercise, content:String(e.target.value)}}))}/>
+                <input type="number"placeholder={state.exercise.content} 
+                    min={1}
+                    max={17}
+                    onChange={(e)=>setState(data=>({...data, exercise:{...data.exercise, content:String(e.target.value<1?1:e.target.value)}}))}/>
                 
             </div>
             <button onClick={onSubmit}>완료</button>
