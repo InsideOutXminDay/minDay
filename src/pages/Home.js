@@ -17,6 +17,9 @@ export default function Home({ token, logout }) {
       })
       .then((res) => {
         const foundData = FindData(res.data, userId.id);
+        if (foundData.length==0){
+          window.location.href = `/ask/${userId.id}`;
+        }
         setInitData(foundData);
       })
       .catch((error) => console.error('Error:', error));
