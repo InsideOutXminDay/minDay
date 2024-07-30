@@ -61,6 +61,7 @@ export default function New(props) {
             }
             else {
                 const data = await response.json();
+                setBarMsg("게시글이 저장되었습니다.")
                 setNewBlank(`/detail/${data.id_post}`)
                 setOpen(true)
             }
