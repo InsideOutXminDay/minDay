@@ -4,10 +4,11 @@
     grid-auto-flow: row;
     height: inherit;
     margin-left: 7%;
+    margin-right: 7%;
 }
 
 .post-card {
-    width: 500px;
+    width: 480px;
     max-height: 600px;
     border: 0.3px solid rgba(60, 64, 67, 0.05);
     border-radius: 40px;
@@ -33,7 +34,7 @@
 }
 
 .guide-card {
-    width: 500px;
+    width: 480px;
     max-height: 230px;
     background-color: #E7F998;
     border-radius: 40px;

@@ -9,12 +9,13 @@ import Snackbar from '@mui/material/Snackbar';
 export default function New(props) {
 
     const [community, setCommunity] = useState("post");
-    const [detailNav, setDetailNav] = useState('');
     const [authUser, setAuthUser] = useState('');
     const [open, setOpen] = useState(false);
     const [unCheck, setUnCheck] = useState(<input type="hidden" name="anonymity" value="post" />);
     const location = useLocation();
     const navigate = useNavigate();
+    const [barMsg, setBarMsg] = useState("게시글이 저장되었습니다.")
+    const [newBlank, setNewBlank] = useState('')
     const postInfo = { ...location.state };
     const userID = postInfo.userid ? postInfo.userid : authUser;
     let backButton = postInfo.lastPage;
@@ -60,7 +61,8 @@ export default function New(props) {
             }
             else {
                 const data = await response.json();
-                setDetailNav(Number(data.id_post));
+                setBarMsg("게시글이 저장되었습니다.")
+                setNewBlank(`/detail/${data.id_post}`)
                 setOpen(true)
             }
         })
@@ -72,6 +74,7 @@ export default function New(props) {
         } setOpen(false);
     };
 
+
     return (
         <>
             <Header userId={userID} logout={props.logout}></Header>
@@ -79,13 +82,13 @@ export default function New(props) {
                 <Snackbar
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                     open={open}
-                    message="게시글이 저장되었습니다."
+                    message={barMsg}
                     onClose={CloseButton}
                     action={
                         <button color="secondary" size="small" onClick={(e) => {
                             e.preventDefault();
                             CloseButton();
-                            navigate(`/detail/${detailNav}`, {
+                            navigate(`${newBlank}`, {
                                 state: { lastPage: postInfo.lastPage, userId: userID }
                             });
                         }
@@ -95,6 +98,12 @@ export default function New(props) {
                     } />
                 <form name="newCreate" onSubmit={(e) => {
                     e.preventDefault();
+                    if (e.target.title.value == '' || e.target.body.value == ''){
+                        setNewBlank(`/new/${userID}`)
+                        setBarMsg("입력 내용을 확인해주세요.")
+                        setOpen(true)
+                   
+                    } else {
                     let item = {
                         id_user: userID,
                         title: e.target.title.value,
@@ -102,6 +111,7 @@ export default function New(props) {
                         anonymity: e.target.anonymity.value
                     }
                     newSave(item);
+                }
                 }}>
                     <div id="new-omg"></div>
                     <div className="new-bar">
