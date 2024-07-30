@@ -50,7 +50,7 @@ export default function Detail(props) {
                 setCommentDB([...res.data]);
             })
             .catch((error) => console.error('Error:', error));
-    }, [commentDB]);
+    }, []);
 
     useEffect(() => {
         axios

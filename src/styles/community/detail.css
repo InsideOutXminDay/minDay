@@ -63,11 +63,14 @@
     border-radius: 18px;
     outline: none;
     font-size: 19px;
-    overflow-y: scroll;
     resize: none;
     border-right: 15px;
     text-align: left;
     white-space: pre;
+    scrollbar-width: none;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+    white-space: normal;
 }
 
 .detail-textarea {
@@ -78,16 +81,12 @@
     box-sizing: border-box;
     background-clip: padding-box;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 8px;
+    overflow-x: hidden;
+    overflow-y: auto; 
 }
 
 .detail-textarea ::-webkit-scrollbar {
     display: none;
-}
-
-.detail-textarea p {
-    scrollbar-width: none;
-    overflow-wrap: break-word;
-    word-break: keep-all;
 }
 
 #detail-submit {
