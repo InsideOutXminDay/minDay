@@ -18,9 +18,16 @@ export default function LoginForm({ setToken, onLogin }) {
     e.preventDefault();
     const username = e.target.username.value;
     const password = e.target.password.value;
-
-    console.log('로그인 요청 보냄', username, password);
-
+    if (!username.trim()) {
+      setModalContent('아이디를 입력해주세요.');
+      setIsModalOpen(true);
+      return;
+    }
+    if (!password.trim()) {
+      setModalContent('비밀번호를 입력해주세요.');
+      setIsModalOpen(true);
+      return;
+    }
     const response = await axios.post(
       `${process.env.REACT_APP_API_URL}/api/login`,
       {
@@ -31,8 +38,12 @@ export default function LoginForm({ setToken, onLogin }) {
     if (response.data.success === false) {
       setModalContent(response.data.message);
       setIsModalOpen(true);
-      setUsername('');
-      setPassword('');
+      if (response.data.message === '존재하지 않는 아이디입니다.') {
+        setUsername('');
+        setPassword('');
+      } else if (response.data.message === '비밀번호를 확인해주세요.') {
+        setPassword('');
+      }
     } else {
       setToken(response.data.token);
       onLogin(response.data.id_user);
