@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import axios from 'axios';
 import { FindData } from '../util';
 import Paragraph from '../components/HomexDiary/Paragraph';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 export default function Home({ token, logout }) {
   const [initData, setInitData] = useState([]);
