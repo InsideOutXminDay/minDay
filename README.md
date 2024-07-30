@@ -1,72 +1,28 @@
-# Getting Started with Create React App
+# 🌟 minDay 🌟
 
-test
+📝 감정일기를 통한 멘탈케어 웹사이트에 오신 것을 환영합니다. 이 플랫폼은 여러분이 일상적인 감정을
+ 매일 기록하고, 명언을 통해 목표의식을 고취시키며, 주어진 체크리스트 항목에 대한 답변과 기록으로 자신의 상태를 점검할 수 있도록 돕습니다. 또한 상황에 맞는 다양한 카테고리의 영상을 보거나 커뮤니티에서 다른 사람들과 고민이나 일상적인 내용을 나눌 수 있습니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## ✨ 주요 기능
 
-## Available Scripts
+1. **🖊️ 일일 감정 일기**: 하루 동안의 감정을 기록하고 되돌아볼 수 있습니다. 매일의 감정을 기록함으로써 감정의 변화를 추적하고, 자신을 더 잘 이해할 수 있습니다.
 
-In the project directory, you can run:
+2. **💬 명언**: 목표의식을 고취시키는 글귀를 제공합니다. 자신을 돌아볼 힘을 키워주며 긍정적인 생각을 유지할 수 있도록 도와줍니다.
 
-### `npm start`
+3. **✅ 상태체크리스트**: 식사, 휴식, 전자기기 사용, 운동 시간, 취미, 만족도를 위한 시간을 체크할 수 있습니다. 각 항목에 체크하면서 자신의 일상적인 생활 패턴을 점검하고 개선할 수 있습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+4. **🎥 콘텐츠 카테고리**: 수면, 운동 등 멘탈케어를 돕는 건강한 컨텐츠를 선택해 즐길 수 있습니다. 관심 있거나 자신의 상태에 맞는 분야의 콘텐츠를 선택하여 볼 수 있으며, 이를 통해 건강한 생활 습관을 배우고 길러 나갈 수 있습니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+5. **👥 커뮤니티**: 다른 사용자들과 생각과 경험을 공유하고 토론할 수 있습니다. 고민을 나누고, 조언을 구하며, 서로에게 힘이 되어주는 공간입니다.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📄 라이선스
+MIT 라이선스에 따라 배포됩니다. 자세한 내용은 LICENSE 파일을 참조하세요.
 
-### `npm run build`
+## 📞 문의
+질문이나 제안 사항이 있으시면 언제든지 연락주세요:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> 📧 이메일
+- orionrora@naver.com
+- hyewon3085@naver.com
+- ui2939@gmail.com
