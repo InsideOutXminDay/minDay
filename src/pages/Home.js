@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import axios from 'axios';
 import { FindData } from '../util';
 import Paragraph from '../components/HomexDiary/Paragraph';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function Home({ token, logout }) {
   const [initData, setInitData] = useState([]);
@@ -17,6 +17,10 @@ export default function Home({ token, logout }) {
       })
       .then((res) => {
         const foundData = FindData(res.data, userId.id);
+        console.log(foundData.length)
+        if (foundData.length==0){
+          window.location.href = `/ask/${userId.id}`;
+        }
         setInitData(foundData);
       })
       .catch((error) => console.error('Error:', error));
