@@ -72,7 +72,7 @@ export default function Detail(props) {
     }, []);
 
     useEffect(() => {
-        if (Number(nowPost.detail_anonymity) === 1){
+        if (Number(nowPost.detail_anonymity) === 1) {
             setNowAnonymity('/mind')
         }
     }, [nowPost]);
@@ -100,7 +100,7 @@ export default function Detail(props) {
             );
         }
     }
-    
+
     for (let t = 0; t < postDB.length; t++) {
         if (Number(params.id) === postDB[t].id_post) {
             nowPost = {
@@ -232,28 +232,31 @@ export default function Detail(props) {
                     } />
                 <div id="detail-omg"></div>
                 <div className="detail-bar">
-                    <NavLink to={backButton} state={{ userId: userID, lastPage: postInfo.lastPage }}>
-                        <IoCaretBackOutline id="post-back"></IoCaretBackOutline>
-                    </NavLink>
-                    <div className="button-right">
-                        <span>{secret}
-                            <input
-                                type="submit"
-                                value={userNickname}
-                                id="detail-submit"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    console.log(`포스트 유저: ${nowPost.detail_user},  로그인유저: ${userID}`)
-                                    if (Number(nowPost.detail_user) === Number(userID)) {
-                                        setSnackbarMsg("수정하시겠습니까?");
-                                        setOpen(true);
-                                        goToEdit(nowPost)
-                                    } else {
-                                        setSnackbarMsg("수정 권한이 없습니다.")
-                                        setOpen(true)
-                                    }
-                                }} />
-                        </span>
+                    <div className="left-Button">
+                        <NavLink to={backButton} state={{ userId: userID, lastPage: postInfo.lastPage }}>
+                            <IoCaretBackOutline id="detail-post-back"></IoCaretBackOutline>
+                        </NavLink></div>
+                    <div className='detail-submit-box'>
+                        <div className="button-right" id=''>
+                            <span>{secret}
+                                <input
+                                    type="submit"
+                                    value={userNickname}
+                                    id="detail-submit"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        console.log(`포스트 유저: ${nowPost.detail_user},  로그인유저: ${userID}`)
+                                        if (Number(nowPost.detail_user) === Number(userID)) {
+                                            setSnackbarMsg("수정하시겠습니까?");
+                                            setOpen(true);
+                                            goToEdit(nowPost)
+                                        } else {
+                                            setSnackbarMsg("수정 권한이 없습니다.")
+                                            setOpen(true)
+                                        }
+                                    }} />
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div className="detail-title-bar">

@@ -1,15 +1,21 @@
 .detail-bar {
     display: flex;
     height: 50px;
-    margin: 0% 5% 2% 65%;
+    margin: 0% 5% 2% 110px;
     border-radius: 15px;
-    background-color: #E7F998;
     align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-#detail-omg{
+#detail-omg {
     padding-top: 5.5%;
+}
+
+.left-Button {
+    background-color: #E7F998;
+    padding: 15px 17px 13px 1px;
+    margin: 0 0 0 10px;
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
 }
 
 .detail-title-bar {
@@ -30,15 +36,22 @@
     font-size: large;
 }
 
-#post-back {
-    padding-left: 20px;
+#detail-post-back {
+    padding-left: 15px;
     justify-content: flex-start;
 }
 
 .button-right {
     margin-left: auto;
-    margin-right: 7%;
-    position: relative;
+}
+
+.detail-submit-box {
+    margin-left: auto;
+    margin-right: 0px;
+    background-color: #E7F998;
+    padding: 13px 50px 13px 23%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px;
+    border-radius: 15px;
 }
 
 .detail-textarea p {
@@ -85,6 +98,8 @@
     height: 28px;
     font-weight: bold;
     box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 2px 0px inset;
+    margin-right: 7%;
+    position: relative;
 }
 
 #detail-submit:hover {
@@ -170,4 +185,3 @@
     margin-left: 34px;
     margin-top: 2px;
 }
-
