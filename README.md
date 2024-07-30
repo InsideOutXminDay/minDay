@@ -25,3 +25,4 @@ MIT 라이선스에 따라 배포됩니다. 자세한 내용은 LICENSE 파일�
 > 📧 이메일
 - orionrora@naver.com
 - hyewon3085@naver.com
+- ui2939@gmail.com
