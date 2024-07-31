@@ -44,7 +44,7 @@ export default function Header({ userId, logout }) {
           </div>
           <div className="mid-icon" onClick={goContents}>
             <IoBookOutline size={'45%'} />
-            <p className='pagename'>컨탠츠</p>
+            <p className='pagename'>컨텐츠</p>
           </div>
           <div className="mid-icon" onClick={goSetting}>
             <IoSettingsOutline size={'45%'} />
