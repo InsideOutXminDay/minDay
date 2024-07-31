@@ -179,7 +179,7 @@
 
 #detail-secret {
     position: absolute;
-    z-index: 2px;
+    z-index: 1;
     font-size: x-large;
     margin-left: 34px;
     margin-top: 2px;

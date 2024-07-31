@@ -57,7 +57,7 @@
 #new-post-create a {
     text-decoration: none;
     color: black;
-    z-index: 20px;
+    z-index: 1px;
 }
 
 .post-page a {
