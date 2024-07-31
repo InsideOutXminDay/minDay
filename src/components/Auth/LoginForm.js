@@ -96,14 +96,6 @@ export default function LoginForm({ setToken, onLogin }) {
             <button className="login-btn">Log in</button>
           </form>
         </div>
-
-        <div className="login-other">
-          <button className="kakao-btn">
-            <span>Kakao Login</span>
-            <ImBubble color="#3A1D1D" />
-          </button>
-          <span className="find-text">회원 정보를 잊으셨나요?</span>
-        </div>
       </article>
     </>
   );
