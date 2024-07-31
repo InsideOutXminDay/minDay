@@ -44,6 +44,7 @@
     background-color: #E7F998;
     font-size: 20px;
     font-weight:normal;
+    font-family: "Pretendard-Regular";
 }
 
 .new-title-bar input:focus{
@@ -51,6 +52,7 @@
 }
 
 .new-textarea textarea{
+    font-family: "Pretendard-Regular";
     margin: 10px 40px 0 0 ;
     padding-left: 15px;
     display:flex;

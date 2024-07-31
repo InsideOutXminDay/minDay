@@ -90,6 +90,7 @@
 }
 
 #detail-submit {
+    font-family: "Pretendard-Regular";
     background-color: #B9ED90;
     border: none;
     border-radius: 8px;
@@ -130,6 +131,7 @@
 }
 
 .detail-comment-input .input-text input {
+    font-family: "Pretendard-Regular";
     justify-content: left;
     height: 37px;
     width: 100%;
